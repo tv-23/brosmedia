@@ -1,0 +1,58 @@
+---
+import "../styles/services.css";
+import Layout from "../layouts/BaseLayout.astro";
+import Header from "../components/services/website/header.astro";
+import SideBar from "../components/services/website/side-bar.astro";
+import Overview from "../components/services/website/overview.astro";
+import ListContent from "../components/services/website/list-content.astro";
+import Tech from "../components/services/website/tech.astro";
+import TelephoneAppointmentForm from "../components/telephone-appointment-form.astro";
+import ServiceGallery from "../components/services/website/service-gallery.astro";
+---
+
+<Layout pageTitle = "Conception de site web - BROSMEDIA : Agence De Communication Digitale Au Maroc">
+  <main class="main">
+    <Header />
+
+    <!-- Service Details Section -->
+    <section id="service-details" class="service-details section">
+      <div class="container">
+        <div class="row gy-5">
+          <div class="col-lg-8 order-lg-1 order-2">
+            <div class="service-main-content">
+              <div class="service-header">
+                <h1>Création de sites web professionnels</h1>
+                <p class="lead">
+                  Nous vous accompagnons dans la mise en place de votre présence
+                  en ligne avec des sites modernes, performants et adaptés à vos
+                  besoins.
+                </p>
+              </div>
+
+              <Overview />
+
+              <ListContent />
+
+
+              <Tech />
+
+             <ServiceGallery/>
+              
+              <br><br>
+        <TelephoneAppointmentForm />
+
+
+            </div>
+          </div>
+
+          <div class="col-lg-4 order-lg-2 order-1">
+            <SideBar />
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+  </main>
+</Layout>

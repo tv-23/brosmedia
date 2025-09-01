@@ -1,0 +1,102 @@
+---
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+import "../styles/main.css";
+import "../styles/global.css";
+import Message from "../components/message.astro";
+
+const { pageTitle } = Astro.props;
+---
+
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+
+        <title>{pageTitle}</title>
+
+        <link
+            href="/assets/vendor/bootstrap/css/bootstrap.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+            rel="stylesheet"
+        />
+        <!-- <link href="/assets/vendor/aos/aos.css" rel="stylesheet" /> -->
+        <link
+            href="/assets/vendor/swiper/swiper-bundle.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="/assets/vendor/glightbox/css/glightbox.min.css"
+            rel="stylesheet"
+        />
+    </head>
+    <body>
+        <div class="bg-white">
+            <Header />
+        </div>
+        <slot />
+        <!-- Scroll Top -->
+        <a
+            href="#"
+            id="scroll-top"
+            class="scroll-top d-flex align-items-center justify-content-center"
+            ><i class="bi bi-arrow-up-short"></i></a
+        >
+        <a href="#" id="chat-button" class="chat-icon">
+            <i class="bi bi-chat-dots-fill"></i>
+        </a>
+        <Message />
+
+
+<!-- Chat Modal -->
+<div class="modal fade" id="chatModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Chat</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <!-- Your chatBox content -->
+               <!-- <Message /> -->
+
+      </div>
+    </div>
+  </div>
+</div>
+
+        <Footer />
+
+        <script
+            src="../../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
+        ></script>
+        <script src="../../public/assets/vendor/php-email-form/validate.js"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"
+            client:load></script>
+
+        <!-- <script
+            src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"
+            client:load></script> -->
+
+        <script
+            src="https://unpkg.com/imagesloaded@5.0.0/imagesloaded.pkgd.min.js"
+            client:load></script>
+
+        <!-- <script
+            src="../../public/assets/vendor/isotope-layout/isotope.pkgd.min.js"
+         client:load></script> -->
+
+        <script
+            src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"
+            client:load></script>
+
+        <script src="../../public/main.js"></script>
+    </body>
+</html>
