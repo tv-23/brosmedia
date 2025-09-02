@@ -32,6 +32,7 @@ span#contact-phone>a {
 
 nav#navmenu>ul>li>a {
     font-weight: 600;
+    text-decoration: none;
 }
 
 /* Custom Scrollbar Styles */
