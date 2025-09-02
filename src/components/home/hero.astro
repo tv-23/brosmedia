@@ -55,48 +55,50 @@ import ContactForm from "../contact-form.astro";
         padding: 3px;
     }
 
-      .modal-body {
-            padding: 0px;
-        }
-        .modal-body > section{
-padding: 1px !important;
-        }
+    .modal-body {
+        padding: 0px;
+    }
+    .modal-body > section {
+        padding: 1px !important;
+    }
 
-        
-        .modal-body > section > div {
-            margin-top: 0px !important;
-            
-        }
-        .modal-header {
-            background-color: #0a0f4f;
-            border: none;
-        }
+    .modal-body > section > div {
+        margin-top: 0px !important;
+    }
+    .modal-header {
+        background-color: #0a0f4f;
+        border: none;
+    }
 
-        .modal-header > button > i {
-            color: white;
+    .modal-header > button > i {
+        color: white;
+    }
+    #exampleModal {
+        margin-top: 25px;
+    }
+    @media (min-width: 768px) {
+        .modal-dialog {
+            max-width: 75%;
+            margin: auto;
         }
-        #exampleModal {
-            margin-top: 25px;
-        }
-        @media (min-width: 768px) {
-            .modal-dialog {
-                max-width: 75%;
-                margin: auto;
-            }
-        }
+    }
 
-        @media (max-width: 767.98px) {
-            .modal-dialog {
-                max-width: 100%;
-                margin: 0;
-            }
+    @media (max-width: 767.98px) {
+        .modal-dialog {
+            max-width: 100%;
+            margin: 0;
         }
+    }
 </style>
 <main class="main">
-    <section id="hero" class="hero section d-none d-lg-block" style="padding-bottom:10px">
+    <section
+        id="hero"
+        class="hero section d-none d-lg-block"
+        style="padding-bottom:10px"
+    >
         <div class="container">
             <div class="row">
-                <div class="col-lg-7 content-col" >
+                <div class="col-lg-7 content-col">
                     <div class="content">
                         <div class="agency-name">
                             <h5>NOTRE AGENCE</h5>
@@ -124,53 +126,50 @@ padding: 1px !important;
                                     stratégies de marketing digital
                                     personnalisées</strong
                                 >
-                                et <strong></strong>vidéos publicitaires percutantes</strong>. Renforcez votre
-                                présence en ligne, attirez plus de clients et valorisez
-                                votre image de marque grâce à des solutions modernes
-                                et efficaces.
-                            </p>
-                        </div>
-
-                        <div class="cta-button">
-                            <button
-                                type="button"
-                                data-bs-toggle="modal"
-                                data-bs-target="#exampleModal"
-                                class="btn"
-                            >
-                                <span>Parlez directement à un spécialiste de notre équipe</span>
-                                <i class="bi bi-arrow-right"></i>
-                            </button>
-
+                                et <strong></strong>vidéos publicitaires
+                                percutantes
+                            </p>. Renforcez votre présence en ligne, attirez
+                            plus de clients et valorisez votre image de marque
+                            grâce à des solutions modernes et efficaces.
                         </div>
                     </div>
-                </div>
 
-                <div class="col-lg-5" >
-                    <div class="visual-content">
-                        
-                    
-<!-- <iframe
+                    <div class="cta-button">
+                        <button
+                            type="button"
+                            data-bs-toggle="modal"
+                            data-bs-target="#exampleModal"
+                            class="btn"
+                        >
+                            <span
+                                >Parlez directement à un spécialiste de notre
+                                équipe</span
+                            >
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="visual-content">
+                    <!-- <iframe
   src="https://www.videoask.com/fawysaw0m"
   width="100%" height="600"
   allow="camera; microphone"
   style="border:none;">
 </iframe> -->
 
+                    <iframe
+                        src="https://www.videoask.com/fawysaw0m"
+                        width="95%"
+                        height="600"
+                        allow="camera; microphone"
+                        style="border:none;"
+                        loading="lazy"
+                        data-src="https://www.videoask.com/fawysaw0m"></iframe>
 
-                                       <iframe
-  src="https://www.videoask.com/fawysaw0m"
-  width="95%"
-  height="600"
-  allow="camera; microphone"
-  style="border:none;"
-  loading="lazy"
-  data-src="https://www.videoask.com/fawysaw0m"
-></iframe>
-
-                     
-
-                        <!-- <div class="stats-card">
+                    <!-- <div class="stats-card">
                             <div class="stats-number">
                                 <h2>100+</h2>
                             </div>
@@ -183,61 +182,52 @@ padding: 1px !important;
                                 >
                             </div>
                         </div> -->
-                    </div>
                 </div>
             </div>
-            
-            <!-- <br/>
+        </div>
+
+        <!-- <br/>
             <br/>
             <br/>
 
             <h1>Quelques-Uns De Nos 100+ Clients</h1> -->
-        </div>
-
-        
-
     </section>
+</main>
 
-
-    <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-    >
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    >
-                        <i class="bi bi-x-lg"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <section id="contact" class="contact section">
-                        <!-- Contact Form Section (Overlapping) -->
-                        <div class="container form-container-overlap">
-                            <div
-                                class="row justify-content-center"
-                                
-                                
-                            >
-                                <div class="col-lg-10">
-                                    <ContactForm/>
-                                </div>
+<div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+>
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                >
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <section id="contact" class="contact section">
+                    <!-- Contact Form Section (Overlapping) -->
+                    <div class="container form-container-overlap">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10">
+                                <ContactForm />
                             </div>
                         </div>
-                    </section>
-                </div>
+                    </div>
+                </section>
             </div>
         </div>
     </div>
-</main>
+</div>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
