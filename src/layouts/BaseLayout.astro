@@ -24,17 +24,21 @@ const { pageTitle } = Astro.props;
             onload="this.onload=null;this.rel='stylesheet'"
         />
         <link
+            rel="preload"
             href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
-            rel="stylesheet"
         />
         <!-- <link href="/assets/vendor/aos/aos.css" rel="stylesheet" /> -->
         <link
+            rel="preload"
             href="/assets/vendor/swiper/swiper-bundle.min.css"
-            rel="stylesheet"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
         />
         <link
+            rel="preload"
             href="/assets/vendor/glightbox/css/glightbox.min.css"
-            rel="stylesheet"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
         />
     </head>
     <body>
