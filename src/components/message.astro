@@ -1,4 +1,5 @@
 ---
+
 ---
 
 <link
@@ -7,7 +8,6 @@
   as="style"
   onload="this.onload=null;this.rel='stylesheet'"
 />
-
 
 <div class="chat-container hidden" id="chat-box">
   <div class="chat-header">
@@ -20,13 +20,22 @@
   <div class="chat-body" id="chatBody">
     <div class="message-row receiver">
       <div class="message-bubble">
-        Bonjour! Je suis l'assistant IA de Brosmedia. 🤖<br />
-        Comment puis-je vous aider aujourd'hui?
+        👋 Bonjour et bienvenue chez Brosmedia ! Je suis votre assistant IA 🤖
+        spécialisé en marketing digital. Comment puis-je vous aider aujourd’hui
+        ?
         <div class="quick-replies">
-          <div class="quick-reply" data-reply="Services">Nos services</div>
-          <div class="quick-reply" data-reply="Tarifs">Tarifs</div>
-          <div class="quick-reply" data-reply="Portfolio">Portfolio</div>
-          <div class="quick-reply" data-reply="Contact">Contact humain</div>
+          <div class="quick-reply" data-reply="Services">
+            Découvrir nos services
+          </div>
+          <div class="quick-reply" data-reply="Tarifs">
+            Consulter nos tarifs
+          </div>
+          <div class="quick-reply" data-reply="Portfolio">
+            Voir notre portfolio
+          </div>
+          <div class="quick-reply" data-reply="Contact">
+            Parler à un conseiller
+          </div>
         </div>
       </div>
     </div>
@@ -50,13 +59,13 @@
         "Bonjour ! Je suis l'assistant IA de Brosmedia. 🤖 Comment puis-je vous aider aujourd'hui?",
         "Salut ! 👋 Ravie de vous rencontrer. Je suis là pour répondre à toutes vos questions sur nos services de communication et web marketing.",
       ],
-      services: `Chez Brosmedia, nous offrons une gamme complète de services pour booster votre présence en ligne :
+      services: `Bien sûr 🚀 ! Chez Brosmedia, nous aidons les entreprises à développer leur présence en ligne grâce à :
 <br>
-• 🖥️ <strong>Création de sites web</strong> - Des sites modernes, responsives et sur mesure<br>
-• 📊 <strong>Marketing digital</strong> - Stratégies personnalisées pour maximiser votre visibilité<br>
-• 🔍 <strong>Référencement SEO</strong> - Optimisation pour améliorer votre classement sur Google<br>
-• 📱 <strong>Gestion des réseaux sociaux</strong> - Content engaging et community management<br>
-• 🎨 <strong>Design graphique</strong> - Identité visuelle qui marque les esprits<br>`,
+• 🌐 Création de sites web modernes et rapides<br>
+• 📈 SEO & Référencement Google<br>
+• 🎯 Publicité digitale (Facebook, Instagram, Google)<br>
+• 🎥 Contenu audiovisuel (photos & vidéos professionnelles)<br>
+👉 Quel domaine vous intéresse le plus ?`,
       pricing: `Nos tarifs sont adaptés à chaque projet et à chaque budget :<br>
 
 • <strong>Site vitrine</strong> : À partir de 4 000 MAD<br>
@@ -221,7 +230,7 @@ Je vous invite à découvrir l'ensemble de nos réalisations sur https://brosmed
         !lowerMessage.includes("humain") &&
         !lowerMessage.includes("expert")
       ) {
-        setTimeout(addQuickReplies, 300);
+        setTimeout(addQuickReplies(userMessage), 300);
       }
     }
 
@@ -348,7 +357,10 @@ Je vous invite à découvrir l'ensemble de nos réalisations sur https://brosmed
     ];
 
     // Add quick replies
-    function addQuickReplies() {
+    function addQuickReplies(userMessage) {
+
+console.log(userMessage)
+
       const quickReplyContainer = document.createElement("div");
       quickReplyContainer.classList.add("quick-replies");
 
