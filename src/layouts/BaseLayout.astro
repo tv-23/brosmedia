@@ -1,8 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import "../styles/main.css";
-import "../styles/global.css";
+
 import Message from "../components/message.astro";
 
 const { pageTitle } = Astro.props;
@@ -36,6 +35,20 @@ const { pageTitle } = Astro.props;
         <link
             rel="preload"
             href="/assets/vendor/glightbox/css/glightbox.min.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+
+        <link
+            rel="preload"
+            href="/assets/styles/main.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+
+        <link
+            rel="preload"
+            href="/assets/styles/global.css"
             as="style"
             onload="this.onload=null;this.rel='stylesheet'"
         />

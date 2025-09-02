@@ -1,5 +1,4 @@
 ---
-import "../styles/home.css";
 import Hero from "../components/home/hero.astro";
 import HeroTabletMobile from "../components/home/hero-tablet-mobile.astro";
 import Contact from "../components/home/contact.astro";
@@ -15,6 +14,15 @@ import FAQ from "../components/home/faq.astro";
 import Portfolio from "../components/home/portfolio.astro";
 import Logos from "../components/home/logo-slider.astro";
 ---
+
+
+
+<link
+  rel="preload"
+  href="/assets/styles/home.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
 
 <!-- Hero Section -->
 <Hero />

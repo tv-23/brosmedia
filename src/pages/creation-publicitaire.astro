@@ -1,5 +1,4 @@
 ---
-import "../styles/services.css";
 import Layout from "../layouts/BaseLayout.astro";
 import Header from "../components/services/advertising/header.astro";
 import Cards from "../components/services/advertising/cards.astro";
@@ -11,6 +10,14 @@ import TelephoneAppointmentForm from "../components/telephone-appointment-form.a
 
 <Layout pageTitle = "Création publicitaire - BROSMEDIA : Agence De Communication Digitale Au Maroc">
   <main class="main">
+
+<link
+  rel="preload"
+  href="/assets/styles/services.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+
     <Header />
 
     <!-- Service Details Section -->

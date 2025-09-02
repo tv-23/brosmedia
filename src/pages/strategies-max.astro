@@ -9,11 +9,17 @@ import Audit from "../components/strategies-max/audit.astro";
 import DigitalAgency from "../components/strategies-max/digital-agency.astro";
 import DedicatedTeam from "../components/strategies-max/dedicated-team.astro";
 import ConcreteFigures from "../components/strategies-max/concrete-figures.astro";
-import "../styles/strategies-max.css"
 ---
 
 
 <Layout pageTitle = "Stratégies Max - BROSMEDIA : Agence De Communication Digitale Au Maroc">
+
+<link
+  rel="preload"
+  href="/assets/styles/strategies-max.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
 
 <Hero/>
 <Cards/>

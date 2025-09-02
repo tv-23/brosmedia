@@ -1,11 +1,16 @@
 ---
-import "../styles/message.css";
 ---
 
 <link
+  rel="preload"
+  href="/assets/styles/message.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+<!-- <link
   href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
   rel="stylesheet"
-/>
+/> -->
 
 <div class="chat-container hidden" id="chat-box">
   <div class="chat-header">
@@ -98,12 +103,9 @@ Je vous invite à découvrir l'ensemble de nos réalisations sur https://brosmed
       });
     }
 
-
-    closeChat.addEventListener('click', function() {
-                chatBox.classList.add('hidden');
-            });
-
-
+    closeChat.addEventListener("click", function () {
+      chatBox.classList.add("hidden");
+    });
 
     // Add message to chat
     function addMessage(text, sender) {

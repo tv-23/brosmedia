@@ -1,5 +1,4 @@
 ---
-import "../styles/services.css";
 import Layout from "../layouts/BaseLayout.astro";
 import Header from "../components/services/website/header.astro";
 import SideBar from "../components/services/website/side-bar.astro";
@@ -12,6 +11,13 @@ import ServiceGallery from "../components/services/website/service-gallery.astro
 
 <Layout pageTitle = "Conception de site web - BROSMEDIA : Agence De Communication Digitale Au Maroc">
   <main class="main">
+<link
+  rel="preload"
+  href="/assets/styles/services.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+
     <Header />
 
     <!-- Service Details Section -->

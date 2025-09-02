@@ -1,7 +1,6 @@
 ---
 // Imports
 import Layout from "../layouts/BaseLayout.astro";
-import "../styles/blog.css";
 import { getCollection } from "astro:content";
 
 // Get posts
@@ -16,9 +15,16 @@ function extractFirstImage(content) {
 }
 ---
 
+
 <Layout
-  pageTitle="Blog - BROSMEDIA : Agence De Communication Digitale Au Maroc"
+pageTitle="Blog - BROSMEDIA : Agence De Communication Digitale Au Maroc"
 >
+<link
+  rel="preload"
+  href="/assets/styles/blog.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
   <div class="page-title dark-background">
     <div class="container position-relative">
       <h1>Blog</h1>
