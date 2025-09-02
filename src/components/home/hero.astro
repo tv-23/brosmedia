@@ -148,42 +148,23 @@ padding: 1px !important;
 
                 <div class="col-lg-5" >
                     <div class="visual-content">
-                        <div class="fluid-shape">
-                            <div
-                                class="position-relative cursor-pointer overflow-hidden"
-                                id="video-thumbnail"
-                                role="button"
-                                aria-label="Play video"
-                                tabindex="0"
-                            >
-                                <img
-                                    src="https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg"
-                                    alt="Video thumbnail"
-                                    class="w-100 h-100 video-img"
-                                    style="object-fit: cover;"
-                                />
-                                <!-- Play Button Overlay -->
-                                <div
-                                    class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
-                                >
-                                    <div
-                                        class="bg-white bg-opacity-80 rounded-circle d-flex align-items-center justify-content-center shadow"
-                                        style="width: 80px; height: 80px; transition: transform 0.3s ease;"
-                                    >
-                                        <svg
-                                            class="w-10 h-10 text-primary"
-                                            fill="currentColor"
-                                            viewBox="0 0 24 24"
-                                            aria-hidden="true"
-                                        >
-                                            <path d="M8 5v14l11-7z"></path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        
+            
 
-                        <div class="stats-card">
+
+                                       <iframe
+  src="https://www.videoask.com/fawysaw0m"
+  width="95%"
+  height="600"
+  allow="camera; microphone"
+  style="border:none;"
+  loading="lazy"
+  data-src="https://www.videoask.com/fawysaw0m"
+></iframe>
+
+                     
+
+                        <!-- <div class="stats-card">
                             <div class="stats-number">
                                 <h2>100+</h2>
                             </div>
@@ -195,7 +176,7 @@ padding: 1px !important;
                                     ><i class="bi bi-arrow-up-right"></i></a
                                 >
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>
@@ -257,25 +238,25 @@ padding: 1px !important;
         const thumbnail = document.getElementById("video-thumbnail");
         if (!thumbnail) return;
 
-        const playVideo = () => {
-            const videoId = "dQw4w9WgXcQ"; // Replace with your YouTube video ID
-            const iframe = document.createElement("iframe");
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-            iframe.allow =
-                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-            iframe.className = "w-100 h-100 position-absolute top-0 start-0";
-            iframe.title = "YouTube video player";
-            iframe.allowFullscreen = true;
-            thumbnail.innerHTML = "";
-            thumbnail.appendChild(iframe);
-        };
+        // const playVideo = () => {
+        //     const iframe = document.createElement("iframe");
+        //     iframe.src = `https://www.videoask.com/fawysaw0m`;
+        //     iframe.allow =
+        //         "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+        //     iframe.className = "w-100 h-100 position-absolute top-0 start-0";
+        //     iframe.title = "YouTube video player";
+        //     iframe.allowFullscreen = true;
+        //     thumbnail.innerHTML = "";
+        //     console.log(iframe)
+        //     thumbnail.appendChild(iframe);
+        // };
 
-        thumbnail.addEventListener("click", playVideo);
-        thumbnail.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                playVideo();
-            }
-        });
+        // thumbnail.addEventListener("click", playVideo);
+        // thumbnail.addEventListener("keydown", (event) => {
+        //     if (event.key === "Enter" || event.key === " ") {
+        //         event.preventDefault();
+        //         playVideo();
+        //     }
+        // });
     });
 </script>

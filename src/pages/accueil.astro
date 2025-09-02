@@ -1,5 +1,4 @@
 ---
-import "../styles/home.css";
 import Hero from "../components/home/hero.astro";
 import HeroTabletMobile from "../components/home/hero-tablet-mobile.astro";
 import Contact from "../components/home/contact.astro";
@@ -7,56 +6,86 @@ import About from "../components/home/about.astro";
 import TestimonialsVideos from "../components/home/testimonials-as-videos.astro";
 import Keys from "../components/home/success-keys.astro";
 import Services from "../components/home/services.astro";
-import Team  from "../components/home/team.astro";
-import FAQ  from "../components/home/faq.astro";
-import Pricing from "../components/home/pricing.astro";
-import CallToAction from "../components/home/call-to-action.astro";
+// import Team from "../components/home/team.astro";
+import Team1 from "../components/home/new-team.astro";
+import FAQ from "../components/home/faq.astro";
+// import Pricing from "../components/home/pricing.astro";
+// import CallToAction from "../components/home/call-to-action.astro";
 import Portfolio from "../components/home/portfolio.astro";
 import Logos from "../components/home/logo-slider.astro";
 ---
 
+
+
+<link
+  rel="preload"
+  href="/assets/styles/home.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+
 <!-- Hero Section -->
 <Hero />
-<HeroTabletMobile/>
-<Logos/>
+<HeroTabletMobile />
+<Logos />
 
 <!-- /Hero Section -->
 
 <!-- About Section -->
-<About/>
+<About />
 <!-- /About Section -->
 
-<TestimonialsVideos/>
+<TestimonialsVideos />
 
-<Keys/>
+<Keys />
 
 <!-- Services Section -->
-<Services/>
+<Services />
 <!-- /Services Section -->
 
 <!-- Call To Action Section -->
-<CallToAction/>
+<!-- <CallToAction/> -->
 <!-- /Call To Action Section -->
 
 <!-- Portfolio Section -->
-<Portfolio/>
+<Portfolio />
 <!-- /Portfolio Section -->
 
 <!-- Team Section -->
-<Team/>
+<Team1 />
 <!-- /Team Section -->
 
 <!-- Pricing Section -->
-<Pricing/>
+<!-- <Pricing/> -->
 <!-- /Pricing Section -->
 
 <!-- Faq Section -->
-<FAQ/>
+<FAQ />
 <!-- /Faq Section -->
 
 <!-- Contact Section -->
-<Contact/>
+<Contact />
 <!-- /Contact Section -->
 
 <!-- Preloader -->
 <!-- <div id="preloader"></div> -->
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const iframe = document.querySelector("iframe[data-src]");
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        iframe.src = iframe.dataset.src;
+                        observer.unobserve(iframe);
+                    }
+                });
+            },
+            { rootMargin: "200px" },
+        ); // Load 200px before it enters viewport
+
+        observer.observe(iframe);
+    });
+</script>

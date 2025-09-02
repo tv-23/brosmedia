@@ -1,6 +1,12 @@
 ---
-import "../../styles/sections/logo-slider.css";
 ---
+<link
+  rel="preload"
+  href="/assets/styles/sections/logo-slider.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+<section>
 
 <div class="container">
   <br />
@@ -14,6 +20,7 @@ import "../../styles/sections/logo-slider.css";
     </div>
   </div>
 </div>
+</section>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {

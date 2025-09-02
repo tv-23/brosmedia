@@ -1,9 +1,8 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import "../styles/main.css";
-import "../styles/global.css";
 import Message from "../components/message.astro";
+import "../../public/assets/styles/main.css";
 
 const { pageTitle } = Astro.props;
 ---
@@ -15,24 +14,47 @@ const { pageTitle } = Astro.props;
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
 
-        <title>BROSMEDIA | Agence De Communication Digitale Au Maroc .</title>
+        <title>{pageTitle}</title>
+        <!-- <link
+            rel="preload"
+                href="/assets/styles/main.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        /> -->
 
         <link
+            rel="preload"
             href="/assets/vendor/bootstrap/css/bootstrap.min.css"
-            rel="stylesheet"
+             href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+             as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
         />
         <link
+            rel="preload"
             href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
-            rel="stylesheet"
+             as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
         />
-        <!-- <link href="/assets/vendor/aos/aos.css" rel="stylesheet" /> -->
         <link
+            rel="preload"
             href="/assets/vendor/swiper/swiper-bundle.min.css"
-            rel="stylesheet"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
         />
         <link
+            rel="preload"
             href="/assets/vendor/glightbox/css/glightbox.min.css"
-            rel="stylesheet"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+
+
+       
+        <link
+            rel="preload"
+            href="/assets/styles/global.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
         />
     </head>
     <body>
@@ -47,10 +69,10 @@ const { pageTitle } = Astro.props;
             class="scroll-top d-flex align-items-center justify-content-center"
             ><i class="bi bi-arrow-up-short"></i></a
         >
- <a href="#" id="chat-button" class="chat-icon">
+        <a href="#" id="chat-button" class="chat-icon">
             <i class="bi bi-chat-dots-fill"></i>
         </a>
-<Message />
+        <Message />
 
         <Footer />
 
@@ -63,9 +85,9 @@ const { pageTitle } = Astro.props;
             src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"
             client:load></script>
 
-        <script
+        <!-- <script
             src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"
-            client:load></script>
+            client:load></script> -->
 
         <script
             src="https://unpkg.com/imagesloaded@5.0.0/imagesloaded.pkgd.min.js"

@@ -1,11 +1,18 @@
 ---
 import Layout from "../layouts/BaseLayout.astro";
-import "../styles/services.css";
 import Form from "../components/telephone-appointment-form.astro";
 import AiLogoSlider from "../components/ai-logo-slider.astro";
 ---
 
-<Layout>
+<Layout pageTitle = "Qui sommes-nous - BROSMEDIA : Agence De Communication Digitale Au Maroc">
+
+<link
+  rel="preload"
+  href="/assets/styles/services.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+
     <main class="main">
         <!-- Page Title -->
         <div class="page-title dark-background">
