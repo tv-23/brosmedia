@@ -1,7 +1,8 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import "../styles/main.css";
+// import "../styles/main.css";
+// import "../styles/global.css";
 import Message from "../components/message.astro";
 
 const { pageTitle } = Astro.props;
@@ -41,12 +42,19 @@ const { pageTitle } = Astro.props;
             onload="this.onload=null;this.rel='stylesheet'"
         />
 
-        <!-- <link
+        <link
             rel="preload"
             href="/assets/styles/main.css"
             as="style"
             onload="this.onload=null;this.rel='stylesheet'"
-        /> -->
+        />
+
+         <link
+            rel="preload"
+            href="/assets/styles/global.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
 
     </head>
     <body>
