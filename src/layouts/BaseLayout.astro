@@ -2,7 +2,7 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Message from "../components/message.astro";
-import "../style/main.css"
+import "../../public/assets/styles/main.css";
 
 const { pageTitle } = Astro.props;
 ---
@@ -15,12 +15,12 @@ const { pageTitle } = Astro.props;
         <meta name="generator" content={Astro.generator} />
 
         <title>{pageTitle}</title>
-        <link
+        <!-- <link
             rel="preload"
                 href="/assets/styles/main.css"
             as="style"
             onload="this.onload=null;this.rel='stylesheet'"
-        />
+        /> -->
 
         <link
             rel="preload"
