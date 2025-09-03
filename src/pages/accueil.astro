@@ -71,21 +71,21 @@ import Logos from "../components/home/logo-slider.astro";
 <!-- <div id="preloader"></div> -->
 
 <script>
-    document.addEventListener("DOMContentLoaded", function () {
-        const iframe = document.querySelector("iframe[data-src]");
+    // document.addEventListener("DOMContentLoaded", function () {
+    //     const iframe = document.querySelector("iframe[data-src]");
 
-        const observer = new IntersectionObserver(
-            (entries) => {
-                entries.forEach((entry) => {
-                    if (entry.isIntersecting) {
-                        iframe.src = iframe.dataset.src;
-                        observer.unobserve(iframe);
-                    }
-                });
-            },
-            { rootMargin: "200px" },
-        ); // Load 200px before it enters viewport
+    //     const observer = new IntersectionObserver(
+    //         (entries) => {
+    //             entries.forEach((entry) => {
+    //                 if (entry.isIntersecting) {
+    //                     iframe.src = iframe.dataset.src;
+    //                     observer.unobserve(iframe);
+    //                 }
+    //             });
+    //         },
+    //         { rootMargin: "200px" },
+    //     ); // Load 200px before it enters viewport
 
-        observer.observe(iframe);
-    });
+    //     observer.observe(iframe);
+    // });
 </script>
