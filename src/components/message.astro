@@ -9,6 +9,9 @@
   onload="this.onload=null;this.rel='stylesheet'"
 />
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3.2.0/dist/email.min.js"
+></script>
+
 <div class="chat-container hidden" id="chat-box">
   <div class="chat-header">
     <button class="close-btn" id="closeChat">
@@ -44,6 +47,10 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
+    (function () {
+      emailjs.init("a0BnjUTyKVDvAuKZT");
+    })();
+
     const chatBox = document.getElementById("chat-box");
     const closeChat = document.getElementById("closeChat");
     const chatBody = document.getElementById("chatBody");
@@ -66,23 +73,55 @@
 • 🎯 Publicité digitale (Facebook, Instagram, Google)<br>
 • 🎥 Contenu audiovisuel (photos & vidéos professionnelles)<br>
 👉 Quel domaine vous intéresse le plus ?`,
-      pricing: `Nos tarifs sont adaptés à chaque projet et à chaque budget :<br>
+      Sites_web: `Excellent choix 🌐 ! Nous créons des sites web :<br>
+100% responsives (adaptés à mobile, tablette, PC)<br>
+Rapides ⚡ et optimisés pour Google<br>
+Avec un design moderne et personnalisé 🎨<br>
+Et une gestion facile pour vous<br>
+voulez-vous que je vous explique nos formules et tarifs pour un site ?`,
+      pricing: `Très bien 👍 Voici un aperçu :<br>
 
-• <strong>Site vitrine</strong> : À partir de 4 000 MAD<br>
-• <strong>Site e-commerce</strong> : À partir de 8 000 MAD<br>
-• <strong>Référencement SEO</strong> : Forfaits à partir de 2 500 MAD/mois<br>
-• <strong>Campagnes marketing</strong> : Sur devis personnalisé<br>`,
+• Pack Starter : site vitrine simple, à partir de 5 000 MAD<br>
+• Pack Business : site complet avec optimisation SEO, à partir de 9 000 MAD<br>
+• Pack Premium : site personnalisé avec réservation en ligne, à partir de 15 000 MAD<br> <br>
+Tous nos sites incluent : hébergement sécurisé, certificat SSL, et support technique 12 mois.<br> <br>
+👉 Voulez-vous que je prépare un devis personnalisé pour votre entreprise ?`,
 
-      portfolio: `Nous avons eu le plaisir de travailler sur divers projets passionnants :<br>
+      PrepareQuote: `Parfait ! 🎯 Pour préparer un devis rapide, j’ai besoin de quelques informations :<br>`,
 
-• Site e-commerce pour une marque de mode marocaine<br>
-• Refonte complète du site vitrine d'un restaurant réputé à Larache<br>
-• Campagne Instagram pour un salon de beauté de luxe<br>
-• Stratégie SEO pour une agence immobilière à Tanger<br>
+      portfolio: `👉 Souhaitez-vous que je vous présente un exemple concret de votre domaine d'activité ?<br>`,
 
-Je vous invite à découvrir l'ensemble de nos réalisations sur https://brosmedia.ma/portfolio`,
-      contact:
-        "Excellent! Un de nos experts vous contactera dans les plus brefs délais. 😊",
+      Publicité: `La publicité digitale, c’est le moyen le plus rapide pour générer des clients.
+Nous gérons pour vous :<br><br>
+
+• Campagnes Facebook & Instagram Ads<br>
+• Campagnes Google Ads<br>
+• Ciblage précis de vos prospects<br>
+• Suivi et optimisation en temps réel<br><br>
+
+Quel est votre objectif principal ?`,
+
+      VideoPhoto: `Le contenu visuel est la clé pour convaincre vos clients 👀.<br>
+Chez Brosmedia, nous réalisons :<br>
+
+• 📸 Shooting photo professionnel<br>
+• 🎬 Vidéos promotionnelles<br>
+• 🎥 Spots publicitaires pour réseaux sociaux<br>
+• 🏢 Présentations corporate<br><br>
+
+👉 Quel type de contenu vous intéresse le plus ?`,
+
+      packs: `Voici un aperçu de nos formules 📊 :<br>
+
+• Pack Starter: idéal pour débuter en ligne, à partir de 5 000 MAD<br>
+• Pack Business: pour développer votre présence, à partir de 9 000 MAD<br>
+• Pack Premium: solution complète, à partir de 15 000 MAD<br> <br>
+👉 Voulez-vous que je vous aide à identifier le pack le plus adapté à votre activité ?`,
+
+      contact: `Très bien ! Je vous mets en relation avec un membre de notre équipe.<br>
+        Mais avant, pour mieux vous orienter, pouvez-vous préciser votre demande ?
+        `,
+      otherRequest: `D’accord ! Pour que nous puissions vous répondre précisément, merci de nous expliquer brièvement votre besoin et de fournir votre email 📩`,
       default: [
         "Je ne suis pas sûr de comprendre. Pourriez-vous reformuler votre question?",
         "C'est une bonne question! Laissez-moi vous mettre en contact avec un expert humain qui pourra vous aider.",
@@ -136,6 +175,766 @@ Je vous invite à découvrir l'ensemble de nos réalisations sur https://brosmed
       chatBody.scrollTop = chatBody.scrollHeight;
     }
 
+    function showQuoteFormForVideoPhoto(msg) {
+      addMessage(
+        `Afin de vous proposer une offre Vidéo & Photo adaptée à vos besoins, pourriez-vous s’il vous plaît remplir ce formulaire avec votre email et numéro de téléphone ?`,
+        "ai",
+      );
+
+      const quoteForm = document.createElement("div");
+      quoteForm.id = "VideoPhoto";
+      quoteForm.classList.add("contact-form");
+
+      quoteForm.innerHTML = `
+    <h3>Demande de Devis</h3>
+
+    <div class="form-group">
+      <label for="userEmail">Votre email</label>
+      <input type="email" id="userEmailVideoPhoto" placeholder="votre@email.com">
+    </div>
+
+    <div class="form-group">
+      <label for="userPhone">Votre téléphone</label>
+      <input type="text" id="userPhoneVideoPhoto" placeholder="+2126123456789">
+    </div>
+    
+    <div class="form-buttons">
+      <button class="cancel-btn" id="cancelQuoteVideoPhoto">Annuler</button>
+      <button class="submit-btn" id="submitQuoteVideoPhoto">Envoyer</button>
+    </div>
+  `;
+
+      chatBody.appendChild(quoteForm);
+
+      // Add event listeners
+      document
+        .getElementById("cancelQuoteVideoPhoto")
+        .addEventListener("click", function () {
+          quoteForm.remove();
+        });
+
+      document
+        .getElementById("submitQuoteVideoPhoto")
+        .addEventListener("click", async function () {
+          const email = document.getElementById("userEmailVideoPhoto").value;
+          const phone = document.getElementById("userPhoneVideoPhoto").value;
+
+          if (!email) {
+            alert("Veuillez remplir tous les champs obligatoires.");
+            return;
+          }
+
+          try {
+            // Prepare email template parameters
+            const templateParams = {
+              message: `Bonjour, je souhaite un devis pour Vidéo & Photo service:
+              Type de contenu: ${msg} \n
+        Email: ${email} \n
+        Telephone: ${phone}
+       `,
+              reply_to: email,
+            };
+
+            // Send email using EmailJS
+            await emailjs.send(
+              "service_8hmb2eq",
+              "template_jmcu1f9",
+              templateParams,
+            );
+
+            addMessage(
+              `Une fois ces infos reçues, notre équipe vous enverra une proposition sous 24h 📩`,
+              "ai",
+            );
+
+            // Remove form
+            if (quoteForm) {
+              quoteForm.remove();
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            addMessage(
+              "Désolé, une erreur s'est produite lors de l'envoi de votre demande. Veuillez réessayer.",
+              "ai",
+            );
+          }
+        });
+
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function showQuoteFormForCustomePack() {
+      addMessage(
+        `Pour vous proposer le pack le plus adapté à vos besoins, merci de remplir ce formulaire avec votre secteur d’activité, objectif principal, email et numéro de téléphone.<br>`,
+        "ai",
+      );
+
+      const quoteForm = document.createElement("div");
+      quoteForm.id = "CustomePack";
+      quoteForm.classList.add("contact-form");
+
+      quoteForm.innerHTML = `
+    <h3>Décrivez vos besoins</h3>
+    
+
+      <div class="form-group">
+      <label for="sectorOfActivity">Votre secteur d’activité</label>
+      <input type="text" id="sectorOfActivity" placeholder="Ex: Restauration, Immobilier, Santé...">
+    </div>
+
+    <div class="form-group">
+      <label>Votre objectif principal</label>
+      <div class="service-tags">
+        <div class="service-tag" data-objective="visibilité">Visibilité</div>
+        <div class="service-tag" data-objective="clients">Clients</div>
+        <div class="service-tag" data-objective="ventes en ligne">Ventes en ligne</div>
+        <div class="service-tag" data-objective="image de marque">Image de marque</div>
+      </div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="userEmail">Votre email</label>
+      <input type="email" id="userEmailCustomePack" placeholder="votre@email.com">
+    </div>
+
+    <div class="form-group">
+      <label for="userPhone">Votre téléphone</label>
+      <input type="text" id="userPhoneCustomePack" placeholder="+2126123456789">
+    </div>
+    
+    <div class="form-buttons">
+      <button class="cancel-btn" id="cancelCustomePack">Annuler</button>
+      <button class="submit-btn" id="submitCustomePack">Envoyer</button>
+    </div>
+  `;
+
+      chatBody.appendChild(quoteForm);
+
+      // Add event listeners
+      document
+        .getElementById("cancelCustomePack")
+        .addEventListener("click", function () {
+          quoteForm.remove();
+        });
+
+      // Add selection functionality to all service tags
+      document.querySelectorAll("#CustomePack .service-tag").forEach((tag) => {
+        tag.addEventListener("click", function () {
+          // Only allow one selection per group
+          const parentGroup = this.closest(".form-group");
+          parentGroup
+            .querySelectorAll(".service-tag")
+            .forEach((t) => t.classList.remove("selected"));
+          this.classList.add("selected");
+        });
+      });
+
+      document
+        .getElementById("submitCustomePack")
+        .addEventListener("click", async function () {
+          const objectiv =
+            document.querySelector("#CustomePack [data-objective].selected")
+              ?.dataset.objective || "Non spécifié";
+
+          const email = document.getElementById("userEmailCustomePack").value;
+          const phone = document.getElementById("userPhoneCustomePack").value;
+          const sector = document.getElementById("sectorOfActivity").value;
+
+          if (!sector || !email) {
+            alert("Veuillez remplir tous les champs obligatoires.");
+            return;
+          }
+
+          try {
+            // Prepare email template parameters
+            const templateParams = {
+              message: `Pack personnalisé:
+        Secteur d’activité : ${sector} \n
+        L'objectif : ${objectiv} \n
+        Email: ${email} \n
+        Telephone: ${phone}
+       `,
+              reply_to: email,
+            };
+
+            // Send email using EmailJS
+            await emailjs.send(
+              "service_8hmb2eq",
+              "template_jmcu1f9",
+              templateParams,
+            );
+
+            addMessage(
+              `Une fois ces infos reçues, notre équipe vous enverra une proposition sous 24h 📩`,
+              "ai",
+            );
+
+            // Remove form
+            if (quoteForm) {
+              quoteForm.remove();
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            addMessage(
+              "Désolé, une erreur s'est produite lors de l'envoi de votre demande. Veuillez réessayer.",
+              "ai",
+            );
+          }
+        });
+
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function showQuoteFormForChoosePack() {
+      addMessage(
+        `Choisissez le pack que vous souhaitez 🎯 et indiquez votre email et numéro de téléphone pour recevoir tous les détails.<br>`,
+        "ai",
+      );
+
+      const quoteForm = document.createElement("div");
+      quoteForm.id = "ChoosePack";
+      quoteForm.classList.add("contact-form");
+
+      quoteForm.innerHTML = `
+    <h3>Choisissez votre offre</h3>
+    
+    <div class="form-group">
+      <label>Choix du pack</label>
+      <div class="service-tags">
+        <div class="service-tag" data-objective="pack starter">Pack Starter</div>
+        <div class="service-tag" data-objective="pack business">Pack Business</div>
+        <div class="service-tag" data-objective="pack premium">Pack Premium</div>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="userEmail">Votre email</label>
+      <input type="email" id="userEmailChoosePack" placeholder="votre@email.com">
+    </div>
+
+    <div class="form-group">
+      <label for="userPhone">Votre téléphone</label>
+      <input type="text" id="userPhoneChoosePack" placeholder="+2126123456789">
+    </div>
+    
+    <div class="form-buttons">
+      <button class="cancel-btn" id="cancelChoosePack">Annuler</button>
+      <button class="submit-btn" id="submitChoosePack">Envoyer</button>
+    </div>
+  `;
+
+      chatBody.appendChild(quoteForm);
+
+      // Add event listeners
+      document
+        .getElementById("cancelChoosePack")
+        .addEventListener("click", function () {
+          quoteForm.remove();
+        });
+
+      // Add selection functionality to all service tags
+      document.querySelectorAll("#ChoosePack .service-tag").forEach((tag) => {
+        tag.addEventListener("click", function () {
+          // Only allow one selection per group
+          const parentGroup = this.closest(".form-group");
+          parentGroup
+            .querySelectorAll(".service-tag")
+            .forEach((t) => t.classList.remove("selected"));
+          this.classList.add("selected");
+        });
+      });
+
+      document
+        .getElementById("submitChoosePack")
+        .addEventListener("click", async function () {
+          const pack =
+            document.querySelector("#ChoosePack [data-objective].selected")
+              ?.dataset.objective || "Non spécifié";
+
+          const email = document.getElementById("userEmailChoosePack").value;
+          const phone = document.getElementById("userPhoneChoosePack").value;
+
+          if (!pack || !email) {
+            alert("Veuillez remplir tous les champs obligatoires.");
+            return;
+          }
+
+          try {
+            // Prepare email template parameters
+            const templateParams = {
+              message: `Sélectionnez une offre:
+        Pack: ${pack} \n
+        Email: ${email} \n
+        Telephone: ${phone}
+       `,
+              reply_to: email,
+            };
+
+            // Send email using EmailJS
+            await emailjs.send(
+              "service_8hmb2eq",
+              "template_jmcu1f9",
+              templateParams,
+            );
+
+            addMessage(
+              `Une fois ces infos reçues, notre équipe vous enverra une proposition sous 24h 📩`,
+              "ai",
+            );
+
+            // Remove form
+            if (quoteForm) {
+              quoteForm.remove();
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            addMessage(
+              "Désolé, une erreur s'est produite lors de l'envoi de votre demande. Veuillez réessayer.",
+              "ai",
+            );
+          }
+        });
+
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function showQuoteFormForPortfolio() {
+      addMessage(
+        `Pour vous montrer un exemple concret dans votre domaine, merci de remplir ce formulaire avec votre domaine d’activité, votre email et votre numéro de téléphone.`,
+        "ai",
+      );
+
+      const quoteForm = document.createElement("div");
+      quoteForm.id = "Portfolio";
+      quoteForm.classList.add("contact-form");
+
+      quoteForm.innerHTML = `
+    <h3>Exemple personnalisé</h3>
+    
+<div class="form-group">
+      <label for="userWebsite">Votre domaine d’activité</label>
+      <input type="text" id="userActivityPortfolio" placeholder="Ex: Restauration, Immobilier, Santé...">
+    </div>
+
+    <div class="form-group">
+      <label for="userEmail">Votre email</label>
+      <input type="email" id="userEmailPortfolio" placeholder="votre@email.com">
+    </div>
+
+    <div class="form-group">
+      <label for="userPhone">Votre téléphone</label>
+      <input type="text" id="userPhonePortfolio" placeholder="+2126123456789">
+    </div>
+    
+    <div class="form-buttons">
+      <button class="cancel-btn" id="cancelQuotePortfolio">Annuler</button>
+      <button class="submit-btn" id="submitQuotePortfolio">Envoyer</button>
+    </div>
+  `;
+
+      chatBody.appendChild(quoteForm);
+
+      // Add event listeners
+      document
+        .getElementById("cancelQuotePortfolio")
+        .addEventListener("click", function () {
+          quoteForm.remove();
+        });
+
+      document
+        .getElementById("submitQuotePortfolio")
+        .addEventListener("click", async function () {
+          const email = document.getElementById("userEmailPortfolio").value;
+          const phone = document.getElementById("userPhonePortfolio").value;
+          const activity = document.getElementById(
+            "userActivityPortfolio",
+          ).value;
+
+          if (!activity || !email) {
+            alert("Veuillez remplir tous les champs obligatoires.");
+            return;
+          }
+
+          try {
+            // Prepare email template parameters
+            const templateParams = {
+              message: `Bonjour 👋, j’aimerais voir un exemple de projet ou site dans mon secteur :
+              Secteur: ${activity} \n
+        Email: ${email} \n
+        Telephone: ${phone}
+       `,
+              reply_to: email,
+            };
+
+            // Send email using EmailJS
+            await emailjs.send(
+              "service_8hmb2eq",
+              "template_jmcu1f9",
+              templateParams,
+            );
+
+            addMessage(
+              `Une fois ces infos reçues, notre équipe vous enverra un exemple sous 24h 📩`,
+              "ai",
+            );
+
+            // Remove form
+            if (quoteForm) {
+              quoteForm.remove();
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            addMessage(
+              "Désolé, une erreur s'est produite lors de l'envoi de votre demande. Veuillez réessayer.",
+              "ai",
+            );
+          }
+        });
+
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function showQuoteFormForSEO() {
+      addMessage(
+        `Le SEO est la clé pour apparaître en haut des résultats Google 🚀.<br>
+      Avec Brosmedia, nous vous aidons à :<br>
+
+• Optimiser votre site pour Google<br>
+• Attirer plus de visiteurs qualifiés<br>
+• Gagner en visibilité locale et nationale<br>
+
+Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous s’il vous plaît remplir ce formulaire avec votre site web, email et numéro de téléphone ?`,
+        "ai",
+      );
+
+      const quoteForm = document.createElement("div");
+      quoteForm.id = "SEO";
+      quoteForm.classList.add("contact-form");
+
+      quoteForm.innerHTML = `
+    <h3>Demande de Devis</h3>
+    
+<div class="form-group">
+      <label for="userWebsite">Votre site Web</label>
+      <input type="text" id="userWebsiteSeo" placeholder="https://brosmedia.ma/">
+    </div>
+
+    <div class="form-group">
+      <label for="userEmail">Votre email</label>
+      <input type="email" id="userEmailSeo" placeholder="votre@email.com">
+    </div>
+
+    <div class="form-group">
+      <label for="userPhone">Votre téléphone</label>
+      <input type="text" id="userPhoneSeo" placeholder="+2126123456789">
+    </div>
+    
+    <div class="form-buttons">
+      <button class="cancel-btn" id="cancelQuoteSEO">Annuler</button>
+      <button class="submit-btn" id="submitQuoteSEO">Envoyer</button>
+    </div>
+  `;
+
+      chatBody.appendChild(quoteForm);
+
+      // Add event listeners
+      document
+        .getElementById("cancelQuoteSEO")
+        .addEventListener("click", function () {
+          quoteForm.remove();
+        });
+
+      document
+        .getElementById("submitQuoteSEO")
+        .addEventListener("click", async function () {
+          const email = document.getElementById("userEmailSeo").value;
+          const phone = document.getElementById("userPhoneSeo").value;
+          const website = document.getElementById("userWebsiteSeo").value;
+
+          if (!website || !email) {
+            alert("Veuillez remplir tous les champs obligatoires.");
+            return;
+          }
+
+          try {
+            // Prepare email template parameters
+            const templateParams = {
+              message: `Bonjour, je souhaite un devis pour SEO service:
+              Site Web: ${website} \n
+        Email: ${email} \n
+        Telephone: ${phone}
+       `,
+              reply_to: email,
+            };
+
+            // Send email using EmailJS
+            await emailjs.send(
+              "service_8hmb2eq",
+              "template_jmcu1f9",
+              templateParams,
+            );
+
+            addMessage(
+              `Une fois ces infos reçues, notre équipe vous enverra une proposition sous 24h 📩`,
+              "ai",
+            );
+
+            // Remove form
+            if (quoteForm) {
+              quoteForm.remove();
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            addMessage(
+              "Désolé, une erreur s'est produite lors de l'envoi de votre demande. Veuillez réessayer.",
+              "ai",
+            );
+          }
+        });
+
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function showQuoteFormForDigitalAdvertisingObjective(message) {
+      addMessage(
+        `Parfait 🚀 ! Donc, si votre objectif est <b>${message}</b>, on peut vous proposer une campagne ciblée adaptée à votre secteur et à votre ville.<br>`,
+        "ai",
+      );
+
+      addMessage(
+        `👉 Pouvez-vous m’indiquer votre email pour recevoir la proposition ?<br>`,
+        "ai",
+      );
+
+      const quoteForm = document.createElement("div");
+      quoteForm.id = "DigitalAdvertisingObjective";
+      quoteForm.classList.add("contact-form");
+
+      quoteForm.innerHTML = `
+    <h3>Demande de Devis</h3>
+    
+    <div class="form-group">
+      <label for="userEmail">Votre email</label>
+      <input type="email" id="userEmail" placeholder="votre@email.com">
+    </div>
+
+    <div class="form-group">
+      <label for="userPhone">Votre téléphone</label>
+      <input type="text" id="userPhone" placeholder="+2126123456789">
+    </div>
+    
+    <div class="form-buttons">
+      <button class="cancel-btn" id="cancelQuoteDigitalAdvertisingObjective">Annuler</button>
+      <button class="submit-btn" id="submitQuoteDigitalAdvertisingObjective">Envoyer</button>
+    </div>
+  `;
+
+      chatBody.appendChild(quoteForm);
+
+      // Add event listeners
+      document
+        .getElementById("cancelQuoteDigitalAdvertisingObjective")
+        .addEventListener("click", function () {
+          quoteForm.remove();
+        });
+
+      document
+        .getElementById("submitQuoteDigitalAdvertisingObjective")
+        .addEventListener("click", async function () {
+          const email = document.getElementById("userEmail").value;
+          const phone = document.getElementById("userPhone").value;
+
+          if (!email) {
+            alert("Veuillez remplir tous les champs obligatoires.");
+            return;
+          }
+
+          try {
+            // Prepare email template parameters
+            const templateParams = {
+              message: `Bonjour, je souhaite un devis pour Publicité numérique service:
+              L'objectif: ${message} \n
+        Email: ${email} \n
+        Telephone: ${phone}
+       `,
+              reply_to: email,
+            };
+
+            // Send email using EmailJS
+            await emailjs.send(
+              "service_8hmb2eq",
+              "template_jmcu1f9",
+              templateParams,
+            );
+
+            addMessage(
+              `Une fois ces infos reçues, notre équipe vous enverra une proposition sous 24h 📩`,
+              "ai",
+            );
+
+            // Remove form
+            if (quoteForm) {
+              quoteForm.remove();
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            addMessage(
+              "Désolé, une erreur s'est produite lors de l'envoi de votre demande. Veuillez réessayer.",
+              "ai",
+            );
+          }
+        });
+
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function showQuoteForm() {
+      addMessage(
+        `Parfait ! 🎯 Pour préparer un devis rapide, j’ai besoin de quelques informations :<br>`,
+        "ai",
+      );
+
+      const quoteForm = document.createElement("div");
+      quoteForm.id = "QuoteForm";
+      quoteForm.classList.add("contact-form");
+
+      quoteForm.innerHTML = `
+    <h3>Demande de Devis</h3>
+    <div class="form-group">
+      <label for="sector">Quel est votre secteur d’activité ?</label>
+      <input type="text" id="sector" placeholder="Ex: Restauration, Immobilier, Santé...">
+    </div>
+    <div class="form-group">
+      <label>Quel est votre objectif principal ?</label>
+      <div class="service-tags">
+        <div class="service-tag" data-objective="plus de clients">Plus de clients</div>
+        <div class="service-tag" data-objective="plus de visibilité">Plus de visibilité</div>
+        <div class="service-tag" data-objective="meilleure image de marque">Meilleure image de marque</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Type de site préféré ?</label>
+      <div class="service-tags">
+        <div class="service-tag" data-type="site vitrine">Site vitrine</div>
+        <div class="service-tag" data-type="e-commerce">E-commerce</div>
+        <div class="service-tag" data-type="réservation en ligne">Réservation en ligne</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Options SEO :</label>
+      <div class="service-tags">
+        <div class="service-tag" data-seo="oui">Oui, ajoutez le SEO</div>
+        <div class="service-tag" data-seo="non">Non, seulement le site</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="userEmail">Votre email</label>
+      <input type="email" id="userEmail" placeholder="votre@email.com">
+    </div>
+
+    <div class="form-group">
+      <label for="userPhone">Votre téléphone</label>
+      <input type="text" id="userPhone" placeholder="+2126123456789">
+    </div>
+    
+    <div class="form-buttons">
+      <button class="cancel-btn" id="cancelQuote">Annuler</button>
+      <button class="submit-btn" id="submitQuote">Envoyer</button>
+    </div>
+  `;
+
+      chatBody.appendChild(quoteForm);
+
+      // Add event listeners
+      document
+        .getElementById("cancelQuote")
+        .addEventListener("click", function () {
+          quoteForm.remove();
+        });
+
+      // Add selection functionality to all service tags
+      document.querySelectorAll("#QuoteForm .service-tag").forEach((tag) => {
+        tag.addEventListener("click", function () {
+          // Only allow one selection per group
+          const parentGroup = this.closest(".form-group");
+          parentGroup
+            .querySelectorAll(".service-tag")
+            .forEach((t) => t.classList.remove("selected"));
+          this.classList.add("selected");
+        });
+      });
+
+      document
+        .getElementById("submitQuote")
+        .addEventListener("click", async function () {
+          const sector = document.getElementById("sector").value;
+          const objective =
+            document.querySelector("#QuoteForm [data-objective].selected")
+              ?.dataset.objective || "Non spécifié";
+          const siteType =
+            document.querySelector("#QuoteForm [data-type].selected")?.dataset
+              .type || "Non spécifié";
+          const seoOption =
+            document.querySelector("#QuoteForm [data-seo].selected")?.dataset
+              .seo || "Non spécifié";
+          const email = document.getElementById("userEmail").value;
+          const phone = document.getElementById("userPhone").value;
+
+          if (!sector || !email) {
+            alert("Veuillez remplir tous les champs obligatoires.");
+            return;
+          }
+
+          try {
+            // Prepare email template parameters
+            const templateParams = {
+              message: `Bonjour, je souhaite un devis pour Création de site Web service:
+        Secteur: ${sector} \n
+        Objectif: ${objective} \n
+        Type de site: ${siteType} \n
+        SEO: ${seoOption} \n
+        Email: ${email} \n
+        Telephone: ${phone}
+       `,
+              reply_to: email,
+            };
+
+            // Send email using EmailJS
+            await emailjs.send(
+              "service_8hmb2eq",
+              "template_jmcu1f9",
+              templateParams,
+            );
+
+            addMessage(
+              `Une fois ces infos reçues, notre équipe vous enverra une proposition sous 24h 📩`,
+              "ai",
+            );
+
+            // Remove form
+            if (quoteForm) {
+              quoteForm.remove();
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            addMessage(
+              "Désolé, une erreur s'est produite lors de l'envoi de votre demande. Veuillez réessayer.",
+              "ai",
+            );
+          }
+        });
+
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
     // Show typing indicator
     function showTypingIndicator() {
       const typingRow = document.createElement("div");
@@ -182,20 +981,7 @@ Je vous invite à découvrir l'ensemble de nos réalisations sur https://brosmed
           AI_RESPONSES.greeting[
             Math.floor(Math.random() * AI_RESPONSES.greeting.length)
           ];
-      } else if (
-        lowerMessage.includes("service") ||
-        lowerMessage.includes("offre") ||
-        lowerMessage.includes("quoi") ||
-        lowerMessage.includes("propos")
-      ) {
-        response = AI_RESPONSES.services;
-      } else if (
-        lowerMessage.includes("prix") ||
-        lowerMessage.includes("tarif") ||
-        lowerMessage.includes("combien") ||
-        lowerMessage.includes("coût") ||
-        lowerMessage.includes("budget")
-      ) {
+      } else if (lowerMessage.includes(" les tarifs")) {
         response = AI_RESPONSES.pricing;
       } else if (
         lowerMessage.includes("portfolio") ||
@@ -205,16 +991,68 @@ Je vous invite à découvrir l'ensemble de nos réalisations sur https://brosmed
         lowerMessage.includes("expérience")
       ) {
         response = AI_RESPONSES.portfolio;
+      } else if (lowerMessage.includes("tarifs")) {
+        response = AI_RESPONSES.packs;
+      } else if (lowerMessage.includes("sites web")) {
+        response = AI_RESPONSES.Sites_web;
+      } else if (lowerMessage.includes("préparez un devis")) {
+        showQuoteForm();
       } else if (
-        lowerMessage.includes("contact") ||
-        lowerMessage.includes("email") ||
-        lowerMessage.includes("téléphone") ||
-        lowerMessage.includes("adresse") ||
-        lowerMessage.includes("appeler") ||
-        lowerMessage.includes("humain") ||
-        lowerMessage.includes("expert")
+        lowerMessage.includes(
+          "je veux d’abord voir vos services en publicité",
+        ) ||
+        lowerMessage.includes("publicité")
       ) {
-        showContactForm();
+        response = AI_RESPONSES.Publicité;
+      } else if (
+        lowerMessage.includes("service") ||
+        lowerMessage.includes("offre") ||
+        lowerMessage.includes("quoi") ||
+        lowerMessage.includes("propos")
+      ) {
+        response = AI_RESPONSES.services;
+      } else if (
+        lowerMessage.includes("attirer plus de clients rapidement") ||
+        lowerMessage.includes("booster mes ventes en ligne") ||
+        lowerMessage.includes("augmenter ma notoriété")
+      ) {
+        showQuoteFormForDigitalAdvertisingObjective(lowerMessage);
+      } else if (lowerMessage.includes("vidéo & photo")) {
+        response = AI_RESPONSES.VideoPhoto;
+      } else if (lowerMessage == "autre demande") {
+        response = AI_RESPONSES.otherRequest;
+      } else if (
+        lowerMessage == "vidéo promotionnelle" ||
+        lowerMessage == "photos produits" ||
+        lowerMessage == "spot publicitaire" ||
+        lowerMessage == "autre"
+      ) {
+        showQuoteFormForVideoPhoto(lowerMessage);
+      } else if (lowerMessage == "seo") {
+        showQuoteFormForSEO();
+      } else if (lowerMessage.includes("aidez-moi à choisir")) {
+        showQuoteFormForCustomePack();
+      } else if (
+        lowerMessage.includes("je préfère demander un devis directement")
+      ) {
+        showQuoteFormForChoosePack();
+      } else if (
+        lowerMessage.includes("montrez-moi un exemple de mon domaine")
+      ) {
+        showQuoteFormForPortfolio();
+      } else if (lowerMessage.includes("devis pour un site web")) {
+        showQuoteForWebsite();
+      } else if (lowerMessage.includes("stratégie publicitaire")) {
+        showAdvertisingStrategy();
+      } else if (lowerMessage == "conseil seo") {
+        showSEOConsulting();
+      } else if (lowerMessage == "envoyer ma demande et être contacté") {
+        showOtherRequest();
+      }
+      else if (lowerMessage == "parler directement à un conseiller") {
+        speakDirectlyToAdvisor();
+      } else if (lowerMessage == "contact") {
+        response = AI_RESPONSES.contact;
       } else {
         response =
           AI_RESPONSES.default[
@@ -222,50 +1060,47 @@ Je vous invite à découvrir l'ensemble de nos réalisations sur https://brosmed
           ];
       }
 
-      addMessage(response, "ai");
+      if (response != "") {
+        addMessage(response, "ai");
+      }
 
       // Add quick replies after AI response
-      if (
-        !lowerMessage.includes("contact") &&
-        !lowerMessage.includes("humain") &&
-        !lowerMessage.includes("expert")
-      ) {
-        setTimeout(addQuickReplies(userMessage), 300);
-      }
+      // if (
+      //   !lowerMessage.includes("humain") &&
+      //   !lowerMessage.includes("expert")
+      // ) {
+      setTimeout(addQuickReplies(userMessage), 300);
+      // }
     }
 
-    // Show contact form
-    function showContactForm() {
+    function showOtherRequest() {
       const contactForm = document.createElement("div");
+      contactForm.id = "OtherRequest";
       contactForm.classList.add("contact-form");
 
-      addMessage(
-        "Parfait! Je vais vous mettre en contact avec un expert Brosmedia. Pourriez-vous me fournir quelques détails?",
-        "ai",
-      );
+      // addMessage(
+      //   `Le SEO est la clé pour apparaître en haut des résultats Google 🚀<br>
+      //   Pour vous aider efficacement, j’ai besoin de :`,
+      //   "ai",
+      // );
 
       contactForm.innerHTML = `
-                    <h3>Contactez un expert</h3>
+    <h3>Demande de Devis</h3>
                     <div class="form-group">
-                        <label for="userQuestion">Votre question</label>
-                        <textarea id="userQuestion" placeholder Décrivez votre projet ou posez votre question..." rows="3"></textarea>
+                        <label for="requestOtherRequest">Votre demande</label>
+                        <textarea id="requestOtherRequest"></textarea>
                     </div>
                     <div class="form-group">
-                        <label>Service concerné</label>
-                        <div class="service-tags">
-                            ${SERVICES.map(
-                              (service) =>
-                                `<div class="service-tag" data-service="${service}">${service}</div>`,
-                            ).join("")}
-                        </div>
+                        <label for="userEmailOtherRequest">Votre email</label>
+                        <input type="email" id="userEmailOtherRequest" placeholder="votre@email.com">
                     </div>
-                    <div class="form-group">
-                        <label for="userEmail">Votre email</label>
-                        <input type="email" id="userEmail" placeholder="votre@email.com">
+                     <div class="form-group">
+                        <label for="userPhoneOtherRequest">Votre téléphone</label>
+                        <input type="text" id="userPhoneOtherRequest" placeholder="+212123456789">
                     </div>
                     <div class="form-buttons">
-                        <button class="cancel-btn" id="cancelContact">Annuler</button>
-                        <button class="submit-btn" id="submitContact">Envoyer</button>
+                        <button class="cancel-btn" id="cancelOtherRequest">Annuler</button>
+                        <button class="submit-btn" id="submitOtherRequest">Envoyer</button>
                     </div>
                 `;
 
@@ -273,67 +1108,414 @@ Je vous invite à découvrir l'ensemble de nos réalisations sur https://brosmed
 
       // Add event listeners
       document
-        .getElementById("cancelContact")
+        .getElementById("cancelOtherRequest")
         .addEventListener("click", function () {
           contactForm.remove();
         });
 
-      document.querySelectorAll(".service-tag").forEach((tag) => {
-        tag.addEventListener("click", function () {
-          document
-            .querySelectorAll(".service-tag")
-            .forEach((t) => t.classList.remove("selected"));
-          this.classList.add("selected");
-        });
-      });
-
       document
-        .getElementById("submitContact")
+        .getElementById("submitOtherRequest")
         .addEventListener("click", async function () {
-          const question = document.getElementById("userQuestion").value;
-          const service =
-            document.querySelector(".service-tag.selected")?.dataset.service ||
-            "Non spécifié";
-          const email = document.getElementById("userEmail").value;
+          const request = document.getElementById("requestOtherRequest").value;
+          const email = document.getElementById("userEmailOtherRequest").value;
+          const phone = document.getElementById("userPhoneOtherRequest").value;
 
-          if (!question || !email) {
+          if (!request || !email) {
             alert("Veuillez remplir tous les champs obligatoires.");
             return;
           }
 
-          // Create form data
-          const formData = new FormData();
-          formData.append("question", question);
-          formData.append("service", service);
-          formData.append("email", email);
+          try {
+            // Prepare email template parameters
+            const templateParams = {
+              message: `Bonjour, je souhaite un devis:
+        Demande: ${request} \n
+        Email: ${email} \n
+        Telephone: ${phone}
+       `,
+              reply_to: email,
+            };
+
+            // Send email using EmailJS instead of localhost
+            await emailjs.send(
+              "service_8hmb2eq",
+              "template_jmcu1f9",
+              templateParams,
+            );
+
+            const whatsappUrl = `https://wa.me/212671884968`;
+
+            addMessage(
+              `Notre équipe vous enverra une proposition sous 24h.`,
+              "ai",
+            );
+
+            // Remove form
+            if (contactForm) {
+              contactForm.remove();
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            addMessage(
+              "Désolé, une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.",
+              "ai",
+            );
+          }
+        });
+
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+function speakDirectlyToAdvisor() {
+  const whatsappUrl = `https://wa.me/212671884968`;
+
+            addMessage(
+              `Vous pouvez parler directement avec un conseiller pour toutes vos questions et obtenir plus de détails via WhatsApp: <br>
+            <a href="${whatsappUrl}" target="_blank" style="color: #0a0f4f; text-decoration: underline;">
+                Cliquez ici pour démarrer la conversation
+            </a>`,
+              "ai",
+            );
+}
+
+    function showSEOConsulting() {
+      const contactForm = document.createElement("div");
+      contactForm.id = "SEOConsulting";
+      contactForm.classList.add("contact-form");
+
+      addMessage(
+        `Le SEO est la clé pour apparaître en haut des résultats Google 🚀<br>
+        Pour vous aider efficacement, j’ai besoin de :`,
+        "ai",
+      );
+
+      contactForm.innerHTML = `
+    <h3>Demande de Devis</h3>
+                    <div class="form-group">
+                        <label for="sectorSEOConsulting">Votre secteur d’activité</label>
+                        <input type="text" id="sectorSEOConsulting" placeholder="Ex: Restauration, Immobilier, Santé...">
+                    </div>
+                    <div class="form-group">
+                        <label for="urlSEOConsulting">L’URL de votre site </label>
+                        <input type="text" id="urlSEOConsulting" placeholder="https://brosmedia.ma/">
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmailSEOConsulting">Votre email</label>
+                        <input type="email" id="userEmailSEOConsulting" placeholder="votre@email.com">
+                    </div>
+                     <div class="form-group">
+                        <label for="userPhoneSEOConsulting">Votre téléphone</label>
+                        <input type="text" id="userPhoneSEOConsulting" placeholder="+212123456789">
+                    </div>
+                    <div class="form-buttons">
+                        <button class="cancel-btn" id="cancelSEOConsulting">Annuler</button>
+                        <button class="submit-btn" id="submitSEOConsulting">Envoyer</button>
+                    </div>
+                `;
+
+      chatBody.appendChild(contactForm);
+
+      // Add event listeners
+      document
+        .getElementById("cancelSEOConsulting")
+        .addEventListener("click", function () {
+          contactForm.remove();
+        });
+
+      document
+        .getElementById("submitSEOConsulting")
+        .addEventListener("click", async function () {
+          const sector = document.getElementById("sectorSEOConsulting").value;
+          const url = document.getElementById("urlSEOConsulting").value;
+          const email = document.getElementById("userEmailSEOConsulting").value;
+          const phone = document.getElementById("userPhoneSEOConsulting").value;
+
+          if (!sector || !email) {
+            alert("Veuillez remplir tous les champs obligatoires.");
+            return;
+          }
 
           try {
-            // Send data to server
-            const response = await fetch("http://localhost:3000/send-message", {
-              method: "POST",
-              body: formData,
-            });
+            // Prepare email template parameters
+            const templateParams = {
+              message: `Bonjour, je souhaite un devis pour le service de Conseil SEO:
+        Secteur: ${sector} \n
+        Site web: ${url} \n
+        Email: ${email} \n
+        Telephone: ${phone}
+       `,
+              reply_to: email,
+            };
 
-            if (response.ok) {
-              // Show confirmation with WhatsApp link
-              const whatsappMessage = encodeURIComponent(
-                `Bonjour, j'ai une question concernant ${service} : ${question} (Email: ${email})`,
-              );
-              const whatsappUrl = `https://wa.me/212671884968?text=${whatsappMessage}`;
+            // Send email using EmailJS instead of localhost
+            await emailjs.send(
+              "service_8hmb2eq",
+              "template_jmcu1f9",
+              templateParams,
+            );
 
-              addMessage(
-                `Merci! Votre demande a été envoyée. Un expert Brosmedia vous contactera très bientôt.<br><br>
-                    <strong>Contactez-nous directement sur WhatsApp :</strong><br>
-                    <a href="${whatsappUrl}" target="_blank" style="color: #0a0f4f; text-decoration: underline;">
-                        👉 Cliquez ici pour discuter maintenant sur WhatsApp
-                    </a>`,
-                "ai",
-              );
+            const whatsappUrl = `https://wa.me/212671884968`;
 
-              // Remove form
+            addMessage(
+              `Notre équipe vous enverra une proposition sous 24h.<br><br>
+            <strong>Vous pouvez également parler directement avec un conseiller pour plus de détails via WhatsApp :</strong><br>
+            <a href="${whatsappUrl}" target="_blank" style="color: #0a0f4f; text-decoration: underline;">
+                Cliquez ici pour démarrer la conversation
+            </a>`,
+              "ai",
+            );
+
+            // Remove form
+            if (contactForm) {
               contactForm.remove();
-            } else {
-              throw new Error("Erreur lors de l'envoi du message");
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            addMessage(
+              "Désolé, une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.",
+              "ai",
+            );
+          }
+        });
+
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function showAdvertisingStrategy() {
+      const contactForm = document.createElement("div");
+      contactForm.id = "AdvertisingStrategy";
+      contactForm.classList.add("contact-form");
+
+      addMessage(
+        `Nous pouvons créer pour vous une campagne ciblée pour :<br>
+        • Générer plus de clients<br>
+        • Booster vos ventes en ligne<br>
+        • Augmenter votre notoriété<br><br>
+        Pour préparer un plan personnalisé, j’ai besoin de :`,
+        "ai",
+      );
+
+      contactForm.innerHTML = `
+    <h3>Demande de Devis</h3>
+                    <div class="form-group">
+                        <label for="sectorAdvertisingStrategy">Votre secteur d’activité</label>
+                        <input type="text" id="sectorAdvertisingStrategy" placeholder="Ex: Restauration, Immobilier, Santé...">
+                    </div>
+                    <div class="form-group">
+                        <label for="objectivAdvertisingStrategy">Votre objectif principal</label>
+                        <input type="text" id="objectivAdvertisingStrategy">
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmailAdvertisingStrategy">Votre email</label>
+                        <input type="email" id="userEmailAdvertisingStrategy" placeholder="votre@email.com">
+                    </div>
+                     <div class="form-group">
+                        <label for="userPhoneAdvertisingStrategy">Votre téléphone</label>
+                        <input type="text" id="userPhoneAdvertisingStrategy" placeholder="+212123456789">
+                    </div>
+                    <div class="form-buttons">
+                        <button class="cancel-btn" id="cancelAdvertisingStrategy">Annuler</button>
+                        <button class="submit-btn" id="submitAdvertisingStrategy">Envoyer</button>
+                    </div>
+                `;
+
+      chatBody.appendChild(contactForm);
+
+      // Add event listeners
+      document
+        .getElementById("cancelAdvertisingStrategy")
+        .addEventListener("click", function () {
+          contactForm.remove();
+        });
+
+      document
+        .getElementById("submitAdvertisingStrategy")
+        .addEventListener("click", async function () {
+          const sector = document.getElementById(
+            "sectorAdvertisingStrategy",
+          ).value;
+          const objectiv = document.getElementById(
+            "objectivAdvertisingStrategy",
+          ).value;
+          const email = document.getElementById(
+            "userEmailAdvertisingStrategy",
+          ).value;
+          const phone = document.getElementById(
+            "userPhoneAdvertisingStrategy",
+          ).value;
+
+          if (!sector || !email) {
+            alert("Veuillez remplir tous les champs obligatoires.");
+            return;
+          }
+
+          try {
+            // Prepare email template parameters
+            const templateParams = {
+              message: `Bonjour, je souhaite un devis pour le service de stratégie publicitaire:
+        Secteur: ${sector} \n
+        L'objectif: ${objectiv} \n
+        Email: ${email} \n
+        Telephone: ${phone}
+       `,
+              reply_to: email,
+            };
+
+            // Send email using EmailJS instead of localhost
+            await emailjs.send(
+              "service_8hmb2eq",
+              "template_jmcu1f9",
+              templateParams,
+            );
+
+            const whatsappUrl = `https://wa.me/212671884968`;
+
+            addMessage(
+              `Notre équipe vous enverra une proposition sous 24h.<br><br>
+            <strong>Vous pouvez également parler directement avec un conseiller pour plus de détails via WhatsApp :</strong><br>
+            <a href="${whatsappUrl}" target="_blank" style="color: #0a0f4f; text-decoration: underline;">
+                Cliquez ici pour démarrer la conversation
+            </a>`,
+              "ai",
+            );
+
+            // Remove form
+            if (contactForm) {
+              contactForm.remove();
+            }
+          } catch (error) {
+            console.error("Error:", error);
+            addMessage(
+              "Désolé, une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.",
+              "ai",
+            );
+          }
+        });
+
+      // Scroll to bottom
+      chatBody.scrollTop = chatBody.scrollHeight;
+    }
+
+    function showQuoteForWebsite() {
+      const contactForm = document.createElement("div");
+      contactForm.id = "QuoteForWebsite";
+      contactForm.classList.add("contact-form");
+
+      addMessage(
+        "Parfait ! Pour préparer une estimation rapide, j’ai besoin de :",
+        "ai",
+      );
+
+      contactForm.innerHTML = `
+    <h3>Demande de Devis</h3>
+                    <div class="form-group">
+                        <label for="sectorQuoteForWebsite">Votre secteur d’activité</label>
+                        <input type="text" id="sectorQuoteForWebsite" placeholder="Ex: Restauration, Immobilier, Santé...">
+
+                    </div>
+                    <div class="form-group">
+                        <label>Le type de site souhaité</label>
+                        <div class="service-tags quote-for-website">
+                                <div class="service-tag" data-service="vitrine">Vitrine</div>
+                                <div class="service-tag" data-service="e-commerce">E-Commerce</div>
+                                <div class="service-tag" data-service="réservation en ligne">Réservation en ligne</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmailQuoteForWebsite">Votre email</label>
+                        <input type="email" id="userEmailQuoteForWebsite" placeholder="votre@email.com">
+                    </div>
+                     <div class="form-group">
+                        <label for="userPhoneQuoteForWebsite">Votre téléphone</label>
+                        <input type="text" id="userPhoneQuoteForWebsite" placeholder="+212123456789">
+                    </div>
+                    <div class="form-buttons">
+                        <button class="cancel-btn" id="cancelQuoteForWebsite">Annuler</button>
+                        <button class="submit-btn" id="submitQuoteForWebsite">Envoyer</button>
+                    </div>
+                `;
+
+      chatBody.appendChild(contactForm);
+
+      // Add event listeners
+      document
+        .getElementById("cancelQuoteForWebsite")
+        .addEventListener("click", function () {
+          contactForm.remove();
+        });
+
+      // Add selection functionality to all service tags
+      document
+        .querySelectorAll("#QuoteForWebsite .service-tag")
+        .forEach((tag) => {
+          tag.addEventListener("click", function () {
+            // Only allow one selection per group
+            const parentGroup = this.closest(".form-group");
+            parentGroup
+              .querySelectorAll(".service-tag")
+              .forEach((t) => t.classList.remove("selected"));
+            this.classList.add("selected");
+          });
+        });
+
+      document
+        .getElementById("submitQuoteForWebsite")
+        .addEventListener("click", async function () {
+          const sector = document.getElementById("sectorQuoteForWebsite").value;
+          const service =
+            document.querySelector("#QuoteForWebsite [data-service].selected")
+              ?.dataset.service || "Non spécifié";
+          const email = document.getElementById(
+            "userEmailQuoteForWebsite",
+          ).value;
+          const phone = document.getElementById(
+            "userPhoneQuoteForWebsite",
+          ).value;
+
+          if (!sector || !email) {
+            alert("Veuillez remplir tous les champs obligatoires.");
+            return;
+          }
+
+          try {
+            // Prepare email template parameters
+            const templateParams = {
+              message: `Bonjour, je souhaite un devis pour le service de création de site web:
+        Secteur: ${sector} \n
+        Le type de site: ${service} \n
+        Email: ${email} \n
+        Telephone: ${phone}
+       `,
+              reply_to: email,
+            };
+
+            // Send email using EmailJS instead of localhost
+            await emailjs.send(
+              "service_8hmb2eq",
+              "template_jmcu1f9",
+              templateParams,
+            );
+
+            // Show confirmation with WhatsApp link
+            // const whatsappMessage = encodeURIComponent(
+            //   `Bonjour, j'ai une question concernant ${service} : ${question} (Email: ${email})`,
+            // );
+            const whatsappUrl = `https://wa.me/212671884968`;
+
+            addMessage(
+              `Notre équipe vous enverra une proposition sous 24h.<br><br>
+            <strong>Vous pouvez également parler directement avec un conseiller pour plus de détails via WhatsApp :</strong><br>
+            <a href="${whatsappUrl}" target="_blank" style="color: #0a0f4f; text-decoration: underline;">
+                Cliquez ici pour démarrer la conversation
+            </a>`,
+              "ai",
+            );
+
+            // Remove form
+            if (contactForm) {
+              contactForm.remove();
             }
           } catch (error) {
             console.error("Error:", error);
@@ -349,22 +1531,102 @@ Je vous invite à découvrir l'ensemble de nos réalisations sur https://brosmed
     }
 
     // Quick replies
-    const quickReplies = [
-      "Nos services",
-      "Tarifs",
-      "Portfolio",
-      "Contact humain",
-    ];
+    const quickReplies = {
+      default: [
+        "Découvrir nos services",
+        "Consulter nos tarifs",
+        "Voir notre portfolio",
+        "Parler à un conseiller",
+      ],
+      Services: ["Sites web", "SEO", "Publicité", "Vidéo & Photo"],
+      Sites_web: ["Oui, je veux connaître les tarifs"],
+      pricing: [
+        "Oui, préparez un devis",
+        "Non, je veux d’abord voir vos services en publicité",
+      ],
+      Publicité: [
+        "Attirer plus de clients rapidement",
+        "Booster mes ventes en ligne",
+        "Augmenter ma notoriété",
+      ],
+      VideoPhoto: [
+        "Vidéo promotionnelle",
+        "Photos produits",
+        "Spot publicitaire",
+        "Autre",
+      ],
+      packs: [
+        "Oui, aidez-moi à choisir",
+        "Non, je préfère demander un devis directement",
+      ],
+      portfolio: ["Oui, montrez-moi un exemple de mon domaine."],
+      contact: [
+        "Devis pour un site web",
+        "Stratégie publicitaire",
+        "Conseil SEO",
+        "Autre demande",
+        // "Contacter directement un conseiller humain",
+      ],
+      otherRequest: [
+        "Envoyer ma demande et être contacté",
+        "Parler directement à un conseiller",
+      ],
+    };
 
     // Add quick replies
     function addQuickReplies(userMessage) {
+      console.log(userMessage);
+      let quickR = [];
+      switch (userMessage) {
+        case "Services":
+          quickR = quickReplies.Services;
+          break;
 
-console.log(userMessage)
+        case "Non, je veux d’abord voir vos services en publicité":
+          quickR = quickReplies.Publicité;
+          break;
+
+        case "Publicité":
+          quickR = quickReplies.Publicité;
+          break;
+
+        case "Sites web":
+          quickR = quickReplies.Sites_web;
+          break;
+
+        case "Oui, je veux connaître les tarifs":
+          quickR = quickReplies.pricing;
+          break;
+
+        case "Vidéo & Photo":
+          quickR = quickReplies.VideoPhoto;
+          break;
+
+        case "Tarifs":
+          quickR = quickReplies.packs;
+          break;
+
+        case "Portfolio":
+          quickR = quickReplies.portfolio;
+          break;
+
+        case "Contact":
+          quickR = quickReplies.contact;
+          break;
+
+        case "Autre demande":
+          quickR = quickReplies.otherRequest;
+          break;
+
+        default:
+          quickR = [];
+          break;
+      }
 
       const quickReplyContainer = document.createElement("div");
       quickReplyContainer.classList.add("quick-replies");
 
-      quickReplies.forEach((reply) => {
+      quickR.forEach((reply) => {
         const quickReply = document.createElement("div");
         quickReply.classList.add("quick-reply");
         quickReply.textContent = reply;
@@ -381,6 +1643,7 @@ console.log(userMessage)
       });
 
       const lastMessage = chatBody.lastElementChild;
+
       lastMessage.appendChild(quickReplyContainer);
 
       // Scroll to bottom
