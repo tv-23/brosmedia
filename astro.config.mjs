@@ -2,7 +2,6 @@
 import { defineConfig } from 'astro/config';
 
 // https://astro.build/config
-<<<<<<< HEAD
 export default defineConfig({
   compressHTML: true, // Enable HTML compression
   build: {
@@ -14,6 +13,3 @@ export default defineConfig({
     }
   }
 });
-=======
-export default defineConfig({});
->>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
