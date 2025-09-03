@@ -89,7 +89,18 @@ Tous nos sites incluent : hébergement sécurisé, certificat SSL, et support te
 
       PrepareQuote: `Parfait ! 🎯 Pour préparer un devis rapide, j’ai besoin de quelques informations :<br>`,
 
+<<<<<<< HEAD
       portfolio: `👉 Souhaitez-vous que je vous présente un exemple concret de votre domaine d'activité ?<br>`,
+=======
+      portfolio: `Nous avons eu le plaisir de travailler sur divers projets passionnants :<br>
+
+• Site e-commerce pour une marque de mode marocaine<br>
+• Refonte complète du site vitrine d'un restaurant réputé à Larache<br>
+• Campagne Instagram pour un salon de beauté de luxe<br>
+• Stratégie SEO pour une agence immobilière à Tanger<br>
+
+Je vous invite à découvrir l'ensemble de nos réalisations sur https://brosmedia.ma/portfolio`,
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
 
       Publicité: `La publicité digitale, c’est le moyen le plus rapide pour générer des clients.
 Nous gérons pour vous :<br><br>
@@ -101,6 +112,7 @@ Nous gérons pour vous :<br><br>
 
 Quel est votre objectif principal ?`,
 
+<<<<<<< HEAD
       VideoPhoto: `Le contenu visuel est la clé pour convaincre vos clients 👀.<br>
 Chez Brosmedia, nous réalisons :<br>
 
@@ -122,6 +134,10 @@ Chez Brosmedia, nous réalisons :<br>
         Mais avant, pour mieux vous orienter, pouvez-vous préciser votre demande ?
         `,
       otherRequest: `D’accord ! Pour que nous puissions vous répondre précisément, merci de nous expliquer brièvement votre besoin et de fournir votre email 📩`,
+=======
+      contact:
+        "Excellent! Un de nos experts vous contactera dans les plus brefs délais. 😊",
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
       default: [
         "Je ne suis pas sûr de comprendre. Pourriez-vous reformuler votre question?",
         "C'est une bonne question! Laissez-moi vous mettre en contact avec un expert humain qui pourra vous aider.",
@@ -175,6 +191,7 @@ Chez Brosmedia, nous réalisons :<br>
       chatBody.scrollTop = chatBody.scrollHeight;
     }
 
+<<<<<<< HEAD
     function showQuoteFormForVideoPhoto(msg) {
       addMessage(
         `Afin de vous proposer une offre Vidéo & Photo adaptée à vos besoins, pourriez-vous s’il vous plaît remplir ce formulaire avec votre email et numéro de téléphone ?`,
@@ -795,6 +812,8 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
       chatBody.scrollTop = chatBody.scrollHeight;
     }
 
+=======
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
     function showQuoteForm() {
       addMessage(
         `Parfait ! 🎯 Pour préparer un devis rapide, j’ai besoin de quelques informations :<br>`,
@@ -895,7 +914,11 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
           try {
             // Prepare email template parameters
             const templateParams = {
+<<<<<<< HEAD
               message: `Bonjour, je souhaite un devis pour Création de site Web service:
+=======
+              message: `Bonjour, je souhaite un devis pour:
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
         Secteur: ${sector} \n
         Objectif: ${objective} \n
         Type de site: ${siteType} \n
@@ -981,7 +1004,17 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
           AI_RESPONSES.greeting[
             Math.floor(Math.random() * AI_RESPONSES.greeting.length)
           ];
+<<<<<<< HEAD
       } else if (lowerMessage.includes(" les tarifs")) {
+=======
+      } else if (
+        lowerMessage.includes("prix") ||
+        lowerMessage.includes("tarif") ||
+        lowerMessage.includes("combien") ||
+        lowerMessage.includes("coût") ||
+        lowerMessage.includes("budget")
+      ) {
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
         response = AI_RESPONSES.pricing;
       } else if (
         lowerMessage.includes("portfolio") ||
@@ -991,6 +1024,7 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
         lowerMessage.includes("expérience")
       ) {
         response = AI_RESPONSES.portfolio;
+<<<<<<< HEAD
       } else if (lowerMessage.includes("tarifs")) {
         response = AI_RESPONSES.packs;
       } else if (lowerMessage.includes("sites web")) {
@@ -1003,6 +1037,16 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
         ) ||
         lowerMessage.includes("publicité")
       ) {
+=======
+      } else if (
+        lowerMessage.includes("sites") ||
+        lowerMessage.includes("web")
+      ) {
+        response = AI_RESPONSES.Sites_web;
+      } else if (lowerMessage.includes("préparez un devis")) {
+        showQuoteForm();
+      } else if (lowerMessage.includes("services en publicit")) {
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
         response = AI_RESPONSES.Publicité;
       } else if (
         lowerMessage.includes("service") ||
@@ -1012,6 +1056,7 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
       ) {
         response = AI_RESPONSES.services;
       } else if (
+<<<<<<< HEAD
         lowerMessage.includes("attirer plus de clients rapidement") ||
         lowerMessage.includes("booster mes ventes en ligne") ||
         lowerMessage.includes("augmenter ma notoriété")
@@ -1053,6 +1098,26 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
         speakDirectlyToAdvisor();
       } else if (lowerMessage == "contact") {
         response = AI_RESPONSES.contact;
+=======
+        ("",
+        "",
+        "",
+        lowerMessage.includes("Attirer plus de clients rapidement") ||
+          lowerMessage.includes("Booster mes ventes en ligne") ||
+          lowerMessage.includes("Augmenter ma notoriété"))
+      ) {
+        response = AI_RESPONSES.services;
+      } else if (
+        lowerMessage.includes("contact") ||
+        lowerMessage.includes("email") ||
+        lowerMessage.includes("téléphone") ||
+        lowerMessage.includes("adresse") ||
+        lowerMessage.includes("appeler") ||
+        lowerMessage.includes("humain") ||
+        lowerMessage.includes("expert")
+      ) {
+        showContactForm();
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
       } else {
         response =
           AI_RESPONSES.default[
@@ -1060,6 +1125,7 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
           ];
       }
 
+<<<<<<< HEAD
       if (response != "") {
         addMessage(response, "ai");
       }
@@ -1187,10 +1253,32 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
       addMessage(
         `Le SEO est la clé pour apparaître en haut des résultats Google 🚀<br>
         Pour vous aider efficacement, j’ai besoin de :`,
+=======
+      addMessage(response, "ai");
+
+      // Add quick replies after AI response
+      if (
+        !lowerMessage.includes("contact") &&
+        !lowerMessage.includes("humain") &&
+        !lowerMessage.includes("expert")
+      ) {
+        setTimeout(addQuickReplies(userMessage), 300);
+      }
+    }
+
+    // Show contact form
+    function showContactForm() {
+      const contactForm = document.createElement("div");
+      contactForm.classList.add("contact-form");
+
+      addMessage(
+        "Parfait! Je vais vous mettre en contact avec un expert Brosmedia. Pourriez-vous me fournir quelques détails?",
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
         "ai",
       );
 
       contactForm.innerHTML = `
+<<<<<<< HEAD
     <h3>Demande de Devis</h3>
                     <div class="form-group">
                         <label for="sectorSEOConsulting">Votre secteur d’activité</label>
@@ -1434,6 +1522,29 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
                     <div class="form-buttons">
                         <button class="cancel-btn" id="cancelQuoteForWebsite">Annuler</button>
                         <button class="submit-btn" id="submitQuoteForWebsite">Envoyer</button>
+=======
+                    <h3>Contactez un expert</h3>
+                    <div class="form-group">
+                        <label for="userQuestion">Votre question</label>
+                        <textarea id="userQuestion" placeholder Décrivez votre projet ou posez votre question..." rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Service concerné</label>
+                        <div class="service-tags">
+                            ${SERVICES.map(
+                              (service) =>
+                                `<div class="service-tag" data-service="${service}">${service}</div>`,
+                            ).join("")}
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="userEmail">Votre email</label>
+                        <input type="email" id="userEmail" placeholder="votre@email.com">
+                    </div>
+                    <div class="form-buttons">
+                        <button class="cancel-btn" id="cancelContact">Annuler</button>
+                        <button class="submit-btn" id="submitContact">Envoyer</button>
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
                     </div>
                 `;
 
@@ -1441,11 +1552,16 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
 
       // Add event listeners
       document
+<<<<<<< HEAD
         .getElementById("cancelQuoteForWebsite")
+=======
+        .getElementById("cancelContact")
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
         .addEventListener("click", function () {
           contactForm.remove();
         });
 
+<<<<<<< HEAD
       // Add selection functionality to all service tags
       document
         .querySelectorAll("#QuoteForWebsite .service-tag")
@@ -1475,6 +1591,27 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
           ).value;
 
           if (!sector || !email) {
+=======
+      document.querySelectorAll(".service-tag").forEach((tag) => {
+        tag.addEventListener("click", function () {
+          document
+            .querySelectorAll(".service-tag")
+            .forEach((t) => t.classList.remove("selected"));
+          this.classList.add("selected");
+        });
+      });
+
+      document
+        .getElementById("submitContact")
+        .addEventListener("click", async function () {
+          const question = document.getElementById("userQuestion").value;
+          const service =
+            document.querySelector(".service-tag.selected")?.dataset.service ||
+            "Non spécifié";
+          const email = document.getElementById("userEmail").value;
+
+          if (!question || !email) {
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
             alert("Veuillez remplir tous les champs obligatoires.");
             return;
           }
@@ -1482,12 +1619,18 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
           try {
             // Prepare email template parameters
             const templateParams = {
+<<<<<<< HEAD
               message: `Bonjour, je souhaite un devis pour le service de création de site web:
         Secteur: ${sector} \n
         Le type de site: ${service} \n
         Email: ${email} \n
         Telephone: ${phone}
        `,
+=======
+              to_name: "Recipient Name",
+              from_name: "Your Name",
+              message: "question: " + question + "\n Service: " + service,
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
               reply_to: email,
             };
 
@@ -1499,6 +1642,7 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
             );
 
             // Show confirmation with WhatsApp link
+<<<<<<< HEAD
             // const whatsappMessage = encodeURIComponent(
             //   `Bonjour, j'ai une question concernant ${service} : ${question} (Email: ${email})`,
             // );
@@ -1509,6 +1653,18 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
             <strong>Vous pouvez également parler directement avec un conseiller pour plus de détails via WhatsApp :</strong><br>
             <a href="${whatsappUrl}" target="_blank" style="color: #0a0f4f; text-decoration: underline;">
                 Cliquez ici pour démarrer la conversation
+=======
+            const whatsappMessage = encodeURIComponent(
+              `Bonjour, j'ai une question concernant ${service} : ${question} (Email: ${email})`,
+            );
+            const whatsappUrl = `https://wa.me/212671884968?text=${whatsappMessage}`;
+
+            addMessage(
+              `Merci! Votre demande a été envoyée. Un expert Brosmedia vous contactera très bientôt.<br><br>
+            <strong>Contactez-nous directement sur WhatsApp :</strong><br>
+            <a href="${whatsappUrl}" target="_blank" style="color: #0a0f4f; text-decoration: underline;">
+                👉 Cliquez ici pour discuter maintenant sur WhatsApp
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
             </a>`,
               "ai",
             );
@@ -1549,6 +1705,7 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
         "Booster mes ventes en ligne",
         "Augmenter ma notoriété",
       ],
+<<<<<<< HEAD
       VideoPhoto: [
         "Vidéo promotionnelle",
         "Photos produits",
@@ -1571,6 +1728,8 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
         "Envoyer ma demande et être contacté",
         "Parler directement à un conseiller",
       ],
+=======
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
     };
 
     // Add quick replies
@@ -1586,10 +1745,13 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
           quickR = quickReplies.Publicité;
           break;
 
+<<<<<<< HEAD
         case "Publicité":
           quickR = quickReplies.Publicité;
           break;
 
+=======
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
         case "Sites web":
           quickR = quickReplies.Sites_web;
           break;
@@ -1598,6 +1760,7 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
           quickR = quickReplies.pricing;
           break;
 
+<<<<<<< HEAD
         case "Vidéo & Photo":
           quickR = quickReplies.VideoPhoto;
           break;
@@ -1620,6 +1783,10 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
 
         default:
           quickR = [];
+=======
+        default:
+          quickR = quickReplies.default;
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
           break;
       }
 
@@ -1643,7 +1810,10 @@ Afin de vous proposer une stratégie SEO adaptée à vos besoins, pourriez-vous 
       });
 
       const lastMessage = chatBody.lastElementChild;
+<<<<<<< HEAD
 
+=======
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
       lastMessage.appendChild(quickReplyContainer);
 
       // Scroll to bottom

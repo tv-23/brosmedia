@@ -155,7 +155,11 @@
  .message-row {
    display: flex;
    align-items: flex-end;
+<<<<<<< HEAD
    margin: 0;
+=======
+   margin: 8px 0;
+>>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
    animation: fadeIn 0.3s ease;
  }
 
