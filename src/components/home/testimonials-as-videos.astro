@@ -48,8 +48,9 @@
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const slidesData = [
-        { url: 'https://www.videoask.com/fcstso7o3' }
-        // Add more videos if needed
+        {url:'https://www.videoask.com/f02f0r1ef'},
+        { url: 'https://www.videoask.com/fcstso7o3' },
+        {url:'https://www.videoask.com/fujo8ptxi'},
     ];
 
     const sliderWrapper = document.getElementById('videoSlider');
@@ -75,6 +76,19 @@ document.addEventListener('DOMContentLoaded', function() {
         return slide;
     }
 
+    function pauseAllVideos() {
+        // Pause all video iframes in the slider
+        const iframes = sliderWrapper.querySelectorAll('iframe');
+        iframes.forEach(iframe => {
+            try {
+                // Post pause message to each iframe
+                iframe.contentWindow.postMessage('{"method":"pause"}', '*');
+            } catch (e) {
+                console.log('Could not pause video:', e);
+            }
+        });
+    }
+
     function loadSlides() {
         // Clear existing slides
         sliderWrapper.innerHTML = '';
@@ -96,10 +110,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
-            autoplay: {
-                delay: 6000,
-                disableOnInteraction: false,
-            }
+            on: {
+                // Pause videos when slide changes
+                slideChange: function() {
+                    pauseAllVideos();
+                },
+            },
+            // autoplay: {
+            //     delay: 6000,
+            //     disableOnInteraction: false,
+            // }
         });
     }
 
@@ -110,16 +130,5 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(loadSlides, 1000);
     }
 
-    // Add reload button functionality
-    document.getElementById('reloadButton').addEventListener('click', function() {
-        this.textContent = 'Loading...';
-        setTimeout(() => {
-            loadSlides();
-            this.textContent = 'Videos Reloaded!';
-            setTimeout(() => {
-                this.textContent = 'Reload Videos with Fix Applied';
-            }, 2000);
-        }, 1000);
-    });
 });
 </script>
