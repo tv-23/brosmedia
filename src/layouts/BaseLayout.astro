@@ -15,45 +15,70 @@ const { pageTitle } = Astro.props;
         <meta name="generator" content={Astro.generator} />
 
         <title>{pageTitle}</title>
-        <!-- <link
-            rel="preload"
-                href="/assets/styles/main.css"
-            as="style"
-            onload="this.onload=null;this.rel='stylesheet'"
-        /> -->
-
         <link
             rel="preload"
             href="/assets/vendor/bootstrap/css/bootstrap.min.css"
-             href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
-             as="style"
+            as="style"
             onload="this.onload=null;this.rel='stylesheet'"
         />
+        <noscript
+            ><link
+                rel="stylesheet"
+                href="/assets/vendor/bootstrap/css/bootstrap.min.css"
+            /></noscript
+        >
+
         <link
             rel="preload"
             href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
-             as="style"
+            as="style"
             onload="this.onload=null;this.rel='stylesheet'"
         />
+        <noscript
+            ><link
+                rel="stylesheet"
+                href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+            /></noscript
+        >
+
         <link
             rel="preload"
             href="/assets/vendor/swiper/swiper-bundle.min.css"
             as="style"
             onload="this.onload=null;this.rel='stylesheet'"
         />
+        <noscript
+            ><link
+                rel="stylesheet"
+                href="/assets/vendor/swiper/swiper-bundle.min.css"
+            /></noscript
+        >
+
         <link
             rel="preload"
             href="/assets/vendor/glightbox/css/glightbox.min.css"
             as="style"
             onload="this.onload=null;this.rel='stylesheet'"
         />
-       
+        <noscript
+            ><link
+                rel="stylesheet"
+                href="/assets/vendor/glightbox/css/glightbox.min.css"
+            /></noscript
+        >
+
         <link
             rel="preload"
             href="/assets/styles/global.css"
             as="style"
             onload="this.onload=null;this.rel='stylesheet'"
         />
+        <noscript
+            ><link
+                rel="stylesheet"
+                href="/assets/styles/global.css"
+            /></noscript
+        >
     </head>
     <body>
         <div class="bg-white">
@@ -83,22 +108,157 @@ const { pageTitle } = Astro.props;
             src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"
             client:load></script>
 
-        <!-- <script
-            src="https://cdn.jsdelivr.net/npm/glightbox@3.2.0/dist/js/glightbox.min.js"
-            client:load></script> -->
-
         <script
             src="https://unpkg.com/imagesloaded@5.0.0/imagesloaded.pkgd.min.js"
             client:load></script>
-
-        <!-- <script
-            src="../../public/assets/vendor/isotope-layout/isotope.pkgd.min.js"
-         client:load></script> -->
 
         <script
             src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"
             client:load></script>
 
         <script src="../../public/main.js"></script>
+
+        <script>
+            /*! loadCSS rel=preload polyfill. [c]2017 Filament Group, Inc. MIT License */
+            (function (w) {
+                "use strict";
+                /*! loadCSS: load a CSS file asynchronously. [c]2017 Filament Group, Inc. MIT License */
+                var loadCSS = function (href, before, media) {
+                    var doc = w.document;
+                    var ss = doc.createElement("link");
+                    var ref;
+                    if (before) {
+                        ref = before;
+                    } else {
+                        var refs = (
+                            doc.body || doc.getElementsByTagName("head")[0]
+                        ).childNodes;
+                        ref = refs[refs.length - 1];
+                    }
+
+                    var sheets = doc.styleSheets;
+                    ss.rel = "stylesheet";
+                    ss.href = href;
+                    if (media) {
+                        ss.media = "only x";
+                    }
+
+                    ref.parentNode.insertBefore(
+                        ss,
+                        before ? ref : ref.nextSibling,
+                    );
+                    var onloadcssdefined = function (cb) {
+                        var resolvedHref = ss.href;
+                        var i = sheets.length;
+                        while (i--) {
+                            if (sheets[i].href === resolvedHref) {
+                                return cb();
+                            }
+                        }
+                        setTimeout(function () {
+                            onloadcssdefined(cb);
+                        });
+                    };
+
+                    function toggleMedia() {
+                        var defined;
+                        ss.media = media || "all";
+                        ss.onload = null;
+                        onloadcssdefined(function () {
+                            defined = true;
+                        });
+                        setTimeout(function () {
+                            if (!defined) {
+                                toggleMedia();
+                            }
+                        }, 500);
+                    }
+
+                    if (ss.addEventListener) {
+                        ss.addEventListener("load", toggleMedia);
+                    }
+                    ss.onloadcssdefined = onloadcssdefined;
+                    onloadcssdefined(toggleMedia);
+                    return ss;
+                };
+                if (typeof w.exports !== "undefined") {
+                    w.exports.loadCSS = loadCSS;
+                } else {
+                    w.loadCSS = loadCSS;
+                }
+
+                // Preload polyfill for unsupported browsers
+                if (!w.loadCSS) {
+                    w.loadCSS = loadCSS;
+                }
+                var rp = (loadCSS.relpreload = {});
+                rp.support = function () {
+                    try {
+                        return w.document
+                            .createElement("link")
+                            .relList.supports("preload");
+                    } catch (e) {
+                        return false;
+                    }
+                };
+
+                rp.bindMediaToggle = function (link) {
+                    var finalMedia = link.media || "all";
+                    function enableMedia() {
+                        link.media = finalMedia;
+                    }
+                    if (link.addEventListener) {
+                        link.addEventListener("load", enableMedia);
+                    } else if (link.attachEvent) {
+                        link.attachEvent("onload", enableMedia);
+                    }
+                    setTimeout(function () {
+                        link.rel = "stylesheet";
+                        link.media = "only x";
+                    });
+                    setTimeout(enableMedia, 500);
+                };
+
+                rp.poly = function () {
+                    if (rp.support()) {
+                        return;
+                    }
+                    var links = w.document.getElementsByTagName("link");
+                    for (var i = 0; i < links.length; i++) {
+                        var link = links[i];
+                        if (
+                            link.rel === "preload" &&
+                            link.getAttribute("as") === "style" &&
+                            !link.getAttribute("data-loadcss")
+                        ) {
+                            link.setAttribute("data-loadcss", true);
+                            rp.bindMediaToggle(link);
+                        }
+                    }
+                };
+
+                if (!rp.support()) {
+                    rp.poly();
+                    var run = w.setInterval(rp.poly, 500);
+                    if (w.addEventListener) {
+                        w.addEventListener("load", function () {
+                            rp.poly();
+                            w.clearInterval(run);
+                        });
+                    } else if (w.attachEvent) {
+                        w.attachEvent("onload", function () {
+                            rp.poly();
+                            w.clearInterval(run);
+                        });
+                    }
+                }
+
+                if (typeof w.exports !== "undefined") {
+                    w.exports.loadCSS = loadCSS;
+                } else {
+                    w.loadCSS = loadCSS;
+                }
+            })(typeof global !== "undefined" ? global : this);
+        </script>
     </body>
 </html>
