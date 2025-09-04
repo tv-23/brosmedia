@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Route لاستقبال بيانات الفورم
-app.post('/send-email', async (req, res) => {
+app.post('/send-email', async(req, res) => {
     const { name, emailM, phone, plan, extras } = req.body;
 
     if (!name || !emailM || !phone) {
@@ -22,24 +22,28 @@ app.post('/send-email', async (req, res) => {
     try {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
-            auth: {
-<<<<<<< HEAD
+            auth: { <<
+                << << < HEAD
                 user: 'tvelqjiri@gmail.com',
                 pass: 'gqpg ptjl fdch bggv',
-=======
+                ===
+                === =
                 user: 'rahimaakhazzan9@gmail.com',
-                pass: 'mvsa qseq tzrk xgbv'
->>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
+                pass: 'mvsa qseq tzrk xgbv' >>>
+                    >>> > d274e2fe77923c326ce7467eb275eed2f3e83cb1
             }
         });
 
         const mailOptions = {
             from: emailM,
-<<<<<<< HEAD
+            <<
+            << << < HEAD
             to: 'tvelqjiri@gmail.com',
-=======
+            ===
+            === =
             to: 'rahimaakhazzan9@gmail.com',
->>>>>>> d274e2fe77923c326ce7467eb275eed2f3e83cb1
+            >>>
+            >>> > d274e2fe77923c326ce7467eb275eed2f3e83cb1
             subject: `Nouvelle inscription - ${plan}`,
             html: `
                 <h3>Détails du formulaire Step 2</h3>
