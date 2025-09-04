@@ -147,20 +147,12 @@ padding: 1px !important;
                 </div>
 
                 <div class="col-lg-5" >
-                    <div class="visual-content">
+                    <div class="visual-content" id="videoaskContainer">
                         
             
 
 
-                                       <iframe
-  src="https://www.videoask.com/fawysaw0m"
-  width="95%"
-  height="600"
-  allow="camera; microphone"
-  style="border:none;"
-  loading="lazy"
-  data-src="https://www.videoask.com/fawysaw0m"
-></iframe>
+
 
                      
 
@@ -234,29 +226,30 @@ padding: 1px !important;
 </main>
 
 <script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const thumbnail = document.getElementById("video-thumbnail");
-        if (!thumbnail) return;
-
-        // const playVideo = () => {
-        //     const iframe = document.createElement("iframe");
-        //     iframe.src = `https://www.videoask.com/fawysaw0m`;
-        //     iframe.allow =
-        //         "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-        //     iframe.className = "w-100 h-100 position-absolute top-0 start-0";
-        //     iframe.title = "YouTube video player";
-        //     iframe.allowFullscreen = true;
-        //     thumbnail.innerHTML = "";
-        //     console.log(iframe)
-        //     thumbnail.appendChild(iframe);
-        // };
-
-        // thumbnail.addEventListener("click", playVideo);
-        // thumbnail.addEventListener("keydown", (event) => {
-        //     if (event.key === "Enter" || event.key === " ") {
-        //         event.preventDefault();
-        //         playVideo();
-        //     }
-        // });
-    });
+    document.addEventListener('DOMContentLoaded', function() {
+            const videoaskContainer = document.getElementById('videoaskContainer');
+            
+            // Use requestIdleCallback to load VideoAsk when the browser is idle
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(function() {
+                    loadVideoAsk();
+                }, { timeout: 2000 }); // Max 2 second delay even if browser isn't idle
+            } else {
+                // Fallback for browsers that don't support requestIdleCallback
+                setTimeout(loadVideoAsk, 1000);
+            }
+            
+            function loadVideoAsk() {
+                videoaskContainer.innerHTML = `
+                    <iframe 
+                        src="https://www.videoask.com/fawysaw0m" 
+                        width="100%" 
+                        height="500" 
+                        allow="camera; microphone" 
+                        style="border:none;"
+                        loading="lazy"
+                    ></iframe>
+                `;
+            }
+        });
 </script>
