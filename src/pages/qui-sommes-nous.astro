@@ -4,15 +4,29 @@ import Form from "../components/telephone-appointment-form.astro";
 import AiLogoSlider from "../components/ai-logo-slider.astro";
 ---
 
-<Layout pageTitle = "Qui sommes-nous - BROSMEDIA : Agence De Communication Digitale Au Maroc">
-
 <link
-  rel="preload"
-  href="/assets/styles/services.css"
-  as="style"
-  onload="this.onload=null;this.rel='stylesheet'"
+    rel="preload"
+    href="/assets/styles/services.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
 />
 
+<link
+    rel="preload"
+    href="/assets/styles/sections/logo-slider.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
+/>
+<noscript
+    ><link
+        rel="stylesheet"
+        href="/assets/styles/sections/logo-slider.css"
+    /></noscript
+>
+
+<Layout
+    pageTitle="Qui sommes-nous - BROSMEDIA : Agence De Communication Digitale Au Maroc"
+>
     <main class="main">
         <!-- Page Title -->
         <div class="page-title dark-background">
