@@ -1,7 +1,7 @@
 ---
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-// import Message from "../components/message.astro";
+import Message from "../components/message.astro";
 import "../../public/assets/styles/main.css";
 
 const { pageTitle } = Astro.props;
@@ -95,7 +95,7 @@ const { pageTitle } = Astro.props;
         <a href="#" id="chat-button" class="chat-icon">
             <i class="bi bi-chat-dots-fill"></i>
         </a>
-        <!-- <Message /> -->
+        <Message />
 
         <Footer />
 
