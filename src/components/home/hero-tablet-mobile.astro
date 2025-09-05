@@ -131,7 +131,7 @@ padding: 1px !important;
                                 tabindex="0"
                             >
                                 <img
-                                    src="/youtube-thumbnails/thum-1.jpg"
+                                    src="/thumbnail/image.0000002 (1).webp"
                                     alt="Video thumbnail"
                                     class="w-100 h-100 video-img"
                                     style="object-fit: cover;"
@@ -141,7 +141,7 @@ padding: 1px !important;
                                     class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
                                 >
                                     <div
-                                        class="bg-white bg-opacity-80 rounded-circle d-flex align-items-center justify-content-center shadow"
+                                        class="bg-white bg-opacity-80 rounded-circle d-flex align-items-center justify-content-center shadow play-button"
                                         style="width: 80px; height: 80px; transition: transform 0.3s ease;"
                                     >
                                         <svg
@@ -156,7 +156,7 @@ padding: 1px !important;
                                 </div>
                             </div>
                         </div>
-
+                    
                         <div class="stats-card">
                             <div class="stats-number">
                                 <h2>100+</h2>
@@ -263,30 +263,3 @@ padding: 1px !important;
     </div>
 </main>
 
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
-        const thumbnail = document.getElementById("video-thumbnail");
-        if (!thumbnail) return;
-
-        const playVideo = () => {
-            const videoId = "dQw4w9WgXcQ"; // Replace with your YouTube video ID
-            const iframe = document.createElement("iframe");
-            // iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-            iframe.allow =
-                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-            iframe.className = "w-100 h-100 position-absolute top-0 start-0";
-            iframe.title = "YouTube video player";
-            iframe.allowFullscreen = true;
-            thumbnail.innerHTML = "";
-            thumbnail.appendChild(iframe);
-        };
-
-        thumbnail.addEventListener("click", playVideo);
-        thumbnail.addEventListener("keydown", (event) => {
-            if (event.key === "Enter" || event.key === " ") {
-                event.preventDefault();
-                playVideo();
-            }
-        });
-    });
-</script>
