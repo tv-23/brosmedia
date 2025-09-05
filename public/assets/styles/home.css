@@ -45,9 +45,6 @@
 }
 
 @media (max-width: 576px) {
-    .fluid-shape {
-        aspect-ratio: 4 / 3;
-    }
     .rounded-circle {
         width: 60px !important;
         height: 60px !important;
