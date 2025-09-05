@@ -147,7 +147,7 @@ padding: 1px !important;
                 </div>
 
                 <div class="col-lg-5" >
-                    <div class="visual-content">
+                    <div class="visual-content" id="visualContentDesktop">
                         <div class="fluid-shape">
                             <div
                                 class="position-relative cursor-pointer overflow-hidden"
@@ -259,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const playVideo = () => {
         // Get reference to the visual-content container
-        const visualContent = document.querySelector(".visual-content");
+        const visualContent = document.getElementById("visualContentDesktop");
         if (!visualContent) return;
         
         // Create iframe with your VideoAsk URL

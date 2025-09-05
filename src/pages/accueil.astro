@@ -103,37 +103,3 @@ import Logos from "../components/home/logo-slider.astro";
 <!-- Preloader -->
 <!-- <div id="preloader"></div> -->
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-      const thumbnail = document.getElementById("video-thumbnail");
-      if (!thumbnail) return;
-  
-      const playVideo = () => {
-          // Get reference to the visual-content container
-          const visualContent = document.querySelector(".visual-content");
-          if (!visualContent) return;
-          
-          // Create iframe with your VideoAsk URL
-          const iframe = document.createElement("iframe");
-          iframe.src = "https://www.videoask.com/fawysaw0m?autoplay=1";
-          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-          iframe.className = "w-100 h-100";
-          iframe.style.aspectRatio = "16/9";
-          iframe.title = "VideoAsk player";
-          iframe.setAttribute("allowfullscreen", "");
-          iframe.setAttribute("frameborder", "0");
-          
-          // Clear the visual-content and add the iframe
-          visualContent.innerHTML = "";
-          visualContent.appendChild(iframe);
-      };
-  
-      thumbnail.addEventListener("click", playVideo);
-      thumbnail.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-              event.preventDefault();
-              playVideo();
-          }
-      });
-  });
-      </script>
