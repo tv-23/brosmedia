@@ -1,7 +1,7 @@
 ---
 const slides = [
+    {url:'https://www.videoask.com/flg6q1uu6'},
         {url:'https://www.videoask.com/fq4lpcyda'},
-        {url:'https://www.videoask.com/flg6q1uu6'},
         { url: 'https://www.videoask.com/fcstso7o3' },
     ]
 ---
@@ -70,106 +70,56 @@ const slides = [
     </div>
 </section>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-
-    new Swiper(".video-swiper", {
+<script is:inline>
+    document.addEventListener("DOMContentLoaded", function () {
+        const swiper = new Swiper(".video-swiper", {
             loop: true,
+            autoplay: {
+                delay: 6000,
+                disableOnInteraction: false,
+            },
             speed: 600,
             slidesPerView: 1,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
-            on: {
-                // Pause videos when slide changes
-                slideChange: function() {
-                    pauseAllVideos();
-                },
-            },
-            // autoplay: {
-            //     delay: 6000,
-            //     disableOnInteraction: false,
-            // }
-        })
+        });
 
-    // const slidesData = [
-    //     {url:'https://www.videoask.com/f02f0r1ef'},
-    //     {url:'https://www.videoask.com/fujo8ptxi'},
-    //     { url: 'https://www.videoask.com/fcstso7o3' },
-    // ];
+        window.playVideo = function (wrapper) {
+            const img = wrapper.querySelector("img");
+            const playIcon = wrapper.querySelector(".play-icon");
 
-    // const sliderWrapper = document.getElementById('videoSlider');
-    // let swiper;
+            const videoId = getVideoIdFromThumbnail(img?.src);
+            if (!videoId) return;
 
-    // function createSlide(videoUrl) {
-    //     const slide = document.createElement('div');
-    //     slide.className = 'swiper-slide rounded overflow-hidden';
-        
-    //     slide.innerHTML = `
-    //         <iframe 
-    //             src="${videoUrl}?autoplay=0&embed=1&mute=0" 
-    //             width="100%" 
-    //             height="500" 
-    //             allow="camera; microphone; autoplay; fullscreen; picture-in-picture" 
-    //             style="border:none;" 
-    //             allowfullscreen
-    //             loading="lazy"
-    //             title="Videoask Video Player">
-    //         </iframe>
-    //     `;
-    //     return slide;
-    // }
+            swiper.autoplay.stop();
 
-    // function pauseAllVideos() {
-    //     const iframes = sliderWrapper.querySelectorAll('iframe');
-    //     iframes.forEach(iframe => {
-    //         try {
-    //             iframe.contentWindow.postMessage('{"method":"pause"}', '*');
-    //         } catch (e) {
-    //             console.log('Could not pause video:', e);
-    //         }
-    //     });
-    // }
+            img?.remove();
+            playIcon?.remove();
 
-    // function loadSlides() {
-    //     sliderWrapper.innerHTML = '';
-        
-    //     // slidesData.forEach(item => {
-    //     //     sliderWrapper.appendChild(createSlide(item.url));
-    //     // });
+            const iframe = document.createElement("iframe");
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&mute=1`;
+            iframe.allow = "autoplay; encrypted-media";
+            iframe.allowFullscreen = true;
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
 
-    //     if (swiper) {
-    //         swiper.destroy(true, true);
-    //     }
-        
-    //     swiper = new Swiper(".video-swiper", {
-    //         loop: true,
-    //         speed: 600,
-    //         slidesPerView: 1,
-    //         navigation: {
-    //             nextEl: ".swiper-button-next",
-    //             prevEl: ".swiper-button-prev",
-    //         },
-    //         on: {
-    //             // Pause videos when slide changes
-    //             slideChange: function() {
-    //                 pauseAllVideos();
-    //             },
-    //         },
-    //         // autoplay: {
-    //         //     delay: 6000,
-    //         //     disableOnInteraction: false,
-    //         // }
-    //     });
-    // }
+            const ratio = document.createElement("div");
+            ratio.className = "ratio ratio-16x9";
+            ratio.appendChild(iframe);
 
-    // // Use requestIdleCallback if available, otherwise use setTimeout
-    // if ('requestIdleCallback' in window) {
-    //     requestIdleCallback(loadSlides, { timeout: 2000 });
-    // } else {
-    //     setTimeout(loadSlides, 1000);
-    // }
+            wrapper.appendChild(ratio);
 
-});
+            setTimeout(() => {
+                swiper.autoplay.start();
+            }, 30000);
+        };
+
+        function getVideoIdFromThumbnail(url) {
+            const match = url.match(/vi\/([^/]+)\//);
+            return match ? match[1] : null;
+        }
+    });
 </script>
