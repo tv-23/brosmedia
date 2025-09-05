@@ -24,7 +24,7 @@ categories: ["Publicité en ligne", "Stratégie digitale"]
 
 
 
-<figure class="wp-block-image alignwide size-large is-style-default"><img width="100% height="100%"decoding="async" src="https://essentials.pixfort.com/original/wp-content/uploads/sites/4/2019/12/image-2.jpg" alt="" class="wp-image-312" title=""><figcaption>This is a simple text</figcaption></figure>
+<figure class="wp-block-image alignwide size-large is-style-default"><img width="100% height="100%" decoding="async" src="https://essentials.pixfort.com/original/wp-content/uploads/sites/4/2019/12/image-2.jpg" alt="" class="wp-image-312" title=""><figcaption>This is a simple text</figcaption></figure>
 
 
 
@@ -40,7 +40,7 @@ categories: ["Publicité en ligne", "Stratégie digitale"]
 
 
 
-<div class="wp-block-media-text alignwide"><figure class="wp-block-media-text__media"><img width="100% height="100%"decoding="async" src="https://essentials.pixfort.com/original/wp-content/uploads/sites/4/2019/12/image-3.jpg" alt="" class="wp-image-316" title=""></figure><div class="wp-block-media-text__content">
+<div class="wp-block-media-text alignwide"><figure class="wp-block-media-text__media"><img width="100% height="100%" decoding="async" src="https://essentials.pixfort.com/original/wp-content/uploads/sites/4/2019/12/image-3.jpg" alt="" class="wp-image-316" title=""></figure><div class="wp-block-media-text__content">
 <h4 class="wp-block-heading"><strong>Get the most advanced WordPress theme.</strong></h4>
 
 
