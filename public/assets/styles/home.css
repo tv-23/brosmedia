@@ -31,7 +31,7 @@
 
 .fluid-shape {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    /* aspect-ratio: 16 / 9; */
     max-height: 100%;
 }
 
@@ -91,12 +91,10 @@
     .services {
         margin-top: -100px;
     }
-
-    section#team>.section-title{
+    section#team>.section-title {
         padding-bottom: 0px;
-    }  
-    section#team .content-inner{
+    }
+    section#team .content-inner {
         margin-top: 0px;
     }
 }
-
