@@ -9,14 +9,24 @@ import TelephoneAppointmentForm from "../components/telephone-appointment-form.a
 import ServiceGallery from "../components/services/website/service-gallery.astro";
 ---
 
-<Layout pageTitle = "Conception de site web - BROSMEDIA : Agence De Communication Digitale Au Maroc">
-  <main class="main">
 <link
   rel="preload"
   href="/assets/styles/services.css"
   as="style"
   onload="this.onload=null;this.rel='stylesheet'"
 />
+<noscript><link rel="stylesheet" href="/assets/styles/services.css"></noscript>
+
+<link
+  rel="preload"
+  href="/assets/styles/sections/steps.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+<noscript><link rel="stylesheet" href="/assets/styles/sections/steps.css"></noscript>
+
+<Layout pageTitle = "Conception de site web - BROSMEDIA : Agence De Communication Digitale Au Maroc">
+  <main class="main">
 
     <Header />
 

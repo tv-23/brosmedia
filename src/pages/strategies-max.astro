@@ -4,15 +4,12 @@ import Hero from "../components/strategies-max/hero.astro";
 import Logos from "../components/home/logo-slider.astro";
 import Cards from "../components/strategies-max/cards.astro";
 import ClientMAX from "../components/strategies-max/client-max.astro";
-import SimpleEffectiveMethod from "../components/strategies-max/simple-effective-method.astro";
-import Audit from "../components/strategies-max/audit.astro";
-import DigitalAgency from "../components/strategies-max/digital-agency.astro";
-import DedicatedTeam from "../components/strategies-max/dedicated-team.astro";
-import ConcreteFigures from "../components/strategies-max/concrete-figures.astro";
+// import SimpleEffectiveMethod from "../components/strategies-max/simple-effective-method.astro";
+// import Audit from "../components/strategies-max/audit.astro";
+// import DigitalAgency from "../components/strategies-max/digital-agency.astro";
+// import DedicatedTeam from "../components/strategies-max/dedicated-team.astro";
+// import ConcreteFigures from "../components/strategies-max/concrete-figures.astro";
 ---
-
-
-<Layout pageTitle = "Stratégies Max - BROSMEDIA : Agence De Communication Digitale Au Maroc">
 
 <link
   rel="preload"
@@ -20,6 +17,18 @@ import ConcreteFigures from "../components/strategies-max/concrete-figures.astro
   as="style"
   onload="this.onload=null;this.rel='stylesheet'"
 />
+<noscript><link rel="stylesheet" href="/assets/styles/strategies-max.css"></noscript>
+
+<link
+  rel="preload"
+  href="/assets/styles/sections/logo-slider.css"
+  as="style"
+  onload="this.onload=null;this.rel='stylesheet'"
+/>
+<noscript><link rel="stylesheet" href="/assets/styles/sections/logo-slider.css"></noscript>
+
+<Layout pageTitle = "Stratégies Max - BROSMEDIA : Agence De Communication Digitale Au Maroc">
+
 
 <Hero/>
 <Cards/>
