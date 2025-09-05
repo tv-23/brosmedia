@@ -1,5 +1,9 @@
 ---
-
+const slides = [
+        {url:'https://www.videoask.com/f02f0r1ef'},
+        {url:'https://www.videoask.com/fujo8ptxi'},
+        { url: 'https://www.videoask.com/fcstso7o3' },
+    ]
 ---
 
 <section id="testimonials-as-videos" class="videos section">
@@ -18,7 +22,28 @@
             <!-- Swiper -->
             <div class="col-lg-5">
                 <div class="swiper video-swiper position-relative">
-                    <div class="swiper-wrapper" id="videoSlider"></div>
+                    <div class="swiper-wrapper" id="videoSlider">
+
+                        {
+                            slides.map((slide) => (
+<div class="swiper-slide rounded overflow-hidden">
+    <iframe 
+                src={slide.url}
+                width="100%" 
+                height="500" 
+                allow="camera; microphone; autoplay; fullscreen; picture-in-picture" 
+                style="border:none;" 
+                allowfullscreen
+                loading="lazy"
+                title="Videoask Video Player">
+            </iframe>
+</div>
+
+
+                            ))
+          }
+
+                    </div>
 
                     <!-- Navigation -->
                     <div class="swiper-button-next"></div>
@@ -47,62 +72,8 @@
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const slidesData = [
-        {url:'https://www.videoask.com/f02f0r1ef'},
-        {url:'https://www.videoask.com/fujo8ptxi'},
-        { url: 'https://www.videoask.com/fcstso7o3' },
-    ];
 
-    const sliderWrapper = document.getElementById('videoSlider');
-    let swiper;
-
-    function createSlide(videoUrl) {
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide rounded overflow-hidden';
-        
-        // Added title attribute and removed autoplay to prevent blocking
-        slide.innerHTML = `
-            <iframe 
-                src="${videoUrl}?autoplay=0&embed=1&mute=0" 
-                width="100%" 
-                height="500" 
-                allow="camera; microphone; autoplay; fullscreen; picture-in-picture" 
-                style="border:none;" 
-                allowfullscreen
-                loading="lazy"
-                title="Videoask Video Player">
-            </iframe>
-        `;
-        return slide;
-    }
-
-    function pauseAllVideos() {
-        // Pause all video iframes in the slider
-        const iframes = sliderWrapper.querySelectorAll('iframe');
-        iframes.forEach(iframe => {
-            try {
-                // Post pause message to each iframe
-                iframe.contentWindow.postMessage('{"method":"pause"}', '*');
-            } catch (e) {
-                console.log('Could not pause video:', e);
-            }
-        });
-    }
-
-    function loadSlides() {
-        // Clear existing slides
-        sliderWrapper.innerHTML = '';
-        
-        slidesData.forEach(item => {
-            sliderWrapper.appendChild(createSlide(item.url));
-        });
-
-        // Initialize or reinitialize Swiper
-        if (swiper) {
-            swiper.destroy(true, true);
-        }
-        
-        swiper = new Swiper(".video-swiper", {
+    new Swiper(".video-swiper", {
             loop: true,
             speed: 600,
             slidesPerView: 1,
@@ -120,15 +91,85 @@ document.addEventListener('DOMContentLoaded', function() {
             //     delay: 6000,
             //     disableOnInteraction: false,
             // }
-        });
-    }
+        })
 
-    // Use requestIdleCallback if available, otherwise use setTimeout
-    if ('requestIdleCallback' in window) {
-        requestIdleCallback(loadSlides, { timeout: 2000 });
-    } else {
-        setTimeout(loadSlides, 1000);
-    }
+    // const slidesData = [
+    //     {url:'https://www.videoask.com/f02f0r1ef'},
+    //     {url:'https://www.videoask.com/fujo8ptxi'},
+    //     { url: 'https://www.videoask.com/fcstso7o3' },
+    // ];
+
+    // const sliderWrapper = document.getElementById('videoSlider');
+    // let swiper;
+
+    // function createSlide(videoUrl) {
+    //     const slide = document.createElement('div');
+    //     slide.className = 'swiper-slide rounded overflow-hidden';
+        
+    //     slide.innerHTML = `
+    //         <iframe 
+    //             src="${videoUrl}?autoplay=0&embed=1&mute=0" 
+    //             width="100%" 
+    //             height="500" 
+    //             allow="camera; microphone; autoplay; fullscreen; picture-in-picture" 
+    //             style="border:none;" 
+    //             allowfullscreen
+    //             loading="lazy"
+    //             title="Videoask Video Player">
+    //         </iframe>
+    //     `;
+    //     return slide;
+    // }
+
+    // function pauseAllVideos() {
+    //     const iframes = sliderWrapper.querySelectorAll('iframe');
+    //     iframes.forEach(iframe => {
+    //         try {
+    //             iframe.contentWindow.postMessage('{"method":"pause"}', '*');
+    //         } catch (e) {
+    //             console.log('Could not pause video:', e);
+    //         }
+    //     });
+    // }
+
+    // function loadSlides() {
+    //     sliderWrapper.innerHTML = '';
+        
+    //     // slidesData.forEach(item => {
+    //     //     sliderWrapper.appendChild(createSlide(item.url));
+    //     // });
+
+    //     if (swiper) {
+    //         swiper.destroy(true, true);
+    //     }
+        
+    //     swiper = new Swiper(".video-swiper", {
+    //         loop: true,
+    //         speed: 600,
+    //         slidesPerView: 1,
+    //         navigation: {
+    //             nextEl: ".swiper-button-next",
+    //             prevEl: ".swiper-button-prev",
+    //         },
+    //         on: {
+    //             // Pause videos when slide changes
+    //             slideChange: function() {
+    //                 pauseAllVideos();
+    //             },
+    //         },
+    //         // autoplay: {
+    //         //     delay: 6000,
+    //         //     disableOnInteraction: false,
+    //         // }
+    //     });
+    // }
+
+    // // Use requestIdleCallback if available, otherwise use setTimeout
+    // if ('requestIdleCallback' in window) {
+    //     requestIdleCallback(loadSlides, { timeout: 2000 });
+    // } else {
+    //     setTimeout(loadSlides, 1000);
+    // }
 
 });
 </script>
