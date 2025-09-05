@@ -1,14 +1,14 @@
 ---
 const slides = [
-    { url: "https://www.videoask.com/f5f42wm50" },
-    { url: "https://www.videoask.com/f3rlkqy8y" },
-    { url: "https://www.videoask.com/fnp354sxl" },
+    { image: "/thumbnail/thumb-3.webp" },
+    { image: "/thumbnail/thumb-1.webp" },
+    { image: "/thumbnail/thumb-2.webp" },
 ];
 ---
 
 <section id="testimonials-as-videos" class="videos section">
     <!-- Section Title -->
-    <div class="container section-title" >
+    <div class="container section-title">
         <h2>Avis</h2>
         <div>
             <span>Ils témoignent</span>
@@ -23,49 +23,40 @@ const slides = [
             <div class="col-lg-5">
                 <div class="swiper video-swiper position-relative">
                     <div class="swiper-wrapper">
-                        <!-- Slide 1 -->
-                        <div class="swiper-slide rounded overflow-hidden">
-                            <div
-                                class="video-wrapper position-relative"
-                                onclick="playVideo(this)"
-                            >
-                                <img
-                                    src="/youtube-thumbnails/thum-2.jpg"
-                                    class="img-fluid w-100"
-                                    alt="Video 1"
-                                />
-                                <div class="play-icon"></div>
-                            </div>
-                        </div>
-
-                        <!-- Slide 2 -->
-                        <div class="swiper-slide rounded overflow-hidden">
-                            <div
-                                class="video-wrapper position-relative"
-                                onclick="playVideo(this)"
-                            >
-                                <img
-                                    src="/youtube-thumbnails/thum-3.jpg"
-                                    class="img-fluid w-100"
-                                    alt="Video 2"
-                                />
-                                <div class="play-icon"></div>
-                            </div>
-                        </div>
+                        {
+                            slides.map((slide) => (
+                                <div class="swiper-slide rounded overflow-hidden">
+                                     <div class="video-wrapper position-relative"> 
+                                        <img
+                                            src={slide.image}
+                                            class="img-fluid w-100"
+                                            alt="Video 1"
+                                        />
+                                        <div class="play-icon" />
+                                     </div> 
+                                </div>
+                            ))
+                        }
                     </div>
 
-                    <!-- Navigation -->
+                    <!-- Navigation buttons -->
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
             </div>
 
             <!-- Text -->
-            <div class="col-lg-7" >
+            <div class="col-lg-7">
                 <div class="videos-section-content">
                     <h2>L'impact de Brosmedia</h2>
                     <p class="lead">
-                       Chez Brosmedia, chaque projet est une histoire de transformation. Grâce à notre approche personnalisée et humaine, nous aidons nos clients à franchir un cap dans leur présence digitale. Que ce soit par la création de sites web percutants, des campagnes marketing efficaces ou des vidéos publicitaires engageantes, nous contribuons concrètement à leur croissance.
+                        Chez Brosmedia, chaque projet est une histoire de
+                        transformation. Grâce à notre approche personnalisée et
+                        humaine, nous aidons nos clients à franchir un cap dans
+                        leur présence digitale. Que ce soit par la création de
+                        sites web percutants, des campagnes marketing efficaces
+                        ou des vidéos publicitaires engageantes, nous
+                        contribuons concrètement à leur croissance.
                     </p>
                 </div>
             </div>
@@ -73,57 +64,105 @@ const slides = [
     </div>
 </section>
 
-
-<script is:inline>
+<script>
     document.addEventListener("DOMContentLoaded", function () {
+        const slides = [
+            { url: "https://www.videoask.com/f5f42wm50" },
+            { url: "https://www.videoask.com/f3rlkqy8y" },
+            { url: "https://www.videoask.com/fnp354sxl" },
+        ];
+    
+        // Initialize originalContents first
+        const originalContents = [];
+        
         const swiper = new Swiper(".video-swiper", {
             loop: true,
-            autoplay: {
-                delay: 6000,
-                disableOnInteraction: false,
-            },
+            // autoplay: {
+            //     delay: 6000,
+            //     disableOnInteraction: false,
+            // },
             speed: 600,
             slidesPerView: 1,
             navigation: {
                 nextEl: ".swiper-button-next",
                 prevEl: ".swiper-button-prev",
             },
+            on: {
+                // Restore thumbnails when slide changes
+                slideChange: function() {
+                    const activeIndex = this.activeIndex;
+                    const slideElements = document.querySelectorAll('.swiper-slide');
+                    
+                    slideElements.forEach((slide, index) => {
+                        if (index !== activeIndex) {
+                            restoreThumbnail(slide);
+                        }
+                    });
+                }
+            }
         });
-
-        window.playVideo = function (wrapper) {
-            const img = wrapper.querySelector("img");
-            const playIcon = wrapper.querySelector(".play-icon");
-
-            const videoId = getVideoIdFromThumbnail(img?.src);
-            if (!videoId) return;
-
+    
+        // Store original HTML to restore later
+        document.querySelectorAll('.swiper-slide .video-wrapper').forEach(wrapper => {
+            originalContents.push(wrapper.innerHTML);
+        });
+    
+        function restoreThumbnail(slide) {
+            const wrapper = slide.querySelector('.video-wrapper');
+            const index = Array.from(slide.parentElement.children).indexOf(slide);
+            
+            if (wrapper && originalContents[index]) {
+                // Remove iframe if exists
+                const iframe = wrapper.querySelector('iframe');
+                if (iframe) {
+                    iframe.remove();
+                }
+                
+                // Restore original content
+                wrapper.innerHTML = originalContents[index];
+            }
+        }
+    
+        // Use event delegation instead of inline onclick
+        document.addEventListener('click', function(e) {
+            const videoWrapper = e.target.closest('.video-wrapper');
+            if (videoWrapper) {
+                playVideoAsk(videoWrapper);
+            }
+        });
+    
+        function playVideoAsk(wrapper) {
+            const slide = wrapper.closest('.swiper-slide');
+            const slideIndex = Array.from(slide.parentElement.children).indexOf(slide);
+            const videoUrl = slides[slideIndex]?.url;
+            
+            if (!videoUrl) return;
+    
             swiper.autoplay.stop();
-
-            img?.remove();
-            playIcon?.remove();
-
+    
+            // Store original content if not already stored
+            if (!originalContents[slideIndex]) {
+                originalContents[slideIndex] = wrapper.innerHTML;
+            }
+    
+            // Clear wrapper and add iframe directly
+            wrapper.innerHTML = '';
+            
             const iframe = document.createElement("iframe");
-            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&mute=1`;
-            iframe.allow = "autoplay; encrypted-media";
-            iframe.allowFullscreen = true;
+            iframe.src = `${videoUrl}?autoplay=1`;
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+            iframe.setAttribute("allowfullscreen", "");
+            iframe.setAttribute("frameborder", "0");
             iframe.style.width = "100%";
             iframe.style.height = "100%";
             iframe.style.border = "none";
-
-            const ratio = document.createElement("div");
-            ratio.className = "ratio ratio-16x9";
-            ratio.appendChild(iframe);
-
-            wrapper.appendChild(ratio);
-
-            setTimeout(() => {
-                swiper.autoplay.start();
-            }, 30000);
-        };
-
-        function getVideoIdFromThumbnail(url) {
-            const match = url.match(/vi\/([^/]+)\//);
-            return match ? match[1] : null;
+            iframe.style.aspectRatio = "3/4"; // Maintain aspect ratio
+    
+            wrapper.appendChild(iframe);
+    
+            // setTimeout(() => {
+            //     swiper.autoplay.start();
+            // }, 30000);
         }
     });
-</script>
+    </script>

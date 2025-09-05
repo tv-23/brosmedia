@@ -125,7 +125,7 @@ padding: 1px !important;
                         <div class="fluid-shape">
                             <div
                                 class="position-relative cursor-pointer overflow-hidden"
-                                id="video-thumbnail"
+                                id="video-thumbnail-mobile"
                                 role="button"
                                 aria-label="Play video"
                                 tabindex="0"
@@ -265,7 +265,7 @@ padding: 1px !important;
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        const thumbnail = document.getElementById("video-thumbnail");
+        const thumbnail = document.getElementById("video-thumbnail-mobile");
         if (!thumbnail) return;
     
         const playVideo = () => {
@@ -278,7 +278,7 @@ padding: 1px !important;
             iframe.src = "https://www.videoask.com/fawysaw0m?autoplay=1";
             iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
             iframe.className = "w-100 h-100";
-            iframe.style.aspectRatio = "16/9";
+            iframe.style.aspectRatio = "3/4";
             iframe.title = "VideoAsk player";
             iframe.setAttribute("allowfullscreen", "");
             iframe.setAttribute("frameborder", "0");
