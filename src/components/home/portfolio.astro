@@ -154,6 +154,8 @@ const portfolio = [
 ];
 ---
 
+
+
 <section id="portfolio" class="portfolio section">
     <!-- Section Title -->
     <div class="container section-title">
@@ -191,49 +193,43 @@ const portfolio = [
             </ul>
 
             <div class="row g-4 isotope-container" >
-                {
-                    portfolio.map((p) => (
-                        <div
-                            class={`col-xl-3 col-lg-4 col-md-6 col-6 portfolio-item isotope-item filter-${p.tag}`}
-                        >
-                            <article class="portfolio-entry">
-                                <figure class="entry-image">
-                                    <img
-                                        src={p.img}
-                                        class="img-fluid"
-                                        alt={p.title}
-                                        loading="lazy"
-                                        width="100%"
-                                        height="100%"
-                                    />
-                                    <div class="entry-overlay">
-                                        <div class="overlay-content">
-                                            <div class="entry-meta badge bg-primary">
-                                                {p.badge}
-                                            </div>
-                                            <h3 class="entry-title">
-                                                {p.title}
-                                            </h3>
-                                            <div class="entry-links">
-                                                <a
-                                                    href={p.img}
-                                                    class="glightbox"
-                                                    data-gallery="portfolio-gallery-ui"
-                                                    data-glightbox=`title: ${p.title}; description: Praesent commodo cursus magna, vel scelerisque nisl consectetur.`
-                                                >
-                                                    <i class="bi bi-arrows-angle-expand" />
-                                                </a>
-                                                <a href={p.url} target="_blank">
-                                                    <i class="bi bi-arrow-right" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
-                    ))
-                }
+                {portfolio.map((p) => (
+                    <div
+                      class={`col-xl-3 col-lg-4 col-md-6 col-6 portfolio-item isotope-item filter-${p.tag}`}
+                    >
+                      <article class="portfolio-entry">
+                        <figure class="entry-image">
+                          <div 
+                            class="lazy-image" 
+                            data-src={p.img} 
+                            data-alt={p.title} 
+                            data-width="100%" 
+                            data-height="100%"
+                          ></div>
+                          <div class="entry-overlay">
+                            <div class="overlay-content">
+                              <div class="entry-meta badge bg-primary">{p.badge}</div>
+                              <h3 class="entry-title">{p.title}</h3>
+                              <div class="entry-links">
+                                <a
+                                  href={p.img}
+                                  class="glightbox"
+                                  data-gallery="portfolio-gallery-ui"
+                                  data-glightbox={`title: ${p.title}; description: Praesent commodo cursus magna, vel scelerisque nisl consectetur.`}
+                                >
+                                  <i class="bi bi-arrows-angle-expand" />
+                                </a>
+                                <a href={p.url} target="_blank">
+                                  <i class="bi bi-arrow-right" />
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </figure>
+                      </article>
+                    </div>
+                  ))}
+                  
 
                
             </div>
@@ -241,3 +237,63 @@ const portfolio = [
         </div>
     </div>
 </section>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const servicesSection = document.getElementById("services");
+  
+      const loadPortfolioImages = () => {
+        document.querySelectorAll(".lazy-image").forEach((placeholder) => {
+          if (!placeholder.dataset.src) return;
+  
+          const img = document.createElement("img");
+          img.src = placeholder.dataset.src;
+          img.alt = placeholder.dataset.alt || "";
+          img.width = placeholder.dataset.width || "100%";
+          img.height = placeholder.dataset.height || "100%";
+          img.loading = "lazy";
+          img.className = "img-fluid";
+  
+          placeholder.replaceWith(img);
+        });
+      };
+  
+      if (!servicesSection) return;
+  
+      // ✅ Function to check if #services is already visible on page load
+      const isInViewport = (el) => {
+        const rect = el.getBoundingClientRect();
+        return (
+          rect.top < window.innerHeight && 
+          rect.bottom >= 0
+        );
+      };
+  
+      // Case 1: already in viewport at page load (refresh on footer, etc.)
+      if (isInViewport(servicesSection)) {
+        loadPortfolioImages();
+        return; // no need to observe
+      }
+  
+      // Case 2: wait for scroll into view
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              loadPortfolioImages();
+              observer.disconnect();
+            }
+          });
+        });
+  
+        observer.observe(servicesSection);
+      } else {
+        // fallback for old browsers
+        loadPortfolioImages();
+      }
+    });
+  </script>
+  
+  
+  
