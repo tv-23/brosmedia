@@ -1,5 +1,9 @@
 ---
-
+const slides = [
+    { image: "/thumbnail/thumb-3.webp" },
+    { image: "/thumbnail/thumb-1.webp" },
+    { image: "/thumbnail/thumb-2.webp" },
+];
 ---
 
 <section id="testimonials-as-videos" class="videos section">
@@ -18,9 +22,25 @@
             <!-- Swiper -->
             <div class="col-lg-5">
                 <div class="swiper video-swiper position-relative">
-                    <div class="swiper-wrapper" id="videoSlider"></div>
+                    <div class="swiper-wrapper">
+                        {
+                            slides.map((slide) => (
+                                <div class="swiper-slide rounded overflow-hidden">
+                                     <div class="video-wrapper position-relative"> 
+                                        <img
+                                        width="100%" height="100%"
+                                            src={slide.image}
+                                            class="img-fluid w-100"
+                                            alt="Video 1"
+                                        />
+                                        <div class="play-icon" />
+                                     </div> 
+                                </div>
+                            ))
+                        }
+                    </div>
 
-                    <!-- Navigation -->
+                    <!-- Navigation buttons -->
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
@@ -46,64 +66,22 @@
 </section>
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const slidesData = [
-        {url:'https://www.videoask.com/f02f0r1ef'},
-        {url:'https://www.videoask.com/fujo8ptxi'},
-        { url: 'https://www.videoask.com/fcstso7o3' },
-    ];
-
-    const sliderWrapper = document.getElementById('videoSlider');
-    let swiper;
-
-    function createSlide(videoUrl) {
-        const slide = document.createElement('div');
-        slide.className = 'swiper-slide rounded overflow-hidden';
+    document.addEventListener("DOMContentLoaded", function () {
+        const slides = [
+            { url: "https://www.videoask.com/f02f0r1ef" },
+            { url: "https://www.videoask.com/fujo8ptxi" },
+            { url: "https://www.videoask.com/fcstso7o3" },
+        ];
+    
+        // Initialize originalContents first
+        const originalContents = [];
         
-        // Added title attribute and removed autoplay to prevent blocking
-        slide.innerHTML = `
-            <iframe 
-                src="${videoUrl}?autoplay=0&embed=1&mute=0" 
-                width="100%" 
-                height="500" 
-                allow="camera; microphone; autoplay; fullscreen; picture-in-picture" 
-                style="border:none;" 
-                allowfullscreen
-                loading="lazy"
-                title="Videoask Video Player">
-            </iframe>
-        `;
-        return slide;
-    }
-
-    function pauseAllVideos() {
-        // Pause all video iframes in the slider
-        const iframes = sliderWrapper.querySelectorAll('iframe');
-        iframes.forEach(iframe => {
-            try {
-                // Post pause message to each iframe
-                iframe.contentWindow.postMessage('{"method":"pause"}', '*');
-            } catch (e) {
-                console.log('Could not pause video:', e);
-            }
-        });
-    }
-
-    function loadSlides() {
-        // Clear existing slides
-        sliderWrapper.innerHTML = '';
-        
-        slidesData.forEach(item => {
-            sliderWrapper.appendChild(createSlide(item.url));
-        });
-
-        // Initialize or reinitialize Swiper
-        if (swiper) {
-            swiper.destroy(true, true);
-        }
-        
-        swiper = new Swiper(".video-swiper", {
+        const swiper = new Swiper(".video-swiper", {
             loop: true,
+            // autoplay: {
+            //     delay: 6000,
+            //     disableOnInteraction: false,
+            // },
             speed: 600,
             slidesPerView: 1,
             navigation: {
@@ -111,24 +89,81 @@ document.addEventListener('DOMContentLoaded', function() {
                 prevEl: ".swiper-button-prev",
             },
             on: {
-                // Pause videos when slide changes
+                // Restore thumbnails when slide changes
                 slideChange: function() {
-                    pauseAllVideos();
-                },
-            },
-            // autoplay: {
-            //     delay: 6000,
-            //     disableOnInteraction: false,
-            // }
+                    const activeIndex = this.activeIndex;
+                    const slideElements = document.querySelectorAll('.swiper-slide');
+                    
+                    slideElements.forEach((slide, index) => {
+                        if (index !== activeIndex) {
+                            restoreThumbnail(slide);
+                        }
+                    });
+                }
+            }
         });
-    }
-
-    // Use requestIdleCallback if available, otherwise use setTimeout
-    if ('requestIdleCallback' in window) {
-        requestIdleCallback(loadSlides, { timeout: 2000 });
-    } else {
-        setTimeout(loadSlides, 1000);
-    }
-
-});
-</script>
+    
+        // Store original HTML to restore later
+        document.querySelectorAll('.swiper-slide .video-wrapper').forEach(wrapper => {
+            originalContents.push(wrapper.innerHTML);
+        });
+    
+        function restoreThumbnail(slide) {
+            const wrapper = slide.querySelector('.video-wrapper');
+            const index = Array.from(slide.parentElement.children).indexOf(slide);
+            
+            if (wrapper && originalContents[index]) {
+                // Remove iframe if exists
+                const iframe = wrapper.querySelector('iframe');
+                if (iframe) {
+                    iframe.remove();
+                }
+                
+                // Restore original content
+                wrapper.innerHTML = originalContents[index];
+            }
+        }
+    
+        // Use event delegation instead of inline onclick
+        document.addEventListener('click', function(e) {
+            const videoWrapper = e.target.closest('.video-wrapper');
+            if (videoWrapper) {
+                playVideoAsk(videoWrapper);
+            }
+        });
+    
+        function playVideoAsk(wrapper) {
+            const slide = wrapper.closest('.swiper-slide');
+            const slideIndex = Array.from(slide.parentElement.children).indexOf(slide);
+            const videoUrl = slides[slideIndex]?.url;
+            
+            if (!videoUrl) return;
+    
+            swiper.autoplay.stop();
+    
+            // Store original content if not already stored
+            if (!originalContents[slideIndex]) {
+                originalContents[slideIndex] = wrapper.innerHTML;
+            }
+    
+            // Clear wrapper and add iframe directly
+            wrapper.innerHTML = '';
+            
+            const iframe = document.createElement("iframe");
+            iframe.src = `${videoUrl}?autoplay=1`;
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+            iframe.setAttribute("allowfullscreen", "");
+            iframe.setAttribute("frameborder", "0");
+            iframe.style.width = "100%";
+            iframe.style.height = "100%";
+            iframe.style.border = "none";
+            iframe.style.aspectRatio = "3/4"; // Maintain aspect ratio
+    
+            wrapper.appendChild(iframe);
+    
+            // setTimeout(() => {
+            //     swiper.autoplay.start();
+            // }, 30000);
+        }
+    });
+    </script>

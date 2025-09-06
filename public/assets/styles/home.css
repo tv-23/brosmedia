@@ -31,7 +31,7 @@
 
 .fluid-shape {
     width: 100%;
-    aspect-ratio: 16 / 9;
+    /* aspect-ratio: 16 / 9; */
     max-height: 100%;
 }
 
@@ -45,9 +45,6 @@
 }
 
 @media (max-width: 576px) {
-    .fluid-shape {
-        aspect-ratio: 4 / 3;
-    }
     .rounded-circle {
         width: 60px !important;
         height: 60px !important;
@@ -91,12 +88,10 @@
     .services {
         margin-top: -100px;
     }
-
-    section#team>.section-title{
+    section#team>.section-title {
         padding-bottom: 0px;
-    }  
-    section#team .content-inner{
+    }
+    section#team .content-inner {
         margin-top: 0px;
     }
 }
-
