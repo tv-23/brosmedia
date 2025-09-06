@@ -55,50 +55,48 @@ import ContactForm from "../contact-form.astro";
         padding: 3px;
     }
 
-    .modal-body {
-        padding: 0px;
-    }
-    .modal-body > section {
-        padding: 1px !important;
-    }
-
-    .modal-body > section > div {
-        margin-top: 0px !important;
-    }
-    .modal-header {
-        background-color: #0a0f4f;
-        border: none;
-    }
-
-    .modal-header > button > i {
-        color: white;
-    }
-    #exampleModal {
-        margin-top: 25px;
-    }
-    @media (min-width: 768px) {
-        .modal-dialog {
-            max-width: 75%;
-            margin: auto;
+      .modal-body {
+            padding: 0px;
         }
-    }
-
-    @media (max-width: 767.98px) {
-        .modal-dialog {
-            max-width: 100%;
-            margin: 0;
+        .modal-body > section{
+padding: 1px !important;
         }
-    }
-</style>
+
+        
+        .modal-body > section > div {
+            margin-top: 0px !important;
+            
+        }
+        .modal-header {
+            background-color: #0a0f4f;
+            border: none;
+        }
+
+        .modal-header > button > i {
+            color: white;
+        }
+        #exampleModal {
+            margin-top: 25px;
+        }
+        @media (min-width: 768px) {
+            .modal-dialog {
+                max-width: 75%;
+                margin: auto;
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .modal-dialog {
+                max-width: 100%;
+                margin: 0;
+            }
+        }
+</style> 
 <main class="main">
-    <section
-        id="hero"
-        class="hero section d-block d-lg-none"
-        style="padding-bottom:10px"
-    >
+    <section id="hero" class="hero section d-block d-lg-none" style="padding-bottom:10px">
         <div class="container">
             <div class="row">
-                <div class="col-lg-7 content-col">
+                <div class="col-lg-7 content-col" >
                     <div class="content">
                         <div class="agency-name">
                             <h5>NOTRE AGENCE</h5>
@@ -115,10 +113,14 @@ import ContactForm from "../contact-form.astro";
                         </div>
 
                         <div class="divider"></div>
+
+                      
+
+                       
                     </div>
                 </div>
 
-                <div class="col-lg-5">
+                <div class="col-lg-5" >
                     <div class="visual-content" id="visualContentMobile">
                         <div class="fluid-shape">
                             <div
@@ -128,15 +130,14 @@ import ContactForm from "../contact-form.astro";
                                 aria-label="Play video"
                                 tabindex="0"
                             >
-                                <img
-                                     data-src="/thumbnail/image.0000002 (1).webp"
-                                    alt="Video thumbnail"
-                                    width="100%"
-                                    height="100%"
-                                    class="img-fluid lazy-image"
-                                    style="object-fit: cover;"
-                                    fetchpriority="high"
-                                />
+                               <img 
+  src="/thumbnail/image.0000002 (1).webp" 
+  alt="Video thumbnail"
+  class="video-img"
+  loading="lazy"
+  style="object-fit: cover;" 
+  fetchpriority="high"
+>
                                 <!-- Play Button Overlay -->
                                 <div
                                     class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
@@ -157,7 +158,7 @@ import ContactForm from "../contact-form.astro";
                                 </div>
                             </div>
                         </div>
-
+                    
                         <div class="stats-card">
                             <div class="stats-number">
                                 <h2>100+</h2>
@@ -174,8 +175,9 @@ import ContactForm from "../contact-form.astro";
                     </div>
                 </div>
 
-                <div class="col-lg-7 content-col">
+                <div class="col-lg-7 content-col" >
                     <div class="content">
+
                         <div class="divider"></div>
 
                         <div class="description">
@@ -188,109 +190,106 @@ import ContactForm from "../contact-form.astro";
                                     stratégies de marketing digital
                                     personnalisées</strong
                                 >
-                                et <strong></strong>vidéos publicitaires
-                                percutantes
-                            </p>. Renforcez votre présence en ligne, attirez
-                            plus de clients et valorisez votre image de marque
-                            grâce à des solutions modernes et efficaces.
+                                et <strong></strong>vidéos publicitaires percutantes</strong>. Renforcez votre
+                                présence en ligne, attirez plus de clients et valorisez
+                                votre image de marque grâce à des solutions modernes
+                                et efficaces.
+                            </p>
                         </div>
-                    </div>
 
-                    <div class="cta-button">
-                        <button
-                            type="button"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                            class="btn"
-                        >
-                            <span
-                                >Parlez directement à un spécialiste de notre
-                                équipe</span
+                        <div class="cta-button">
+                            <button
+                                type="button"
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                                class="btn"
                             >
-                            <i class="bi bi-arrow-right"></i>
-                        </button>
+                                <span>Parlez directement à un spécialiste de notre équipe</span>
+                                <i class="bi bi-arrow-right"></i>
+                            </button>
+
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- <br/>
+            
+            <!-- <br/>
             <br/>
             <br/>
 
             <h1>Quelques-Uns De Nos 100+ Clients</h1> -->
-    </section>
-</main>
+        </div>
 
-<div
-    class="modal fade"
-    id="exampleModal"
-    tabindex="-1"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
->
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                >
-                    <i class="bi bi-x-lg"></i>
-                </button>
-            </div>
-            <div class="modal-body">
-                <section id="contact" class="contact section">
-                    <!-- Contact Form Section (Overlapping) -->
-                    <div class="container form-container-overlap">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-10">
-                                <ContactForm />
+        
+
+    </section>
+
+
+    <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+    >
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    >
+                        <i class="bi bi-x-lg"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <section id="contact" class="contact section">
+                        <!-- Contact Form Section (Overlapping) -->
+                        <div class="container form-container-overlap">
+                            <div
+                                class="row justify-content-center"
+                                
+                                
+                            >
+                                <div class="col-lg-10">
+                                    <ContactForm/>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </section>
+                    </section>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        window.addEventListener("load", () => {
-            document.querySelectorAll("img.lazy-image").forEach((img) => {
-                img.src = img.dataset.src;
-            });
-        });
-
         const thumbnail = document.getElementById("video-thumbnail-mobile");
         if (!thumbnail) return;
-
+    
         const playVideo = () => {
             // Get reference to the visual-content container
-            const visualContent = document.getElementById(
-                "visualContentMobile",
-            );
+            const visualContent = document.getElementById("visualContentMobile");
             if (!visualContent) return;
-
+            
             // Create iframe with your VideoAsk URL
             const iframe = document.createElement("iframe");
             iframe.src = "https://www.videoask.com/fawysaw0m?autoplay=1";
-            iframe.allow =
-                "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
             iframe.className = "w-100 h-100";
             iframe.style.aspectRatio = "3/4";
             iframe.title = "VideoAsk player";
             iframe.setAttribute("allowfullscreen", "");
             iframe.setAttribute("frameborder", "0");
-
+            
             // Clear the visual-content and add the iframe
             visualContent.innerHTML = "";
             visualContent.appendChild(iframe);
         };
-
+    
         thumbnail.addEventListener("click", playVideo);
         thumbnail.addEventListener("keydown", (event) => {
             if (event.key === "Enter" || event.key === " ") {
@@ -299,4 +298,4 @@ import ContactForm from "../contact-form.astro";
             }
         });
     });
-</script>
+        </script>
