@@ -1,45 +1,57 @@
 ---
 const items = [
     {
-        img: "/video-publicitaire-nos-réalisations/1.webp",
+        img: "/video-publicitaire-nos-réalisations/auto-hamid.webp",
         name: "Auto hamid larache",
         url: "https://www.facebook.com/reel/2615905811935303",
+        desc:"Vidéo pour une entreprise de vente de voitures"
     },
     {
-        img: "/video-publicitaire-nos-réalisations/2.webp",
+        img: "/video-publicitaire-nos-réalisations/baraka.webp",
         name: "Kasr al baraka",
         url: "https://www.facebook.com/reel/483578264461115",
+        desc:"Vidéo pour un hôtel"
     },
     {
-        img: "/video-publicitaire-nos-réalisations/3.webp",
-        name: "Uk cafe",
-        url: "https://www.facebook.com/reel/1659695201318779",
-    },
-    {
-        img: "/video-publicitaire-nos-réalisations/4.webp",
+        img: "/video-publicitaire-nos-réalisations/grander-berry.webp",
         name: "Grander berry",
         url: "https://www.youtube.com/watch?v=eiRaI1UxT58",
+        desc:"Vidéo pour un café"
     },
     {
-        img: "/video-publicitaire-nos-réalisations/5.webp",
-        name: "Immobilier Moulay bousslham",
-        url: "https://www.youtube.com/watch?v=m5A1xviDP98",
-    },
-    {
-        img: "/video-publicitaire-nos-réalisations/6.webp",
+        img: "/video-publicitaire-nos-réalisations/green-land.webp",
         name: "Green Land Larache",
         url: "https://www.facebook.com/reel/1743155456206139",
+        desc:"Vidéo pour une entreprise d’exportation de fruits"
+    },
+    {
+        img: "/video-publicitaire-nos-réalisations/moulay.webp",
+        name: "Immobilier Moulay bousslham",
+        url: "https://www.youtube.com/watch?v=m5A1xviDP98",
+        desc:"Vidéo pour un centre de formation en soins infirmiers"
+    },
+
+    {
+        img: "/video-publicitaire-nos-réalisations/uk-cafe.webp",
+        name: "Uk cafe",
+        url: "https://www.facebook.com/reel/1659695201318779",
+        desc:""
     },
 ];
 ---
 
 <link
-  rel="preload"
-  href="/assets/styles/sections/video-publicitaire-slider.css"
-  as="style"
-  onload="this.onload=null;this.rel='stylesheet'"
+    rel="preload"
+    href="/assets/styles/sections/video-publicitaire-slider.css"
+    as="style"
+    onload="this.onload=null;this.rel='stylesheet'"
 />
-<noscript><link rel="stylesheet" href="/assets/styles/sections/video-publicitaire-slider.css"></noscript>
+<noscript
+    ><link
+        rel="stylesheet"
+        href="/assets/styles/sections/video-publicitaire-slider.css"
+    /></noscript
+>
 
 <section class="steps section our-features">
     <!-- Section Title -->
@@ -52,27 +64,31 @@ const items = [
     <div class="blog-slider">
         <div class="blog-slider__wrp swiper-wrapper">
             {
-            items.map((item) => (
-            <div class="blog-slider__item swiper-slide">
-                <div class="blog-slider__img">
-                    <img
-                        src={item.img}
-                        alt=""
-                    />
-                </div>
-                <div class="blog-slider__content">
-                    {/* <span class="blog-slider__code">26 December 2019</span> */}
-                    <div class="blog-slider__title">{item.name}</div>
-                    {/* <div class="blog-slider__text">
-                        Lorem ipsum dolor sit amet consectetur, adipisicing
-                        elit. Recusandae voluptate repellendus magni illo ea
-                        animi?
-                    </div> */}
-                    <a href={item.url} target="_blank" class="blog-slider__button">Regarder la vidéo</a>
-                </div>
-            </div>
-            ))
-          }
+                items.map((item) => (
+                    <div class="blog-slider__item swiper-slide">
+                        <div class="blog-slider__img">
+                            <img
+                                src={item.img}
+                                alt={`${item.name} - Brosmedia`}
+                            />
+                        </div>
+                        <div class="blog-slider__content">
+                            {/* <span class="blog-slider__code">26 December 2019</span> */}
+                            <div class="blog-slider__title">{item.name}</div>
+                            <div class="blog-slider__text">
+                                {item.desc}
+                            </div>
+                            <a
+                                href={item.url}
+                                target="_blank"
+                                class="blog-slider__button"
+                            >
+                                Regarder la vidéo
+                            </a>
+                        </div>
+                    </div>
+                ))
+            }
         </div>
         <div class="blog-slider__pagination"></div>
     </div>

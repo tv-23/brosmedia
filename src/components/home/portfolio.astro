@@ -114,38 +114,38 @@ const portfolio = [
     },
 
      {
-        img: "/video-publicitaire-nos-réalisations/1.webp",
+        img: "/our-references/auto-hamid.webp",
         tag: "advideo",
         badge: "Vidéo publicitaire",
         title: "Auto hamid larache",
         url:  "https://www.facebook.com/reel/2615905811935303",
     },
     {
-        img: "/video-publicitaire-nos-réalisations/2.webp",
+        img: "/our-references/baraka.webp",
         tag: "advideo",
         badge: "Vidéo publicitaire",
         title: "Kasr al baraka",
         url:  "https://www.facebook.com/reel/483578264461115",
     },{
-        img: "/video-publicitaire-nos-réalisations/3.webp",
+        img: "/our-references/uk-cafe.webp",
         tag: "advideo",
         badge: "Vidéo publicitaire",
         title: "Uk cafe",
         url:  "https://www.facebook.com/reel/1659695201318779",
     },{
-        img: "/video-publicitaire-nos-réalisations/4.webp",
+        img: "/our-references/grander-berry.webp",
         tag: "advideo",
         badge: "Vidéo publicitaire",
         title: "Grander berry",
         url:  "https://www.youtube.com/watch?v=eiRaI1UxT58",
     },{
-        img: "/video-publicitaire-nos-réalisations/5.webp",
+        img: "/our-references/moulay.webp",
         tag: "advideo",
         badge: "Vidéo publicitaire",
         title:"Immobilier Moulay bousslham",
         url:  "https://www.youtube.com/watch?v=m5A1xviDP98",
     },{
-        img: "/video-publicitaire-nos-réalisations/6.webp",
+        img: "/our-references/_green-land.webp",
         tag: "advideo",
         badge: "Vidéo publicitaire",
         title: "Green Land Larache",
@@ -170,15 +170,13 @@ const portfolio = [
     <div class="container-fluid" >
         <div
             class="isotope-layout"
-            data-default-filter="*"
+            data-default-filter=".filter-website"
             data-layout="masonry"
             data-sort="original-order"
         >
             <ul class="portfolio-filters isotope-filters" >
-                <li data-filter="*" class="filter-active">
-                    <i class="bi bi-grid-3x3"></i> Tous les projets
-                </li>
-                <li data-filter=".filter-website">
+               
+                <li data-filter=".filter-website" class="filter-active">
                     <i class="bi bi-code-slash"></i> Conception de site web
                 </li>
                 <li data-filter=".filter-advertising">
@@ -186,6 +184,9 @@ const portfolio = [
                 </li>
                 <li data-filter=".filter-advideo">
                     <i class="bi bi-bar-chart-line"></i> Vidéo publicitaire
+                </li>
+                 <li data-filter="*" >
+                    <i class="bi bi-grid-3x3"></i> Tous les projets
                 </li>
             </ul>
 
@@ -234,278 +235,7 @@ const portfolio = [
                     ))
                 }
 
-                <!-- End Portfolio Item -->
-
-                <!-- <div
-                    class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-development"
-                >
-                    <article class="portfolio-entry">
-                        <figure class="entry-image">
-                            <img
-                                src="/img/portfolio/portfolio-10.webp"
-                                class="img-fluid"
-                                alt=""
-                                loading="lazy"
-                            />
-                            <div class="entry-overlay">
-                                <div class="overlay-content">
-                                    <div class="entry-meta badge bg-primary">
-                                        Development
-                                    </div>
-                                    <h3 class="entry-title">
-                                        E-Learning Platform
-                                    </h3>
-                                    <div class="entry-links">
-                                        <a
-                                            href="/img/portfolio/portfolio-10.webp"
-                                            class="glightbox"
-                                            data-gallery="portfolio-gallery-development"
-                                            data-glightbox="title: E-Learning Platform; description: Nulla vitae elit libero, a pharetra augue mollis interdum."
-                                        >
-                                            <i class="bi bi-arrows-angle-expand"
-                                            ></i>
-                                        </a>
-                                        <a href="portfolio-details.html">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </figure>
-                    </article>
-                </div>
-
-                <div
-                    class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-photography"
-                >
-                    <article class="portfolio-entry">
-                        <figure class="entry-image">
-                            <img
-                                src="/img/portfolio/portfolio-7.webp"
-                                class="img-fluid"
-                                alt=""
-                                loading="lazy"
-                            />
-                            <div class="entry-overlay">
-                                <div class="overlay-content">
-                                    <div class="entry-meta badge bg-primary">
-                                        Photography
-                                    </div>
-                                    <h3 class="entry-title">
-                                        Urban Architecture
-                                    </h3>
-                                    <div class="entry-links">
-                                        <a
-                                            href="/img/portfolio/portfolio-7.webp"
-                                            class="glightbox"
-                                            data-gallery="portfolio-gallery-photography"
-                                            data-glightbox="title: Urban Architecture; description: Sed ut perspiciatis unde omnis iste natus error sit voluptatem."
-                                        >
-                                            <i class="bi bi-arrows-angle-expand"
-                                            ></i>
-                                        </a>
-                                        <a href="portfolio-details.html">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </figure>
-                    </article>
-                </div>
-
-                <div
-                    class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-marketing"
-                >
-                    <article class="portfolio-entry">
-                        <figure class="entry-image">
-                            <img
-                                src="/img/portfolio/portfolio-4.webp"
-                                class="img-fluid"
-                                alt=""
-                                loading="lazy"
-                            />
-                            <div class="entry-overlay">
-                                <div class="overlay-content">
-                                    <div class="entry-meta badge bg-primary">
-                                        Marketing
-                                    </div>
-                                    <h3 class="entry-title">
-                                        Social Media Campaign
-                                    </h3>
-                                    <div class="entry-links">
-                                        <a
-                                            href="/img/portfolio/portfolio-4.webp"
-                                            class="glightbox"
-                                            data-gallery="portfolio-gallery-marketing"
-                                            data-glightbox="title: Social Media Campaign; description: Quis autem vel eum iure reprehenderit qui in ea voluptate."
-                                        >
-                                            <i class="bi bi-arrows-angle-expand"
-                                            ></i>
-                                        </a>
-                                        <a href="portfolio-details.html">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </figure>
-                    </article>
-                </div>
-
-                <div
-                    class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-ui"
-                >
-                    <article class="portfolio-entry">
-                        <figure class="entry-image">
-                            <img
-                                src="/img/portfolio/portfolio-2.webp"
-                                class="img-fluid"
-                                alt=""
-                                loading="lazy"
-                            />
-                            <div class="entry-overlay">
-                                <div class="overlay-content">
-                                    <div class="entry-meta badge bg-primary">
-                                        UI/UX Design
-                                    </div>
-                                    <h3 class="entry-title">
-                                        Smart Home Interface
-                                    </h3>
-                                    <div class="entry-links">
-                                        <a
-                                            href="/img/portfolio/portfolio-2.webp"
-                                            class="glightbox"
-                                            data-gallery="portfolio-gallery-ui"
-                                            data-glightbox="title: Smart Home Interface; description: At vero eos et accusamus et iusto odio dignissimos ducimus."
-                                        >
-                                            <i class="bi bi-arrows-angle-expand"
-                                            ></i>
-                                        </a>
-                                        <a href="portfolio-details.html">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </figure>
-                    </article>
-                </div>
-
-                <div
-                    class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-development"
-                >
-                    <article class="portfolio-entry">
-                        <figure class="entry-image">
-                            <img
-                                src="/img/portfolio/portfolio-11.webp"
-                                class="img-fluid"
-                                alt=""
-                                loading="lazy"
-                            />
-                            <div class="entry-overlay">
-                                <div class="overlay-content">
-                                    <div class="entry-meta badge bg-primary">
-                                        Development
-                                    </div>
-                                    <h3 class="entry-title">
-                                        Cloud Management System
-                                    </h3>
-                                    <div class="entry-links">
-                                        <a
-                                            href="/img/portfolio/portfolio-11.webp"
-                                            class="glightbox"
-                                            data-gallery="portfolio-gallery-development"
-                                            data-glightbox="title: Cloud Management System; description: Temporibus autem quibusdam et aut officiis debitis."
-                                        >
-                                            <i class="bi bi-arrows-angle-expand"
-                                            ></i>
-                                        </a>
-                                        <a href="portfolio-details.html">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </figure>
-                    </article>
-                </div>
-
-                <div
-                    class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-photography"
-                >
-                    <article class="portfolio-entry">
-                        <figure class="entry-image">
-                            <img
-                                src="/img/portfolio/portfolio-8.webp"
-                                class="img-fluid"
-                                alt=""
-                                loading="lazy"
-                            />
-                            <div class="entry-overlay">
-                                <div class="overlay-content">
-                                    <div class="entry-meta badge bg-primary">
-                                        Photography
-                                    </div>
-                                    <h3 class="entry-title">
-                                        Nature Collection
-                                    </h3>
-                                    <div class="entry-links">
-                                        <a
-                                            href="/img/portfolio/portfolio-8.webp"
-                                            class="glightbox"
-                                            data-gallery="portfolio-gallery-photography"
-                                            data-glightbox="title: Nature Collection; description: Integer posuere erat a ante venenatis dapibus posuere velit aliquet."
-                                        >
-                                            <i class="bi bi-arrows-angle-expand"
-                                            ></i>
-                                        </a>
-                                        <a href="portfolio-details.html">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </figure>
-                    </article>
-                </div>
-
-                <div
-                    class="col-xl-3 col-lg-4 col-md-6 portfolio-item isotope-item filter-marketing"
-                >
-                    <article class="portfolio-entry">
-                        <figure class="entry-image">
-                            <img
-                                src="/img/portfolio/portfolio-5.webp"
-                                class="img-fluid"
-                                alt=""
-                                loading="lazy"
-                            />
-                            <div class="entry-overlay">
-                                <div class="overlay-content">
-                                    <div class="entry-meta badge bg-primary">
-                                        Marketing
-                                    </div>
-                                    <h3 class="entry-title">Brand Strategy</h3>
-                                    <div class="entry-links">
-                                        <a
-                                            href="/img/portfolio/portfolio-5.webp"
-                                            class="glightbox"
-                                            data-gallery="portfolio-gallery-marketing"
-                                            data-glightbox="title: Brand Strategy; description: Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum."
-                                        >
-                                            <i class="bi bi-arrows-angle-expand"
-                                            ></i>
-                                        </a>
-                                        <a href="portfolio-details.html">
-                                            <i class="bi bi-arrow-right"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </figure>
-                    </article>
-                </div> -->
+               
             </div>
             <!-- End Portfolio Container -->
         </div>
