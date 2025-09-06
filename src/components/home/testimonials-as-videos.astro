@@ -28,8 +28,7 @@ const slides = [
                                 <div class="swiper-slide rounded overflow-hidden">
                                      <div class="video-wrapper position-relative"> 
                                         <img
-                                        width="100%"      height="100%"
-
+                                        width="100%" height="100%"
                                             src={slide.image}
                                             class="img-fluid w-100"
                                             alt="Video 1"
@@ -107,13 +106,11 @@ const slides = [
         // Store original HTML to restore later
         document.querySelectorAll('.swiper-slide .video-wrapper').forEach(wrapper => {
             originalContents.push(wrapper.innerHTML);
-            width="100%"            width="100%"
         });
     
         function restoreThumbnail(slide) {
             const wrapper = slide.querySelector('.video-wrapper');
             const index = Array.from(slide.parentElement.children).indexOf(slide);
-            width="100%"            width="100%"
             
             if (wrapper && originalContents[index]) {
                 // Remove iframe if exists
@@ -132,7 +129,6 @@ const slides = [
             const videoWrapper = e.target.closest('.video-wrapper');
             if (videoWrapper) {
                 playVideoAsk(videoWrapper);
-                width="100%"                width="100%"
             }
         });
     
