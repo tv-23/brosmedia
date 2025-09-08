@@ -9,6 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/sitemap": "^3.5.1",
     "@fortawesome/fontawesome-free": "^6.7.2",
     "aos": "^2.3.4",
     "astro": "^5.12.0",
@@ -17,6 +18,7 @@
     "bootstrap-icons": "^1.13.1",
     "cors": "^2.8.5",
     "express": "^5.1.0",
+    "glob": "^11.0.3",
     "multer": "^2.0.2",
     "nodemailer": "^7.0.5",
     "swiper": "^11.2.10"
