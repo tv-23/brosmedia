@@ -12,8 +12,6 @@ export default defineConfig({
             minify: 'esbuild', // Ensure minification
         }
     },
-
-
     site: 'https://brosmedia.ma/',
     integrations: [sitemap()]
 });
