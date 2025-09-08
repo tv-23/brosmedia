@@ -1,0 +1,30 @@
+---
+import Layout from "../layouts/BaseLayout.astro";
+import Contact from "../components/home/contact.astro";
+---
+
+<Layout
+    pageTitle="Contactez-nous - BROSMEDIA : Agence De Communication Digitale Au Maroc"
+>
+    <main class="main">
+        <!-- Page Title -->
+        <div class="page-title dark-background">
+            <div class="container position-relative">
+                <h1 class="text-center">Contactez-nous</h1>
+
+                <nav class="breadcrumbs">
+                    <ol>
+                        <li>
+                            <a href="/"
+                                >Agence De Communication Digitale Maroc</a
+                            >
+                        </li>
+                        <li class="current">Contactez-nous</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <Contact />
+    </main>
+</Layout>

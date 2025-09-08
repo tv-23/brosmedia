@@ -23,7 +23,7 @@
         votre stratégie digitale performante.
     </h3>
 
-    <form action="forms/contact.php" method="post" class="php-email-form">
+    <!-- <form id="contactForm" action="" class="php-email-form"> -->
         <div class="row g-3">
             Choisissez votre sujet:
             <div class="col-md-12">
@@ -64,9 +64,8 @@
                     </div>
                 </div>
             </div>
-            <br>
-            <br>
-         
+            <br />
+            <br />
         </div>
 
         <div class="row g-3">
@@ -80,6 +79,7 @@
                             name="name"
                             placeholder="Nom"
                             required="Name"
+                            id="contactUsName"
                         />
                     </div>
                 </div>
@@ -138,12 +138,12 @@
             </div>
 
             <div class="col-12 text-center">
-                <button type="submit" class="btn btn-primary btn-submit"
+                <button type="submit" id="contactFormSubmit" class="btn btn-primary btn-submit"
                     >ENVOYER</button
                 >
             </div>
         </div>
-    </form>
+    <!-- </form> -->
 
     <br />
 
@@ -153,7 +153,69 @@
         prospects. En le soumettant, vous acceptez l’utilisation de vos données
         dans le cadre de votre demande et de la relation commerciale qui
         pourrait en résulter. Pour plus d’informations sur vos droits, consultez
-        notre <a href="/politiques-de-brosmedia" style="color :#e30f29" target="_blank">politique de confidentialité</a
+        notre <a
+            href="/politiques-de-brosmedia"
+            style="color :#e30f29"
+            target="_blank">politique de confidentialité</a
         >.
     </p>
 </div>
+
+<script>
+   document .getElementById("contactFormSubmit")
+        .addEventListener("click", async function () {
+
+
+            // Show loading message
+            document.querySelector(".loading").style.display = "block";
+            document.querySelector(".error-message").style.display = "none";
+            document.querySelector(".sent-message").style.display = "none";
+
+            // Get form values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const subject = document.getElementById("subject").value;
+            const message = document.getElementById("message").value;
+            const requestType = document.querySelector(
+                'input[name="requestType"]:checked',
+            ).value;
+
+            try {
+                const templateParams = {
+                    message: `Bonjour, je souhaite un devis pour Vidéo & Photo service:
+                    Type de contenu: ${requestType} - ${subject}
+                    Nom: ${name}
+                    Email: ${email}
+                    Téléphone: ${phone}
+                    Message: ${message}
+                    `,
+                    reply_to: email,
+                    from_name: name,
+                    to_name: "Vidéo & Photo Service",
+                    subject: `${requestType} - ${subject}`,
+                };
+
+                // Send email using EmailJS
+                await emailjs.send(
+                    "service_8hmb2eq",
+                    "template_jmcu1f9",
+                    templateParams,
+                );
+
+                // Show success message
+                document.querySelector(".loading").style.display = "none";
+                document.querySelector(".sent-message").style.display = "block";
+
+                // Reset the form
+                document.getElementById("contactForm").reset();
+            } catch (error) {
+                console.error("Failed to send email:", error);
+                document.querySelector(".loading").style.display = "none";
+                document.querySelector(".error-message").style.display =
+                    "block";
+                document.querySelector(".error-message").textContent =
+                    "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.";
+            }
+        });
+</script>
