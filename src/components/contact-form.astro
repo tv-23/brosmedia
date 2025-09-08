@@ -95,6 +95,7 @@
                             name="email"
                             placeholder="Adresse e-mail"
                             required=""
+                            id="contactUsEmail"
                         />
                     </div>
                 </div>
@@ -110,6 +111,7 @@
                             name="subject"
                             placeholder="Sujet"
                             required=""
+                            id="contactUsSubject"
                         />
                     </div>
                 </div>
@@ -124,6 +126,7 @@
                             name="message"
                             placeholder="Écrire un message..."
                             style="height: 180px"
+                            id="contactUsMsg"
                             required=""></textarea>
                     </div>
                 </div>
@@ -172,50 +175,47 @@
             document.querySelector(".sent-message").style.display = "none";
 
             // Get form values
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const phone = document.getElementById("phone").value;
-            const subject = document.getElementById("subject").value;
-            const message = document.getElementById("message").value;
-            const requestType = document.querySelector(
-                'input[name="requestType"]:checked',
-            ).value;
+            const name = document.getElementById("contactUsName").value;
+            const email = document.getElementById("contactUsEmail").value;
+            const subject = document.getElementById("contactUsSubject").value;
+            const message = document.getElementById("contactUsMsg").value;
+            const activeValue = document.querySelector('input[name="exampleRadios"]:checked')?.value;
+            alert(activeValue)
 
-            try {
-                const templateParams = {
-                    message: `Bonjour, je souhaite un devis pour Vidéo & Photo service:
-                    Type de contenu: ${requestType} - ${subject}
-                    Nom: ${name}
-                    Email: ${email}
-                    Téléphone: ${phone}
-                    Message: ${message}
-                    `,
-                    reply_to: email,
-                    from_name: name,
-                    to_name: "Vidéo & Photo Service",
-                    subject: `${requestType} - ${subject}`,
-                };
+            // try {
+            //     const templateParams = {
+            //         message: `Bonjour, 
+            //         Type de contenu: ${activeValue} - ${subject}
+            //         Nom: ${name}
+            //         Email: ${email}
+            //         Message: ${message}
+            //         `,
+            //         reply_to: email,
+            //         from_name: name,
+            //         to_name: "Vidéo & Photo Service",
+            //         subject: `${activeValue} - ${subject}`,
+            //     };
 
-                // Send email using EmailJS
-                await emailjs.send(
-                    "service_8hmb2eq",
-                    "template_jmcu1f9",
-                    templateParams,
-                );
+            //     // Send email using EmailJS
+            //     await emailjs.send(
+            //         "service_8hmb2eq",
+            //         "template_jmcu1f9",
+            //         templateParams,
+            //     );
 
-                // Show success message
-                document.querySelector(".loading").style.display = "none";
-                document.querySelector(".sent-message").style.display = "block";
+            //     // Show success message
+            //     document.querySelector(".loading").style.display = "none";
+            //     document.querySelector(".sent-message").style.display = "block";
 
-                // Reset the form
-                document.getElementById("contactForm").reset();
-            } catch (error) {
-                console.error("Failed to send email:", error);
-                document.querySelector(".loading").style.display = "none";
-                document.querySelector(".error-message").style.display =
-                    "block";
-                document.querySelector(".error-message").textContent =
-                    "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.";
-            }
+            //     // Reset the form
+            //     document.getElementById("contactForm").reset();
+            // } catch (error) {
+            //     console.error("Failed to send email:", error);
+            //     document.querySelector(".loading").style.display = "none";
+            //     document.querySelector(".error-message").style.display =
+            //         "block";
+            //     document.querySelector(".error-message").textContent =
+            //         "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.";
+            // }
         });
 </script>
