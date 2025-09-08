@@ -1,29 +1,33 @@
 {
-  "name": "n",
-  "type": "module",
-  "version": "0.0.1",
-  "scripts": {
-    "dev": "astro dev",
-    "build": "astro build",
-    "preview": "astro preview",
-    "astro": "astro"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-free": "^6.7.2",
-    "aos": "^2.3.4",
-    "astro": "^5.12.0",
-    "body-parser": "^2.2.0",
-    "bootstrap": "^5.3.8",
-    "bootstrap-icons": "^1.13.1",
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
-    "multer": "^2.0.2",
-    "nodemailer": "^7.0.5",
-    "swiper": "^11.2.10"
-  },
-  "devDependencies": {
-    "autoprefixer": "^10.4.21",
-    "postcss": "^8.5.6",
-    "tailwindcss": "^3.4.17"
-  }
+    "name": "n",
+    "type": "module",
+    "version": "0.0.1",
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "sitemap": "node src/scripts/generate-sitemap.js",
+        "build-with-sitemap": "astro build && npm run sitemap"
+    },
+    "dependencies": {
+        "@astrojs/sitemap": "^3.5.1",
+        "@fortawesome/fontawesome-free": "^6.7.2",
+        "aos": "^2.3.4",
+        "astro": "^5.12.0",
+        "body-parser": "^2.2.0",
+        "bootstrap": "^5.3.8",
+        "bootstrap-icons": "^1.13.1",
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
+        "glob": "^11.0.3",
+        "multer": "^2.0.2",
+        "nodemailer": "^7.0.5",
+        "swiper": "^11.2.10"
+    },
+    "devDependencies": {
+        "autoprefixer": "^10.4.21",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^3.4.17"
+    }
 }

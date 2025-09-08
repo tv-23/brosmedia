@@ -4,38 +4,37 @@ const items = [
         img: "/video-publicitaire-nos-réalisations/auto-hamid.webp",
         name: "Auto hamid larache",
         url: "https://www.facebook.com/reel/2615905811935303",
-        desc:"Vidéo pour une entreprise de vente de voitures"
+        desc: "Vidéo pour une entreprise de vente de voitures",
     },
     {
         img: "/video-publicitaire-nos-réalisations/baraka.webp",
         name: "Kasr al baraka",
         url: "https://www.facebook.com/reel/483578264461115",
-        desc:"Vidéo pour un hôtel"
+        desc: "Vidéo pour un hôtel",
     },
     {
         img: "/video-publicitaire-nos-réalisations/grander-berry.webp",
         name: "Grander berry",
         url: "https://www.youtube.com/watch?v=eiRaI1UxT58",
-        desc:"Vidéo pour un café"
+        desc: "Vidéo pour une entreprise d’exportation de fruits",
     },
     {
         img: "/video-publicitaire-nos-réalisations/green-land.webp",
         name: "Green Land Larache",
         url: "https://www.facebook.com/reel/1743155456206139",
-        desc:"Vidéo pour une entreprise d’exportation de fruits"
+        desc: "Vidéo pour un centre de formation en soins infirmiers",
     },
     {
         img: "/video-publicitaire-nos-réalisations/moulay.webp",
         name: "Immobilier Moulay bousslham",
-        url: "https://www.youtube.com/watch?v=m5A1xviDP98",
-        desc:"Vidéo pour un centre de formation en soins infirmiers"
+        url: "https://www.youtube.com/watch?v=m5A1xviDP98",desc: "Vidéo de présentation d’une agence immobilière",
     },
 
     {
         img: "/video-publicitaire-nos-réalisations/uk-cafe.webp",
         name: "Uk cafe",
         url: "https://www.facebook.com/reel/1659695201318779",
-        desc:""
+        desc: "Vidéo pour un café",
     },
 ];
 ---
@@ -75,9 +74,7 @@ const items = [
                         <div class="blog-slider__content">
                             {/* <span class="blog-slider__code">26 December 2019</span> */}
                             <div class="blog-slider__title">{item.name}</div>
-                            <div class="blog-slider__text">
-                                {item.desc}
-                            </div>
+                            <div class="blog-slider__text">{item.desc}</div>
                             <a
                                 href={item.url}
                                 target="_blank"

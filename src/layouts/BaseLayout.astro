@@ -1,7 +1,7 @@
 ---
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 // import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import 'bootstrap-icons/font/bootstrap-icons.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
 
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
@@ -122,6 +122,12 @@ const { pageTitle } = Astro.props;
 
         <script src="../../public/main.js"></script>
 
-      
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                (function () {
+                    emailjs.init("a0BnjUTyKVDvAuKZT");
+                })();
+            });
+        </script>
     </body>
 </html>
