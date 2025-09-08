@@ -154,6 +154,8 @@ const portfolio = [
 ];
 ---
 
+
+
 <section id="portfolio" class="portfolio section">
     <!-- Section Title -->
     <div class="container section-title">
@@ -191,49 +193,43 @@ const portfolio = [
             </ul>
 
             <div class="row g-4 isotope-container" >
-                {
-                    portfolio.map((p) => (
-                        <div
-                            class={`col-xl-3 col-lg-4 col-md-6 col-6 portfolio-item isotope-item filter-${p.tag}`}
-                        >
-                            <article class="portfolio-entry">
-                                <figure class="entry-image">
-                                    <img
-                                        src={p.img}
-                                        class="img-fluid"
-                                        alt={p.title}
-                                        loading="lazy"
-                                        width="100%"
-                                        height="100%"
-                                    />
-                                    <div class="entry-overlay">
-                                        <div class="overlay-content">
-                                            <div class="entry-meta badge bg-primary">
-                                                {p.badge}
-                                            </div>
-                                            <h3 class="entry-title">
-                                                {p.title}
-                                            </h3>
-                                            <div class="entry-links">
-                                                <a
-                                                    href={p.img}
-                                                    class="glightbox"
-                                                    data-gallery="portfolio-gallery-ui"
-                                                    data-glightbox=`title: ${p.title}; description: Praesent commodo cursus magna, vel scelerisque nisl consectetur.`
-                                                >
-                                                    <i class="bi bi-arrows-angle-expand" />
-                                                </a>
-                                                <a href={p.url} target="_blank">
-                                                    <i class="bi bi-arrow-right" />
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </figure>
-                            </article>
-                        </div>
-                    ))
-                }
+                {portfolio.map((p) => (
+                    <div
+                      class={`col-xl-3 col-lg-4 col-md-6 col-6 portfolio-item isotope-item filter-${p.tag}`}
+                    >
+                      <article class="portfolio-entry">
+                        <figure class="entry-image">
+                          <div 
+                            class="lazy-image" 
+                            data-src={p.img} 
+                            data-alt={p.title} 
+                            data-width="100%" 
+                            data-height="100%"
+                          ></div>
+                          <div class="entry-overlay">
+                            <div class="overlay-content">
+                              <div class="entry-meta badge bg-primary">{p.badge}</div>
+                              <h3 class="entry-title">{p.title}</h3>
+                              <div class="entry-links">
+                                <a
+                                  href={p.img}
+                                  class="glightbox"
+                                  data-gallery="portfolio-gallery-ui"
+                                  data-glightbox={`title: ${p.title}; description: Praesent commodo cursus magna, vel scelerisque nisl consectetur.`}
+                                >
+                                  <i class="bi bi-arrows-angle-expand" />
+                                </a>
+                                <a href={p.url} target="_blank">
+                                  <i class="bi bi-arrow-right" />
+                                </a>
+                              </div>
+                            </div>
+                          </div>
+                        </figure>
+                      </article>
+                    </div>
+                  ))}
+                  
 
                
             </div>
@@ -241,3 +237,138 @@ const portfolio = [
         </div>
     </div>
 </section>
+
+<script type="module">
+    // Config
+    const PLACEHOLDER_SELECTOR = ".lazy-image";
+    const SERVICES_ID = "services";
+    const DEBUG = false; // set true during development
+  
+    const log = (...args) => { if (DEBUG) console.log("[portfolio-lazy]", ...args); };
+  
+    // Replace single placeholder with an <img>
+    function replacePlaceholder(placeholder) {
+      const src = placeholder.dataset.src;
+      if (!src) return;
+  
+      const img = document.createElement("img");
+      img.className = "img-fluid portfolio-img lazy-loaded";
+      img.loading = "lazy";
+      img.decoding = "async";
+      img.alt = placeholder.dataset.alt || "";
+      img.src = src;
+      // Smooth fade-in
+      img.style.opacity = "0";
+      img.style.transition = "opacity 300ms ease";
+  
+      // Replace placeholder immediately so download starts right away
+      placeholder.replaceWith(img);
+  
+      img.addEventListener("load", () => {
+        img.style.opacity = "1";
+      });
+      img.addEventListener("error", () => {
+        // optional: keep a small fallback style when load fails
+        img.style.opacity = "1";
+        img.style.filter = "grayscale(1)";
+        log("image load error:", src);
+      });
+    }
+  
+    // Load ALL placeholders (skip those already replaced)
+    function loadAllPortfolioImages() {
+      const placeholders = document.querySelectorAll(PLACEHOLDER_SELECTOR);
+      if (!placeholders.length) {
+        log("no placeholders found");
+        return;
+      }
+      log("loading", placeholders.length, "images");
+      placeholders.forEach((ph) => {
+        // If placeholder already removed, skip
+        if (!ph || !ph.dataset) return;
+        replacePlaceholder(ph);
+      });
+  
+      // If you use GLightbox or similar, re-init it here.
+      // (Optional) Re-init GLightbox if present:
+      try {
+        if (window.GLightbox) {
+          // destroy previous instance if exists
+          if (window._portfolioGLightbox && typeof window._portfolioGLightbox.destroy === "function") {
+            window._portfolioGLightbox.destroy();
+          }
+          window._portfolioGLightbox = GLightbox({ selector: ".glightbox" });
+        }
+      } catch (e) {
+        log("glightbox re-init error:", e);
+      }
+    }
+  
+    // Determine if #services is in view OR already passed (above the viewport)
+    function servicesPassedOrVisible(servicesEl) {
+      if (!servicesEl) return false;
+      const rect = servicesEl.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+  
+      // Condition TRUE when:
+      // - services is partially/fully visible (rect.top < vh && rect.bottom >= 0)
+      // - OR services has been scrolled past (rect.bottom <= 0)
+      const visible = rect.top < vh && rect.bottom >= 0;
+      const passed = rect.bottom <= 0;
+      log("services rect:", rect, "visible:", visible, "passed:", passed);
+      return visible || passed;
+    }
+  
+    // Main bootstrap
+    document.addEventListener("DOMContentLoaded", () => {
+      // Defer to next frame so layout/scroll position is stable
+      requestAnimationFrame(() => {
+        const servicesEl = document.getElementById(SERVICES_ID);
+        if (!servicesEl) {
+          log(`#${SERVICES_ID} not found`);
+          return;
+        }
+  
+        // If on load the user has already passed the section (e.g. refresh on footer),
+        // or the section is visible, load images immediately
+        if (servicesPassedOrVisible(servicesEl)) {
+          loadAllPortfolioImages();
+          return;
+        }
+  
+        // Otherwise, observe it: when it enters viewport OR becomes passed, load images.
+        if ("IntersectionObserver" in window) {
+          const observer = new IntersectionObserver((entries) => {
+            for (const entry of entries) {
+              // entry.isIntersecting covers entering viewport.
+              // Also check entry.boundingClientRect.bottom <= 0 (scrolled past) just in case.
+              if (entry.isIntersecting || entry.boundingClientRect.bottom <= 0) {
+                loadAllPortfolioImages();
+                observer.disconnect();
+                break;
+              }
+            }
+          }, {
+            root: null,
+            rootMargin: "0px",
+            threshold: 0, // triggers as soon as anything intersects
+          });
+  
+          observer.observe(servicesEl);
+          log("observing #services");
+        } else {
+          // Fallback: listen for scroll and check
+          const onScroll = () => {
+            if (servicesPassedOrVisible(servicesEl)) {
+              loadAllPortfolioImages();
+              window.removeEventListener("scroll", onScroll);
+            }
+          };
+          window.addEventListener("scroll", onScroll, { passive: true });
+          log("attached scroll fallback");
+        }
+      });
+    });
+  </script>
+  
+  
