@@ -9,103 +9,171 @@ const currentPath = Astro.url.pathname;
         discuter de vos objectifs.
     </p>
 
-    <form class="mx-auto" style="max-width: 800px;">
+    <form class="mx-auto appointment-form" style="max-width: 800px;">
         <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="lastname" class="form-label"
-                    >Nom <span class="text-danger">*</span></label
-                >
-                <input
-                    type="text"
-                    class="form-control"
-                    id="lastname"
-                    name="lastname"
-                    required
-                />
-            </div>
-            <div class="col-md-6">
-                <label for="firstname" class="form-label"
-                    >Prénom <span class="text-danger">*</span></label
-                >
-                <input
-                    type="text"
-                    class="form-control"
-                    id="firstname"
-                    name="firstname"
-                    required
-                />
-            </div>
+          <div class="col-md-6">
+            <label for="lastnameAppointment" class="form-label">
+              Nom <span class="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="lastnameAppointment"
+              name="lastnameAppointment"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="firstnameAppointment" class="form-label">
+              Prénom <span class="text-danger">*</span>
+            </label>
+            <input
+              type="text"
+              class="form-control"
+              id="firstnameAppointment"
+              name="firstnameAppointment"
+              required
+            />
+          </div>
         </div>
-
+      
         <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="date" class="form-label"
-                    >Date <span class="text-danger">*</span></label
-                >
-                <input
-                    type="date"
-                    class="form-control"
-                    id="date"
-                    name="date"
-                    required
-                />
-            </div>
-            <div class="col-md-6">
-                <label for="hour" class="form-label">Heure</label>
-                <input type="time" class="form-control" id="hour" name="hour" />
-            </div>
+          <div class="col-md-6">
+            <label for="dateAppointment" class="form-label">
+              Date <span class="text-danger">*</span>
+            </label>
+            <input
+              type="date"
+              class="form-control"
+              id="dateAppointment"
+              name="dateAppointment"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="hourAppointment" class="form-label">Heure</label>
+            <input
+              type="time"
+              class="form-control"
+              id="hourAppointment"
+              name="hourAppointment"
+            />
+          </div>
         </div>
-
+      
         <div class="row mb-3">
-            <div class="col-md-6">
-                <label for="email" class="form-label"
-                    >Adresse e-mail <span class="text-danger">*</span></label
-                >
-                <input
-                    type="email"
-                    class="form-control"
-                    id="email"
-                    name="email"
-                    required
-                />
-            </div>
-            <div class="col-md-6">
-                <label for="phone" class="form-label"
-                    >Numéro de téléphone <span class="text-danger">*</span
-                    ></label
-                >
-                <input
-                    type="tel"
-                    class="form-control"
-                    id="phone"
-                    name="phone"
-                    required
-                    pattern="[0-9\s\+\-\(\)]{7,}"
-                />
-            </div>
+          <div class="col-md-6">
+            <label for="emailAppointment" class="form-label">
+              Adresse e-mail <span class="text-danger">*</span>
+            </label>
+            <input
+              type="email"
+              class="form-control"
+              id="emailAppointment"
+              name="emailAppointment"
+              required
+            />
+          </div>
+          <div class="col-md-6">
+            <label for="phoneAppointment" class="form-label">
+              Numéro de téléphone <span class="text-danger">*</span>
+            </label>
+            <input
+              type="tel"
+              class="form-control"
+              id="phoneAppointment"
+              name="phoneAppointment"
+              required
+              pattern="[0-9\s\+\-\(\)]{7,}"
+            />
+          </div>
         </div>
-
-        <div
-            class="row mb-3"
-            style={currentPath === "/strategies-max/"
-                ? "display:block"
-                : "display:none"}
-        >
-            <div class="col-md-6 offset-3">
-                <label for="phone" class="form-label">Stratégie</label>
-                <input
-                    type="text"
-                    class="form-control"
-                    id="strategy"
-                    name="strategy"
-                    disabled
-                />
-            </div>
+      
+        <div class="row mb-3 strategy-row"  style={currentPath === "/strategies-max/"
+        ? "display:block"
+        : "display:none"}>
+          <div class="col-md-6">
+            <label for="strategyAppointment" class="form-label">Stratégie</label>
+            <input
+              type="text"
+              class="form-control"
+              id="strategyAppointment"
+              name="strategyAppointment"
+              disabled
+            />
+          </div>
         </div>
-
-        <button type="submit" class="btn btn-primary">
-            <span>Réserver un appel</span>
-            <i class="bi bi-arrow-right"></i>
+      
+        <!-- Status messages -->
+        <div class="loading" style="display:none;">Envoi en cours...</div>
+        <div class="error-message text-danger" style="display:none;"></div>
+        <div class="sent-message"  style="display:none;color: white;">
+          Merci ! Votre demande a bien été envoyée.
+        </div>
+      
+        <button type="submit" class="btn btn-primary send-appointment-request">
+          <span>Réserver un appel</span>
+          <i class="bi bi-arrow-right"></i>
         </button>
-    </form>
+      </form>
+      
 </section>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+  document.querySelectorAll(".appointment-form").forEach(form => {
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      // Show loading
+      form.querySelector(".loading").style.display = "block";
+      form.querySelector(".error-message").style.display = "none";
+      form.querySelector(".sent-message").style.display = "none";
+
+      // Collect values
+      const lastname = form.querySelector('[name="lastnameAppointment"]').value;
+      const firstname = form.querySelector('[name="firstnameAppointment"]').value;
+      const date = form.querySelector('[name="dateAppointment"]').value;
+      const hour = form.querySelector('[name="hourAppointment"]').value;
+      const email = form.querySelector('[name="emailAppointment"]').value;
+      const phone = form.querySelector('[name="phoneAppointment"]').value;
+      const strategy = form.querySelector('[name="strategyAppointment"]')?.value || "";
+
+      try {
+        const templateParams = {
+            message: `Nouvelle demande de rendez-vous :
+          Nom: ${lastname} ${firstname}
+          Date: ${date} ${hour}
+          Email: ${email}
+          Téléphone: ${phone}
+          Stratégie: ${strategy}
+          `,
+          reply_to: email,
+          from_name: `${firstname} ${lastname}`,
+          to_name: "Vidéo & Photo Service",
+          subject: `Rendez-vous - ${date}`,
+        };
+
+        // Send with EmailJS
+        await emailjs.send("service_8hmb2eq", "template_jmcu1f9", templateParams);
+
+        // Hide loading + show thank you
+        form.querySelector(".loading").style.display = "none";
+        form.querySelector(".sent-message").style.display = "block";
+
+        // Reset form
+        form.reset();
+      } catch (error) {
+        console.error("Failed to send appointment request:", error);
+        form.querySelector(".loading").style.display = "none";
+        form.querySelector(".error-message").style.display = "block";
+        form.querySelector(".error-message").textContent =
+          "Une erreur est survenue. Veuillez réessayer.";
+      }
+    });
+  });
+});
+
+</script>
