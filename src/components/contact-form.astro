@@ -23,7 +23,7 @@
         votre stratégie digitale performante.
     </h3>
 
-    <form id="contactForm" class="php-email-form">
+    <form id="" class="php-email-form contactForm">
         <div class="row g-3">
             Choisissez votre sujet:
             <div class="col-md-12">
@@ -134,27 +134,27 @@
                     </div>
                 </div>
             </div>
-
             <div class="row">
-                <div class="col-md-9">
-                    <div class="form-group" id="attachmentsSection">
+                <div class="col-md-12">
+                    <div class="form-group attachmentsSection">
+                        <label>Pièces jointes</label>
+
                         <input
                             type="url"
                             name="attachments[]"
-                            placeholder="Collez le lien de votre fichier"
+                            placeholder="Collez ici le lien de votre fichier (Google Drive, Dropbox, OneDrive, etc.)"
                             class="attachment-input"
                         />
-                        <small
-                            >Vous pouvez ajouter plusieurs liens. Assurez-vous
-                            que vos fichiers sont publics.</small
-                        >
-                    </div>
-                </div>
 
-                <div class="col-md-3">
-                    <button type="button" class="addAttachmentBtn"
-                        >+ Ajouter un autre lien</button
-                    >
+                        <small>
+                            Vous pouvez ajouter plusieurs liens. Assurez-vous
+                            que vos fichiers sont publics.
+                        </small>
+
+                        <!-- <button type="button" class="addAttachmentBtn">
+                            + Ajouter un autre lien
+                        </button> -->
+                    </div>
                 </div>
             </div>
 
@@ -194,72 +194,95 @@
 </div>
 
 <script>
-   document.addEventListener("DOMContentLoaded", function () {
-  // Add dynamic attachment inputs for all forms
-  document.querySelectorAll(".contactForm").forEach(form => {
-    const addBtn = form.querySelector(".addAttachmentBtn");
-    const attachmentsSection = form.querySelector(".attachmentsSection");
+    document.addEventListener("DOMContentLoaded", function () {
+        // Add dynamic attachment inputs for all forms
+        document.querySelectorAll(".contactForm").forEach((form) => {
+            const addBtn = form.querySelector(".addAttachmentBtn");
+            const attachmentsSection = form.querySelector(
+                ".attachmentsSection",
+            );
 
-    addBtn.addEventListener("click", function () {
-      const input = document.createElement("input");
-      input.type = "url";
-      input.name = "attachments[]";
-      input.placeholder = "Collez le lien de votre fichier";
-      input.classList.add("attachment-input");
-      attachmentsSection.insertBefore(input, addBtn);
+            // addBtn.addEventListener("click", function () {
+            //     const input = document.createElement("input");
+            //     input.type = "url";
+            //     input.name = "attachments[]";
+            //     input.placeholder = "Collez le lien de votre fichier";
+            //     input.classList.add("attachment-input");
+
+            //     // Insert new input above the button (so button stays last)
+            //     attachmentsSection.insertBefore(input, addBtn);
+            // });
+
+            // Handle form submission
+            form.querySelector(".contact-form-submit").addEventListener(
+                "click",
+                async function (event) {
+                    event.preventDefault();
+
+                    // Show loading
+                    form.querySelector(".loading").style.display = "block";
+                    form.querySelector(".error-message").style.display = "none";
+                    form.querySelector(".sent-message").style.display = "none";
+
+                    // Get form values
+                    const name =
+                        form.querySelector('input[name="name"]').value || "";
+                    const email =
+                        form.querySelector('input[name="email"]').value || "";
+                    const subject =
+                        form.querySelector('input[name="subject"]').value || "";
+                    const message =
+                        form.querySelector('textarea[name="message"]').value ||
+                        "";
+                    const activeValue =
+                    form.querySelector('input[name="exampleRadios"]:checked')
+                        ?.dataset.val || "";
+
+                    // Collect all attachment URLs
+                    const attachments = Array.from(
+                        form.querySelectorAll(".attachment-input"),
+                    )
+                        .map((input) => input.value)
+                        .filter((url) => url.trim() !== "");
+
+                    try {
+                        // 
+                       const templateParams = {
+                        message: `Bonjour,
+                        Type de contenu: ${activeValue} - ${subject}
+                        Nom: ${name}
+                        Email: ${email}
+                        Message: ${message}
+                        Pièces jointes: ${attachments.join("\n")}
+                        `,
+                        reply_to: email,
+                        from_name: name,
+                        to_name: "Vidéo & Photo Service",
+                        subject: `${activeValue} - ${subject}`,
+                    };
+
+                        // Send email via EmailJS
+                        await emailjs.send(
+                            "service_8hmb2eq",
+                            "template_jmcu1f9",
+                            templateParams,
+                        );
+
+                        // Show success
+                        form.querySelector(".loading").style.display = "none";
+                        form.querySelector(".sent-message").style.display =
+                            "block";
+                        form.reset();
+                    } catch (error) {
+                        console.error("Erreur d'envoi :", error);
+                        form.querySelector(".loading").style.display = "none";
+                        form.querySelector(".error-message").style.display =
+                            "block";
+                        form.querySelector(".error-message").textContent =
+                            "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.";
+                    }
+                },
+            );
+        });
     });
-
-    // Handle form submission
-    form.querySelector(".contact-form-submit").addEventListener("click", async function (event) {
-      event.preventDefault();
-
-      // Show loading
-      form.querySelector(".loading").style.display = "block";
-      form.querySelector(".error-message").style.display = "none";
-      form.querySelector(".sent-message").style.display = "none";
-
-      // Get form values
-      const name = form.querySelector('input[name="name"]').value || "";
-      const email = form.querySelector('input[name="email"]').value || "";
-      const subject = form.querySelector('input[name="subject"]').value || "";
-      const message = form.querySelector('textarea[name="message"]').value || "";
-
-      // Collect all attachment URLs
-      const attachments = Array.from(form.querySelectorAll(".attachment-input"))
-        .map(input => input.value)
-        .filter(url => url.trim() !== "");
-
-      try {
-        const templateParams = {
-          message: `
-Nom: ${name}
-Email: ${email}
-Sujet: ${subject}
-Message: ${message}
-Pièces jointes: ${attachments.join("\n")}
-          `,
-          reply_to: email,
-          from_name: name,
-          to_name: "Vidéo & Photo Service",
-          subject: subject,
-        };
-
-        // Send email via EmailJS
-        await emailjs.send("service_8hmb2eq", "template_jmcu1f9", templateParams);
-
-        // Show success
-        form.querySelector(".loading").style.display = "none";
-        form.querySelector(".sent-message").style.display = "block";
-        form.reset();
-      } catch (error) {
-        console.error("Erreur d'envoi :", error);
-        form.querySelector(".loading").style.display = "none";
-        form.querySelector(".error-message").style.display = "block";
-        form.querySelector(".error-message").textContent =
-          "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.";
-      }
-    });
-  });
-});
-
 </script>

@@ -761,7 +761,7 @@ section,
     margin: 0;
     letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: #e30f29;
+    color: white;
     position: relative;
 }
 
@@ -770,7 +770,7 @@ section,
     width: 120px;
     height: 1px;
     display: inline-block;
-    background: color-mix(in srgb, var(--default-color), transparent 50%);
+    background: #e30f29;
     margin: 4px 10px;
 }
 

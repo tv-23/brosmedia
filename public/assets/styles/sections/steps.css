@@ -43,7 +43,7 @@
 .point span {
     opacity: 0;
     transition: opacity 0.5s ease;
-    pointer-events: none;
+    /* pointer-events: none; */
 }
 
 .point:hover,
@@ -51,6 +51,19 @@
     width: 100px;
     height: 100px;
     font-size: 18px;
+}
+label .bi-info-circle {
+  display: none; /* icône cachée par défaut */
+}
+
+label.active .bi-info-circle {
+  display: inline-block; /* icône visible uniquement si le label est actif */
+}
+
+
+.tooltip-inner {
+    color: white;
+    text-align: start;
 }
 
 .point:hover span,
