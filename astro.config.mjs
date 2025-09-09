@@ -2,8 +2,6 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
-// https://astro.build/config
-
 export default defineConfig({
     compressHTML: true, // Enable HTML compression
     build: {
