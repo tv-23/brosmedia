@@ -1,7 +1,12 @@
 ---
+
 ---
 
-
+<style>
+    i.bi.bi-info-circle.me-2:hover {
+        color: blue;
+    }
+</style>
 <section id="success-keys" class="keys section">
     <div style="position: relative;">
         <div class="design-container" id="designContainer" style=""></div>
@@ -29,17 +34,17 @@
             { x: 15, y: 77 },
             { x: 50, y: 92 },
             { x: 15, y: 107 },
-            { x: 0, y: 95 },    
+            { x: 0, y: 95 },
         ];
 
         let points;
-        let left_val = 8 
+        let left_val = 8;
 
         if (window.innerWidth >= 1024) {
             points = pointsDesktop;
         } else {
             points = pointsMobileTablet;
-            left_val  = 12
+            left_val = 12;
         }
 
         const pointEls = [];
@@ -49,7 +54,6 @@
 
         for (let i = 1; i < points.length - 1; i++) {
             const stepText = document.createElement("span");
-            console.log(left_val)
             stepText.style.left = `${points[i].x + left_val}%`;
             stepText.style.top = `${points[i].y - 3}%`;
             stepText.style.position = `absolute`;
@@ -62,35 +66,53 @@
 
             const label = document.createElement("span");
 
-            let stepName;
+            let stepName,tooltip;
             switch (i) {
                 case 1:
                     stepName = "01";
+                    tooltip = "Nous échangeons avec vous afin de comprendre vos objectifs, votre secteur d’activité et les attentes de vos utilisateurs. Cette étape nous permet de définir une stratégie claire et adaptée à votre projet.";
                     stepText.textContent = "Analyse de vos besoins";
                     break;
 
                 case 2:
                     stepName = "02";
+                    tooltip = "Nous concevons une identité visuelle moderne et intuitive, accompagnée d’une architecture claire pour garantir une navigation fluide et une expérience utilisateur optimale."
                     stepText.textContent = "Design & architecture";
                     break;
 
                 case 3:
                     stepName = "03";
+                    tooltip = "Nos développeurs transforment le design en un site fonctionnel, performant et compatible avec tous les appareils. Nous intégrons également les fonctionnalités spécifiques à vos besoins."
                     stepText.textContent = "Développement et intégration";
                     break;
 
                 case 4:
                     stepName = "04";
+                    tooltip = "Après validation, nous mettons votre site en ligne et vous formons à son utilisation afin que vous puissiez gérer vos contenus en toute autonomie."
                     stepText.textContent = "Mise en ligne et formation";
                     break;
 
                 default:
                     stepName = "05";
+                    tooltip = "Nous assurons un accompagnement continu pour veiller à la sécurité, aux mises à jour et à l’évolution de votre site au fil du temps."
                     stepText.textContent = "Suivi et maintenance";
                     break;
             }
 
-            label.textContent = stepName;
+            const icon = document.createElement("i");
+            icon.className = "bi bi-info-circle me-2";
+            icon.setAttribute("title", tooltip); // texte du tooltip
+            icon.setAttribute("data-bs-toggle", "tooltip");
+            icon.setAttribute("data-bs-placement", "top");
+            // make it show on click; if you want hover use 'hover focus' or omit this line
+            icon.setAttribute("data-bs-trigger", "click");
+            icon.setAttribute("tabindex", "0"); // keyboard accessible
+            icon.style.cursor = "pointer";
+
+            const text = document.createTextNode(stepName);
+
+            label.appendChild(icon);
+            label.appendChild(text);
             el.appendChild(label);
 
             container.appendChild(stepText);
@@ -103,7 +125,7 @@
         for (let i = 0; i < points.length - 1; i++) {
             const line = document.createElement("div");
             line.className = "line";
-            line.id = `line-${i}`
+            line.id = `line-${i}`;
             container.appendChild(line);
             lineEls.push(line);
             lineData.push({ length: 0 });
@@ -185,5 +207,12 @@
         window.addEventListener("scroll", updateLines);
         window.addEventListener("resize", updateLines);
         updateLines();
+
+        const tooltipTriggerList = [].slice.call(
+            document.querySelectorAll('[data-bs-toggle="tooltip"]'),
+        );
+        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
+            new bootstrap.Tooltip(tooltipTriggerEl);
+        });
     });
 </script>
