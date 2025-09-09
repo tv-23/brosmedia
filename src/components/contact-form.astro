@@ -23,7 +23,7 @@
         votre stratégie digitale performante.
     </h3>
 
-    <!-- <form id="contactForm" action="" class="php-email-form"> -->
+    <form id="contactForm" class="php-email-form">
         <div class="row g-3">
             Choisissez votre sujet:
             <div class="col-md-12">
@@ -34,6 +34,7 @@
                             type="radio"
                             name="exampleRadios"
                             id="radio1"
+                            data-val="Demande de devis"
                             checked
                         />
                         <label class="form-check-label" for="radio1">
@@ -46,6 +47,7 @@
                             type="radio"
                             name="exampleRadios"
                             id="radio2"
+                            data-val="Demande de stage/emploi"
                         />
                         <label class="form-check-label" for="radio2">
                             Demande de stage/emploi
@@ -57,6 +59,7 @@
                             type="radio"
                             name="exampleRadios"
                             id="radio3"
+                            data-val="Autre"
                         />
                         <label class="form-check-label" for="radio3">
                             Autre
@@ -132,21 +135,47 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-md-9">
+                    <div class="form-group" id="attachmentsSection">
+                        <input
+                            type="url"
+                            name="attachments[]"
+                            placeholder="Collez le lien de votre fichier"
+                            class="attachment-input"
+                        />
+                        <small
+                            >Vous pouvez ajouter plusieurs liens. Assurez-vous
+                            que vos fichiers sont publics.</small
+                        >
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <button type="button" class="addAttachmentBtn"
+                        >+ Ajouter un autre lien</button
+                    >
+                </div>
+            </div>
+
             <div class="col-12">
-                <div class="loading">Loading</div>
+                <div class="loading">En cours</div>
                 <div class="error-message"></div>
                 <div class="sent-message">
-                    Your message has been sent. Thank you!
+                    Votre message a été envoyé. Merci !
                 </div>
             </div>
 
             <div class="col-12 text-center">
-                <button type="submit" id="contactFormSubmit" class="btn btn-primary btn-submit"
+                <button
+                    type="submit"
+                    id="contactFormSubmit"
+                    class="contact-form-submit btn btn-primary btn-submit"
                     >ENVOYER</button
                 >
             </div>
         </div>
-    <!-- </form> -->
+    </form>
 
     <br />
 
@@ -165,57 +194,72 @@
 </div>
 
 <script>
-   document .getElementById("contactFormSubmit")
-        .addEventListener("click", async function () {
+   document.addEventListener("DOMContentLoaded", function () {
+  // Add dynamic attachment inputs for all forms
+  document.querySelectorAll(".contactForm").forEach(form => {
+    const addBtn = form.querySelector(".addAttachmentBtn");
+    const attachmentsSection = form.querySelector(".attachmentsSection");
 
+    addBtn.addEventListener("click", function () {
+      const input = document.createElement("input");
+      input.type = "url";
+      input.name = "attachments[]";
+      input.placeholder = "Collez le lien de votre fichier";
+      input.classList.add("attachment-input");
+      attachmentsSection.insertBefore(input, addBtn);
+    });
 
-            // Show loading message
-            document.querySelector(".loading").style.display = "block";
-            document.querySelector(".error-message").style.display = "none";
-            document.querySelector(".sent-message").style.display = "none";
+    // Handle form submission
+    form.querySelector(".contact-form-submit").addEventListener("click", async function (event) {
+      event.preventDefault();
 
-            // Get form values
-            const name = document.getElementById("contactUsName").value;
-            const email = document.getElementById("contactUsEmail").value;
-            const subject = document.getElementById("contactUsSubject").value;
-            const message = document.getElementById("contactUsMsg").value;
-            const activeValue = document.querySelector('input[name="exampleRadios"]:checked')?.value;
-            alert(activeValue)
+      // Show loading
+      form.querySelector(".loading").style.display = "block";
+      form.querySelector(".error-message").style.display = "none";
+      form.querySelector(".sent-message").style.display = "none";
 
-            // try {
-            //     const templateParams = {
-            //         message: `Bonjour, 
-            //         Type de contenu: ${activeValue} - ${subject}
-            //         Nom: ${name}
-            //         Email: ${email}
-            //         Message: ${message}
-            //         `,
-            //         reply_to: email,
-            //         from_name: name,
-            //         to_name: "Vidéo & Photo Service",
-            //         subject: `${activeValue} - ${subject}`,
-            //     };
+      // Get form values
+      const name = form.querySelector('input[name="name"]').value || "";
+      const email = form.querySelector('input[name="email"]').value || "";
+      const subject = form.querySelector('input[name="subject"]').value || "";
+      const message = form.querySelector('textarea[name="message"]').value || "";
 
-            //     // Send email using EmailJS
-            //     await emailjs.send(
-            //         "service_8hmb2eq",
-            //         "template_jmcu1f9",
-            //         templateParams,
-            //     );
+      // Collect all attachment URLs
+      const attachments = Array.from(form.querySelectorAll(".attachment-input"))
+        .map(input => input.value)
+        .filter(url => url.trim() !== "");
 
-            //     // Show success message
-            //     document.querySelector(".loading").style.display = "none";
-            //     document.querySelector(".sent-message").style.display = "block";
+      try {
+        const templateParams = {
+          message: `
+Nom: ${name}
+Email: ${email}
+Sujet: ${subject}
+Message: ${message}
+Pièces jointes: ${attachments.join("\n")}
+          `,
+          reply_to: email,
+          from_name: name,
+          to_name: "Vidéo & Photo Service",
+          subject: subject,
+        };
 
-            //     // Reset the form
-            //     document.getElementById("contactForm").reset();
-            // } catch (error) {
-            //     console.error("Failed to send email:", error);
-            //     document.querySelector(".loading").style.display = "none";
-            //     document.querySelector(".error-message").style.display =
-            //         "block";
-            //     document.querySelector(".error-message").textContent =
-            //         "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.";
-            // }
-        });
+        // Send email via EmailJS
+        await emailjs.send("service_8hmb2eq", "template_jmcu1f9", templateParams);
+
+        // Show success
+        form.querySelector(".loading").style.display = "none";
+        form.querySelector(".sent-message").style.display = "block";
+        form.reset();
+      } catch (error) {
+        console.error("Erreur d'envoi :", error);
+        form.querySelector(".loading").style.display = "none";
+        form.querySelector(".error-message").style.display = "block";
+        form.querySelector(".error-message").textContent =
+          "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.";
+      }
+    });
+  });
+});
+
 </script>

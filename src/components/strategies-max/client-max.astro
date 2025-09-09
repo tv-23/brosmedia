@@ -85,7 +85,7 @@ import AppointmentForm from "../telephone-appointment-form.astro";
                             data-bs-toggle="modal"
                             data-bs-target="#MaxModal"
                             class="btn"
-                            data-service="Client MAX"
+                            data-service="Conversion MAX"
                         >
                             <span>Appel de découverte</span>
                         </button>
@@ -185,7 +185,7 @@ import AppointmentForm from "../telephone-appointment-form.astro";
                             data-bs-toggle="modal"
                             data-bs-target="#MaxModal"
                             class="btn"
-                            data-service="Impact MAX"
+                            data-service="Prospection MAX"
                         >
                             <span>Appel de découverte</span>
                         </button>
@@ -284,7 +284,7 @@ import AppointmentForm from "../telephone-appointment-form.astro";
                             type="button"
                             data-bs-toggle="modal"
                             data-bs-target="#MaxModal"
-                            data-service="Visibilité MAX"
+                            data-service="Audience MAX"
                             class="btn"
                         >
                             <span>Appel de découverte</span>
@@ -449,7 +449,7 @@ const videoConfigs = [
                 const service = button.getAttribute("data-service");
 
                 // Update the input field in the modal
-                const input = modal.querySelector("#strategy");
+                const input = modal.querySelector("#strategyAppointment");
                 if (input) {
                     input.value = service;
                 }
