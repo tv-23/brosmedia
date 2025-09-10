@@ -1,13 +1,12 @@
 ---
 import "bootstrap/dist/css/bootstrap.min.css";
+// import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "bootstrap-icons/font/bootstrap-icons.css";
-import "swiper/css";
-import "glightbox/dist/css/glightbox.min.css";
+
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import Message from "../components/message.astro";
 import "../../public/assets/styles/main.css";
-import "../../public/assets/styles/global.css";
 
 const { pageTitle } = Astro.props;
 ---
@@ -20,7 +19,70 @@ const { pageTitle } = Astro.props;
         <meta name="generator" content={Astro.generator} />
 
         <title>{pageTitle}</title>
+        <!-- <link
+            rel="preload"
+            href="/assets/vendor/bootstrap/css/bootstrap.min.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript
+            ><link
+                rel="stylesheet"
+                href="/assets/vendor/bootstrap/css/bootstrap.min.css"
+            /></noscript
+        >
 
+        <link
+            rel="preload"
+            href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript
+            ><link
+                rel="stylesheet"
+                href="/assets/vendor/bootstrap-icons/bootstrap-icons.css"
+            /></noscript
+        > -->
+
+        <link
+            rel="preload"
+            href="/assets/vendor/swiper/swiper-bundle.min.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript
+            ><link
+                rel="stylesheet"
+                href="/assets/vendor/swiper/swiper-bundle.min.css"
+            /></noscript
+        >
+
+        <link
+            rel="preload"
+            href="/assets/vendor/glightbox/css/glightbox.min.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript
+            ><link
+                rel="stylesheet"
+                href="/assets/vendor/glightbox/css/glightbox.min.css"
+            /></noscript
+        >
+
+        <link
+            rel="preload"
+            href="/assets/styles/global.css"
+            as="style"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript
+            ><link
+                rel="stylesheet"
+                href="/assets/styles/global.css"
+            /></noscript
+        >
     </head>
     <body>
         <div class="bg-white">
@@ -41,7 +103,23 @@ const { pageTitle } = Astro.props;
 
         <Footer />
 
-        <script src="../../public/libs.js"></script>
+        <script
+            src="../../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"
+        ></script>
+        <script src="../../public/assets/vendor/php-email-form/validate.js"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/swiper@11.1.14/swiper-bundle.min.js"
+            client:load></script>
+
+        <script
+            src="https://unpkg.com/imagesloaded@5.0.0/imagesloaded.pkgd.min.js"
+            client:load></script>
+
+        <script
+            src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"
+            client:load></script>
+
         <script src="../../public/main.js"></script>
 
         <script>
@@ -52,7 +130,8 @@ const { pageTitle } = Astro.props;
             });
         </script>
 
-        <!-- Meta Pixel Code -->
+
+ <!-- Meta Pixel Code -->
         <script>
             (function () {
                 var PIXEL_ID = "940762620305099"; // change this!
@@ -96,5 +175,6 @@ const { pageTitle } = Astro.props;
             })();
         </script>
         <!-- End Meta Pixel Code -->
+
     </body>
 </html>
