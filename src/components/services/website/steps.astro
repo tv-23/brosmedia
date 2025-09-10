@@ -66,35 +66,40 @@
 
             const label = document.createElement("span");
 
-            let stepName,tooltip;
+            let stepName, tooltip;
             switch (i) {
                 case 1:
                     stepName = "01";
-                    tooltip = "Nous échangeons avec vous afin de comprendre vos objectifs, votre secteur d’activité et les attentes de vos utilisateurs. Cette étape nous permet de définir une stratégie claire et adaptée à votre projet.";
+                    tooltip =
+                        "Nous échangeons avec vous afin de comprendre vos objectifs, votre secteur d’activité et les attentes de vos utilisateurs. Cette étape nous permet de définir une stratégie claire et adaptée à votre projet.";
                     stepText.textContent = "Analyse de vos besoins";
                     break;
 
                 case 2:
                     stepName = "02";
-                    tooltip = "Nous concevons une identité visuelle moderne et intuitive, accompagnée d’une architecture claire pour garantir une navigation fluide et une expérience utilisateur optimale."
+                    tooltip =
+                        "Nous concevons une identité visuelle moderne et intuitive, accompagnée d’une architecture claire pour garantir une navigation fluide et une expérience utilisateur optimale.";
                     stepText.textContent = "Design & architecture";
                     break;
 
                 case 3:
                     stepName = "03";
-                    tooltip = "Nos développeurs transforment le design en un site fonctionnel, performant et compatible avec tous les appareils. Nous intégrons également les fonctionnalités spécifiques à vos besoins."
+                    tooltip =
+                        "Nos développeurs transforment le design en un site fonctionnel, performant et compatible avec tous les appareils. Nous intégrons également les fonctionnalités spécifiques à vos besoins.";
                     stepText.textContent = "Développement et intégration";
                     break;
 
                 case 4:
                     stepName = "04";
-                    tooltip = "Après validation, nous mettons votre site en ligne et vous formons à son utilisation afin que vous puissiez gérer vos contenus en toute autonomie."
+                    tooltip =
+                        "Après validation, nous mettons votre site en ligne et vous formons à son utilisation afin que vous puissiez gérer vos contenus en toute autonomie.";
                     stepText.textContent = "Mise en ligne et formation";
                     break;
 
                 default:
                     stepName = "05";
-                    tooltip = "Nous assurons un accompagnement continu pour veiller à la sécurité, aux mises à jour et à l’évolution de votre site au fil du temps."
+                    tooltip =
+                        "Nous assurons un accompagnement continu pour veiller à la sécurité, aux mises à jour et à l’évolution de votre site au fil du temps.";
                     stepText.textContent = "Suivi et maintenance";
                     break;
             }
@@ -143,7 +148,7 @@
                 Math.max(scrollInSection / sectionHeight, 0),
                 1,
             );
-            console.log(scrollY);
+
             if (scrollY >= 800) {
                 const containerW = container.clientWidth;
                 const containerH = container.clientHeight;
@@ -208,11 +213,13 @@
         window.addEventListener("resize", updateLines);
         updateLines();
 
-        const tooltipTriggerList = [].slice.call(
-            document.querySelectorAll('[data-bs-toggle="tooltip"]'),
-        );
-        tooltipTriggerList.forEach(function (tooltipTriggerEl) {
-            new bootstrap.Tooltip(tooltipTriggerEl);
-        });
+        if (typeof window !== "undefined" && typeof bootstrap !== "undefined") {
+            const tooltipTriggerList = [].slice.call(
+                document.querySelectorAll('[data-bs-toggle="tooltip"]'),
+            );
+            tooltipTriggerList.forEach((el) => {
+                new bootstrap.Tooltip(el);
+            });
+        }
     });
 </script>
