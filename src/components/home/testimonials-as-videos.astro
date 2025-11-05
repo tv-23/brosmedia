@@ -5,167 +5,263 @@ const slides = [
     { image: "/thumbnail/thumbnail-3.webp" },
 ];
 ---
-
 <section id="testimonials-as-videos" class="videos section">
     <!-- Section Title -->
     <div class="container section-title">
-        <h2>Avis</h2>
-        <div>
-            <span>Ils témoignent</span>
-            <span class="description-title">de notre impact</span>
-        </div>
+      <h2>Avis</h2>
+      <div>
+        <span>Ils témoignent</span>
+        <span class="description-title">de notre impact</span>
+      </div>
     </div>
-    <!-- End Section Title -->
-
+  
+    <!-- Slider -->
     <div class="container">
-        <div class="row align-items-center gy-4">
-            <!-- Swiper -->
-            <div class="col-lg-4">
-                <div class="swiper video-swiper position-relative">
-                    <div class="swiper-wrapper">
-                        {
-                            slides.map((slide,key) => (
-                                <div class="swiper-slide overflow-hidden">
-                                     <div class="video-wrapper position-relative"> 
-                                        <img
-                                        width="100%" height="100%"
-                                            src={slide.image}
-                                            class="img-fluid"
-                                            alt={`thumbnail-${key} - Brosmedia`}
-  loading="lazy"
-
-                                        />
-                                        <div class="play-icon" />
-                                     </div> 
-                                </div>
-                            ))
-                        }
-                    </div>
-
-                    <!-- Navigation buttons -->
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
+      <div class="row align-items-center gy-4">
+        <div class="col-lg-4">
+          <div class="video-slider position-relative">
+            <div class="slides">
+              <div class="slide active">
+                <div class="video-wrapper position-relative">
+                  <img
+                    src="/thumbnail/thumbnail-1.webp"
+                    class="img-fluid"
+                    alt="thumbnail-1 - Brosmedia"
+                    loading="lazy"
+                  />
+                  <div class="play-icon"></div>
                 </div>
-            </div>
-
-            <!-- Text -->
-            <div class="col-lg-8">
-                <div class="videos-section-content">
-                    <h2>L'impact de Brosmedia</h2>
-                    <p class="lead">
-                        Chez Brosmedia, chaque projet est une histoire de
-                        transformation. Grâce à notre approche personnalisée et
-                        humaine, nous aidons nos clients à franchir un cap dans
-                        leur présence digitale. Que ce soit par la création de
-                        sites web percutants, des campagnes marketing efficaces
-                        ou des vidéos publicitaires engageantes, nous
-                        contribuons concrètement à leur croissance.
-                    </p>
+              </div>
+              <div class="slide">
+                <div class="video-wrapper position-relative">
+                  <img
+                    src="/thumbnail/thumbnail-2.webp"
+                    class="img-fluid"
+                    alt="thumbnail-2 - Brosmedia"
+                    loading="lazy"
+                  />
+                  <div class="play-icon"></div>
                 </div>
+              </div>
+              <div class="slide">
+                <div class="video-wrapper position-relative">
+                  <img
+                    src="/thumbnail/thumbnail-3.webp"
+                    class="img-fluid"
+                    alt="thumbnail-3 - Brosmedia"
+                    loading="lazy"
+                  />
+                  <div class="play-icon"></div>
+                </div>
+              </div>
             </div>
+  
+            <!-- Navigation buttons -->
+            <button class="slider-btn prev-btn" aria-label="Previous slide">
+              <i class="bi bi-chevron-left"></i>
+            </button>
+            <button class="slider-btn next-btn" aria-label="Next slide">
+              <i class="bi bi-chevron-right"></i>
+            </button>
+          </div>
         </div>
+  
+        <!-- Text -->
+        <div class="col-lg-8">
+          <div class="videos-section-content">
+            <h2>L'impact de Brosmedia</h2>
+            <p class="lead">
+              Chez Brosmedia, chaque projet est une histoire de transformation.
+              Grâce à notre approche personnalisée et humaine, nous aidons nos
+              clients à franchir un cap dans leur présence digitale. Que ce soit
+              par la création de sites web percutants, des campagnes marketing
+              efficaces ou des vidéos publicitaires engageantes, nous contribuons
+              concrètement à leur croissance.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
-
-<script>
+  </section>
+  
+  <style>
+    .video-slider {
+      position: relative;
+      overflow: hidden;
+      border-radius: 1rem;
+    }
+  
+    .slides {
+      display: flex;
+      transition: transform 0.6s ease;
+    }
+  
+    .slide {
+      min-width: 100%;
+      flex-shrink: 1;
+      position: relative;
+    }
+  
+    .video-wrapper {
+      position: relative;
+      border-radius: 1rem;
+      overflow: hidden;
+      cursor: pointer;
+    }
+  
+    .video-wrapper img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 1rem;
+      transition: transform 0.3s ease;
+    }
+  
+    .video-wrapper:hover img {
+      transform: scale(1.05);
+    }
+  
+    /* Keep your original play button look */
+    /* .play-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 70px;
+      height: 70px;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.3s ease;
+    }
+  
+    .play-icon::before {
+      content: "";
+      display: inline-block;
+      width: 0;
+      height: 0;
+      border-left: 20px solid white;
+      border-top: 12px solid transparent;
+      border-bottom: 12px solid transparent;
+      margin-left: 4px;
+    } */
+  
+    /* .video-wrapper:hover .play-icon {
+      background: rgba(0, 0, 0, 0.8);
+    } */
+  
+    .slider-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      border: none;
+      color: white;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 5;
+    }
+  
+    .slider-btn:hover {
+      background: rgba(0, 0, 0, 0.7);
+    }
+  
+    .prev-btn {
+      left: 10px;
+    }
+  
+    .next-btn {
+      right: 10px;
+    }
+  
+    .slider-btn i {
+      font-size: 1.2rem;
+    }
+  
+    @media (max-width: 767px) {
+      .slider-btn {
+        width: 32px;
+        height: 32px;
+      }
+  
+      .play-icon {
+        width: 50px;
+        height: 50px;
+      }
+    }
+  </style>
+  
+  <script>
     document.addEventListener("DOMContentLoaded", function () {
-        const slides = [
-            { url: "https://www.videoask.com/f02f0r1ef" },
-            { url: "https://www.videoask.com/fujo8ptxi" },
-            { url: "https://www.videoask.com/fcstso7o3" },
-        ];
-    
-        // Initialize originalContents first
-        const originalContents = [];
-        
-        const swiper = new Swiper(".video-swiper", {
-            loop: true,
-            // autoplay: {
-            //     delay: 6000,
-            //     disableOnInteraction: false,
-            // },
-            speed: 600,
-            slidesPerView: 1,
-            navigation: {
-                nextEl: ".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            },
-            on: {
-                // Restore thumbnails when slide changes
-                slideChange: function() {
-                    const activeIndex = this.activeIndex;
-                    const slideElements = document.querySelectorAll('.swiper-slide');
-                    
-                    slideElements.forEach((slide, index) => {
-                        if (index !== activeIndex) {
-                            restoreThumbnail(slide);
-                        }
-                    });
-                }
-            }
+      const videoData = [
+        { url: "https://www.videoask.com/f02f0r1ef" },
+        { url: "https://www.videoask.com/fujo8ptxi" },
+        { url: "https://www.videoask.com/fcstso7o3" },
+      ];
+  
+      const slidesContainer = document.querySelector(".slides");
+      const slides = document.querySelectorAll(".slide");
+      const prevBtn = document.querySelector(".prev-btn");
+      const nextBtn = document.querySelector(".next-btn");
+      let currentIndex = 0;
+  
+      function showSlide(index) {
+        slidesContainer.style.transform = `translateX(-${index * 100}%)`;
+        restoreThumbnails();
+      }
+  
+      prevBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+      });
+  
+      nextBtn.addEventListener("click", () => {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+      });
+  
+      // Play video on click
+      document.addEventListener("click", (e) => {
+        const wrapper = e.target.closest(".video-wrapper");
+        if (wrapper) playVideo(wrapper);
+      });
+  
+      function playVideo(wrapper) {
+        const slide = wrapper.closest(".slide");
+        const index = Array.from(slides).indexOf(slide);
+        const videoUrl = videoData[index]?.url;
+        if (!videoUrl) return;
+  
+        wrapper.innerHTML = `
+          <iframe
+            src="${videoUrl}?autoplay=1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            frameborder="0"
+            style="width:100%;height:100%;border:none;aspect-ratio:3/4"
+          ></iframe>
+        `;
+      }
+  
+      function restoreThumbnails() {
+        slides.forEach((slide, i) => {
+          const wrapper = slide.querySelector(".video-wrapper");
+          if (wrapper && !wrapper.querySelector("img")) {
+            wrapper.innerHTML = `
+              <img src="/thumbnail/thumbnail-${i + 1}.webp" class="img-fluid" alt="thumbnail-${i + 1} - Brosmedia" loading="lazy" />
+              <div class="play-icon"></div>
+            `;
+          }
         });
-    
-        // Store original HTML to restore later
-        document.querySelectorAll('.swiper-slide .video-wrapper').forEach(wrapper => {
-            originalContents.push(wrapper.innerHTML);
-        });
-    
-        function restoreThumbnail(slide) {
-            const wrapper = slide.querySelector('.video-wrapper');
-            const index = Array.from(slide.parentElement.children).indexOf(slide);
-            
-            if (wrapper && originalContents[index]) {
-                // Remove iframe if exists
-                const iframe = wrapper.querySelector('iframe');
-                if (iframe) {
-                    iframe.remove();
-                }
-                
-                // Restore original content
-                wrapper.innerHTML = originalContents[index];
-            }
-        }
-    
-        // Use event delegation instead of inline onclick
-        document.addEventListener('click', function(e) {
-            const videoWrapper = e.target.closest('.video-wrapper');
-            if (videoWrapper) {
-                playVideoAsk(videoWrapper);
-            }
-        });
-    
-        function playVideoAsk(wrapper) {
-            const slide = wrapper.closest('.swiper-slide');
-            const slideIndex = Array.from(slide.parentElement.children).indexOf(slide);
-            const videoUrl = slides[slideIndex]?.url;
-            
-            if (!videoUrl) return;
-    
-            swiper.autoplay.stop();
-    
-            // Store original content if not already stored
-            if (!originalContents[slideIndex]) {
-                originalContents[slideIndex] = wrapper.innerHTML;
-            }
-    
-            // Clear wrapper and add iframe directly
-            wrapper.innerHTML = '';
-            
-            const iframe = document.createElement("iframe");
-            iframe.src = `${videoUrl}?autoplay=1`;
-            iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
-            iframe.setAttribute("allowfullscreen", "");
-            iframe.setAttribute("frameborder", "0");
-            iframe.style.width = "100%";
-            iframe.style.height = "100%";
-            iframe.style.border = "none";
-            iframe.style.aspectRatio = "3/4"; // Maintain aspect ratio
-    
-            wrapper.appendChild(iframe);
-    
-            // setTimeout(() => {
-            //     swiper.autoplay.start();
-            // }, 30000);
-        }
+      }
     });
-    </script>
+  </script>
+  
